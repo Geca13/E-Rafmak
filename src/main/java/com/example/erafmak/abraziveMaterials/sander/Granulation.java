@@ -23,7 +23,8 @@ public enum Granulation {
 	DEVETNAESETA("2000"),
 	DVAESETA("2500"),
 	DVAESETIPRVA("3000"),
-	DVAESETIVTORA("4000");
+	DVAESETIVTORA("4000"),
+	DVAESETITRETA("220");
 	
 	
 private final String displayValue;

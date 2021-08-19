@@ -4,6 +4,7 @@ public enum Type {
 	
 	PAPER("Paper"),
 	WIRE("Wire"),
+	FOAM("Foam"),
 	PLASTIC("Plastic");
 	
 	
