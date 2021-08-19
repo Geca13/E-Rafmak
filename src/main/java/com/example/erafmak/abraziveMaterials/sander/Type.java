@@ -1,14 +1,15 @@
-package com.example.erafmak.sanding.entity;
+package com.example.erafmak.abraziveMaterials.sander;
 
-public enum Condition {
-
-	DRY("Dry"),
-	WET("Wet");
+public enum Type {
+	
+	PAPER("Paper"),
+	WIRE("Wire"),
+	PLASTIC("Plastic");
 	
 	
     private final String displayValue;
     
-    private Condition(String displayValue) {
+    private Type(String displayValue) {
         this.displayValue = displayValue;
     }
     

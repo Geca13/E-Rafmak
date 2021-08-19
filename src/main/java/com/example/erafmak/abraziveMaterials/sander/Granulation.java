@@ -1,4 +1,4 @@
-package com.example.erafmak.sanding.entity;
+package com.example.erafmak.abraziveMaterials.sander;
 
 public enum Granulation {
 
