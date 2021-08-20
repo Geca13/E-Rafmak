@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.example.erafmak.manufacturers.Manufacturer;
@@ -23,11 +24,16 @@ public class Nozzle {
 	@Id
 	private Long id;
 	
+	private String description;
+	
 	@Enumerated
 	private NozzleSize nozzleSize;
 	
 	private Double prize;
 	
 	private String imageUrl;
+	
+	@ManyToOne
+	private Manufacturer manufacturer;
 
 }

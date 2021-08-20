@@ -28,6 +28,8 @@ public class SprayGun {
 	
 	private Double price;
 	
+	private Integer qty;
+	
 	@ManyToMany
 	private List<Nozzle> nozzles;
 	
