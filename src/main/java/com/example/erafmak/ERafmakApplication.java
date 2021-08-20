@@ -31,13 +31,22 @@ import com.example.erafmak.manufacturers.Manufacturer;
 import com.example.erafmak.manufacturers.ManufacturerRepository;
 import com.example.erafmak.manufacturers.Origin;
 import com.example.erafmak.manufacturers.OriginRepository;
+import com.example.erafmak.polish.Pads;
+import com.example.erafmak.polish.PadsRepository;
+import com.example.erafmak.polish.Polish;
 import com.example.erafmak.polish.PolishRepository;
+import com.example.erafmak.safety.Safety;
+import com.example.erafmak.safety.SafetyRepository;
+import com.example.erafmak.safety.Size;
+import com.example.erafmak.sprayGuns.entity.Extras;
 import com.example.erafmak.sprayGuns.entity.Nozzle;
 import com.example.erafmak.sprayGuns.entity.NozzleSize;
 import com.example.erafmak.sprayGuns.entity.SprayGun;
 import com.example.erafmak.sprayGuns.repository.ExtrasRepository;
 import com.example.erafmak.sprayGuns.repository.NozzleRepository;
 import com.example.erafmak.sprayGuns.repository.SprayGunRepository;
+import com.example.erafmak.tools.Power;
+import com.example.erafmak.tools.Tool;
 import com.example.erafmak.tools.ToolRepository;
 
 @SpringBootApplication
@@ -85,6 +94,12 @@ public class ERafmakApplication {
 	
 	@Autowired
 	ToolRepository toolRepository;
+	
+	@Autowired
+	PadsRepository padsRepository;
+	
+	@Autowired
+	SafetyRepository safetyRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ERafmakApplication.class, args);
@@ -377,19 +392,110 @@ public class ERafmakApplication {
 			nozzleRepository.save(new Nozzle(12L, "Nozzle set for SATA JET 5500 HVLP" ,NozzleSize.TRET, 13500.00, "https://dkstatic.blob.core.windows.net/images/736326/500x500/mfrsat_sata_1063635.jpg", manufacturerRepository.findById(5L).get()));
 			nozzleRepository.save(new Nozzle(13L, "Nozzle set for SATA JET 5500 HVLP" ,NozzleSize.PETTI, 13500.00, "https://dkstatic.blob.core.windows.net/images/736326/500x500/mfrsat_sata_1063635.jpg", manufacturerRepository.findById(5L).get()));
 			
+			List<Nozzle> f100 = new ArrayList<>();
+			f100.add(nozzleRepository.findById(1L).get());
+			f100.add(nozzleRepository.findById(2L).get());
+			
+			List<Nozzle> f500 = new ArrayList<>();
+			f500.add(nozzleRepository.findById(3L).get());
+			f500.add(nozzleRepository.findById(4L).get());
+			f500.add(nozzleRepository.findById(5L).get());
+			f500.add(nozzleRepository.findById(7L).get());
+			f500.add(nozzleRepository.findById(8L).get());
+			
+			List<Nozzle> sata100 = new ArrayList<>();
+			sata100.add(nozzleRepository.findById(8L).get());
+			sata100.add(nozzleRepository.findById(9L).get());
+			
+			List<Nozzle> satarp = new ArrayList<>();
+			satarp.add(nozzleRepository.findById(10L).get());
+			satarp.add(nozzleRepository.findById(11L).get());
+			
+			List<Nozzle> satahvlp= new ArrayList<>();
+			satahvlp.add(nozzleRepository.findById(12L).get());
+			satahvlp.add(nozzleRepository.findById(13L).get());
+			
+			gunRepository.save(new SprayGun(1L, "Finixa SPG 100" , 3500.00 , 10 , f100 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG1001.jpg" ));
+			gunRepository.save(new SprayGun(2L, "Finixa SPG 500" , 4400.00 , 10 , f500 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG5001.jpg" ));
+			
+			gunRepository.save(new SprayGun(1L, "SATA JET 100" , 1600.00 , 10 , sata100 , manufacturerRepository.findById(5L).get(), "https://www.sata.com/assets/pim/assets/592x839/HERO-BILD-189613-SATAJET-100-B-F-RP.PNG" ));
+			gunRepository.save(new SprayGun(2L, "SATA JET 5500 RP" , 34000.00 , 10 , satarp , manufacturerRepository.findById(5L).get(), "https://www.prpshop.it/3504-large_default/sata-satajet-x-5500-rp-o-professional-spray-gun.jpg" ));
+			gunRepository.save(new SprayGun(1L, "SATA JET 5500 HVLP" , 35000.00 , 10 , satahvlp , manufacturerRepository.findById(5L).get(), "https://www.prpshop.it/3490-large_default/sata-satajet-x-5500-hvlp-o-professional-spray-gun.jpg" ));
+			
+			extrasRepository.save(new Extras(1L , "Sata Gravity Cup" , "reusable" , 3200.00 , 10 , manufacturerRepository.findById(5L).get(), "https://www.sata.com/assets/pim/assets/800x533/27243_KUNSTSTOFFBECHER.png"));
+			extrasRepository.save(new Extras(2L , "Finixa Gravity Cup" , "reusable" , 800.00 , 10 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG500C1.jpg"));
+			extrasRepository.save(new Extras(3L , "Finixa Regulator" , "spraygun air regulator" , 2500.00 , 10 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG9201.jpg"));
+			extrasRepository.save(new Extras(4L , "Spiralflex 4011" , "CONNECTION FOR QUICK COUPLING 1/4" , 90.00 , 10 , manufacturerRepository.findById(6L).get(), "https://www.rp-tools.com/media/image/product/14163/lg/rp-sp-rcee4111_connection-for-quick-coupling-1-4-inch-cee.jpg"));
+			extrasRepository.save(new Extras(5L , "Spiralflex 4003" , "CONNECTION FOR QUICK COUPLING 1/4" , 350.00 , 10 , manufacturerRepository.findById(6L).get(), "https://www.rp-tools.com/media/image/product/6016/lg/rp-sp-rcee4003_clutch-1-2-inch.jpg"));
+			extrasRepository.save(new Extras(6L , "Spiralflex Air Purifier" , "primary with manometer" , 3700.00 , 10 , manufacturerRepository.findById(6L).get(), "http://www.fluxostore.com/image/cache/data/fx3130-340x340.gif"));
+			extrasRepository.save(new Extras(7L , "Spiralflex Air Purifier" , "secondary" , 2700.00 , 10 , manufacturerRepository.findById(6L).get(), "http://www.fluxostore.com/image/cache/data/fx3120-340x340.gif"));
+			extrasRepository.save(new Extras(8L , "SPIRALFLEX SPRAYGUN HOSE" , "PU RETINATO 12X8 M.10" , 1900.00 , 10 , manufacturerRepository.findById(6L).get(), "https://vigliettaguido.com/img_viglietta/prodotti_vg/tpr12x8!10.jpg"));
+			
+			padsRepository.save(new Pads(1L, "White Lambswool Pad", "150mm Grip" , 460.00 , 10, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7990150111_010.jpg?w=1200"));
+			padsRepository.save(new Pads(2L, "Yellow Lambswool Pad", "150mm Grip" , 1300.00 , 10, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7991500211_010.jpg?w=1200"));
+			padsRepository.save(new Pads(3L, "Black Waffle", "150mm Grip" , 850.00 , 10, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7993115022_001.jpg?w=1200"));
+			padsRepository.save(new Pads(4L, "Yellow Waffle", "150mm Grip" , 880.00 , 10, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7993415021_010.jpg?w=306"));
+			padsRepository.save(new Pads(5L, "Yellow Waffle", "85mm Grip" , 500.00 , 10, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7993408521_010.jpg?w=1200"));
+			padsRepository.save(new Pads(6L, "Twisted Wool Pad", "180mm Grip" , 1100.00 , 10, manufacturerRepository.findById(1L).get(),""));
+			padsRepository.save(new Pads(7L, "Yellow Lambswool Pad", "80mm Grip" , 550.00 , 10, manufacturerRepository.findById(1L).get(),""));
+			padsRepository.save(new Pads(8L, "White Polishing Felt Pad", "125x6mm Grip" , 880.00 , 10, manufacturerRepository.findById(1L).get(),""));
+			padsRepository.save(new Pads(9L, "White Foam Pad", "150mm Grip" , 620.00 , 10, manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/POP508-514-5183.jpg"));
+			padsRepository.save(new Pads(10L, "Black Foam Pad", "150mm Grip" , 620.00 , 10, manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/POP908-914-9183.jpg"));
+			padsRepository.save(new Pads(11L, "Orange Foam Pad", "150mm Grip" , 620.00 , 10, manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/POP708-714-7182.jpg"));
+			
+			List<Pads> first = new ArrayList<>();
+			first.add(padsRepository.findById(1L).get());
+			first.add(padsRepository.findById(2L).get());
+			first.add(padsRepository.findById(6L).get());
+			first.add(padsRepository.findById(7L).get());
+			first.add(padsRepository.findById(9L).get());
+			first.add(padsRepository.findById(11L).get());
+			
+			List<Pads> ten = new ArrayList<>();
+			ten.add(padsRepository.findById(1L).get());
+			ten.add(padsRepository.findById(2L).get());
+			ten.add(padsRepository.findById(3L).get());
+			ten.add(padsRepository.findById(4L).get());
+			ten.add(padsRepository.findById(5L).get());
+			ten.add(padsRepository.findById(6L).get());
+			ten.add(padsRepository.findById(7L).get());
+			ten.add(padsRepository.findById(9L).get());
 			
 			
-			gunRepository.save(new SprayGun(1L, "Finixa SPG 100" , 3500.00 , 10 , null , manufacturerRepository.findById(3L).get(), "https://www.finixa.com/site/data/images/product/SPG1001.jpg" ));
-			gunRepository.save(new SprayGun(2L, "Finixa SPG 500" , 4400.00 , 10 , null , manufacturerRepository.findById(3L).get(), "https://www.finixa.com/site/data/images/product/SPG5001.jpg" ));
+			List<Pads> last = new ArrayList<>();
+			last.add(padsRepository.findById(3L).get());
+			last.add(padsRepository.findById(4L).get());
+			last.add(padsRepository.findById(5L).get());
+			last.add(padsRepository.findById(10L).get());
 			
-			gunRepository.save(new SprayGun(1L, "SATA JET 100" , 1600.00 , 10 , null , manufacturerRepository.findById(3L).get(), "https://www.sata.com/assets/pim/assets/592x839/HERO-BILD-189613-SATAJET-100-B-F-RP.PNG" ));
-			gunRepository.save(new SprayGun(2L, "SATA JET 5500 RP" , 34000.00 , 10 , null , manufacturerRepository.findById(3L).get(), "https://www.prpshop.it/3504-large_default/sata-satajet-x-5500-rp-o-professional-spray-gun.jpg" ));
-			gunRepository.save(new SprayGun(1L, "SATA JET 5500 HVLP" , 35000.00 , 10 , null , manufacturerRepository.findById(3L).get(), "https://www.prpshop.it/3490-large_default/sata-satajet-x-5500-hvlp-o-professional-spray-gun.jpg" ));
+			List<Pads> glass = new ArrayList<>();
+			glass.add(padsRepository.findById(8L).get());
 			
+			polishRepository.save(new Polish(1L, "Polarshine E3" , "Glass Polishing Componenet", 3800.00 , 10 ,glass, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7990310111_011.jpg?w=1200" ));
+			polishRepository.save(new Polish(2L, "Polarshine 5" , "Finishing Component", 2350.00 , 10 ,last, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7990500111_011.jpg?w=1200" ));
+			polishRepository.save(new Polish(3L, "Polarshine 10" , "2 in 1", 1750.00 , 10 ,ten, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7995010111_011.jpg?w=1200" ));
+			polishRepository.save(new Polish(4L, "Polarshine 25" , "Grip 1000", 1300.00 , 10 ,first, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7992710111_011.jpg?w=1200" ));
+			polishRepository.save(new Polish(5L, "Polarshine 35" , "Grip 800", 1600.00 , 10 ,first, manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/7992810111_016.jpg?w=1200" ));
 			
+			toolRepository.save(new Tool(1L, "Mirka DEROS" , "650CV 150mm Central Vacuum Orbit 5,0" , 31000.00, 5, Power.ELECTRIC, manufacturerRepository.findById(1L).get(), "https://www.mirka.com/globalassets/pdm/mid6502022_002.jpg?w=1200"));
+			toolRepository.save(new Tool(2L, "Mirka DEOS" , "383CV 70x198mm Central Vacuum Orbit 3,0" , 31000.00, 5, Power.ELECTRIC, manufacturerRepository.findById(1L).get(), "https://www.mirka.com/globalassets/pdm/mid3830201_001.jpg?w=1200"));
+			toolRepository.save(new Tool(3L, "Mirka PROS" , "650CV 150mm Central Vacuum Orbit 5.0" , 18000.00, 5, Power.PNEUMATIC, manufacturerRepository.findById(1L).get(), "https://www.mirka.com/globalassets/pdm/8995650111_002.jpg?w=1200"));
+			toolRepository.save(new Tool(4L, "Mirka PS 1437 " , "Polisher 150mm" , 24000.00, 5, Power.ELECTRIC, manufacturerRepository.findById(1L).get(), "https://www.mirka.com/globalassets/pdm/8991300111_002.jpg?w=1200"));
+			toolRepository.save(new Tool(5L, "Mirka Dust Extractor" , "1025 L PC EU 230V" , 31000.00, 5, Power.ELECTRIC, manufacturerRepository.findById(1L).get(), "https://www.mirka.com/globalassets/pdm/8999000111_003.jpg?w=1200"));
+			toolRepository.save(new Tool(6L, "Finixa Palm Sander" , "75mm/3 inch - 2.5mm orbital palm sander" , 8800.00, 5, Power.PNEUMATIC, manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SAM021.jpg"));
+			toolRepository.save(new Tool(6L, "Finixa Electric Polisher" , "1050W 700-2500RPM" , 18000.00, 5, Power.ELECTRIC, manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/POL552.jpg"));
 			
-			
-			
+			safetyRepository.save(new Safety(1L, "" , "" , 1300.00 , 10 , Size.L,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(2L, "" , "" , 1300.00 , 10 , Size.XL,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(3L, "" , "" , 2300.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(4L, "" , "" , 250.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(5L, "" , "" , 1400.00 , 10 , Size.S,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(6L, "" , "" , 1400.00 , 10 , Size.M,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(7L, "" , "" , 1400.00 , 10 , Size.L,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(8L, "" , "" , 1400.00 , 10 , Size.XL,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(9L, "" , "" , 1400.00 , 10 , Size.XXL,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(10L, "" , "" , 1400.00 , 10 , Size.XXXL,manufacturerRepository.findById(4L).get(),"" ));
+			safetyRepository.save(new Safety(11L, "" , "" , 5200.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(5L).get(),"" ));
 			
 			
 			

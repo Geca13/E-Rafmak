@@ -29,6 +29,8 @@ public class Extras {
 	
 	private Double price;
 	
+	private Integer qty;
+	
 	@ManyToOne
 	private Manufacturer manufacturer;
 	

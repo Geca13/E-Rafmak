@@ -28,6 +28,8 @@ public class Tool {
 	
 	private Double price;
 	
+	private Integer qty;
+	
 	@Enumerated
 	private Power power;
 	

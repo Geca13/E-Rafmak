@@ -1,14 +1,13 @@
-package com.example.erafmak.polish;
-
-import java.util.List;
+package com.example.erafmak.safety;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.example.erafmak.manufacturers.Manufacturer;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +18,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Polish {
-
+public class Safety {
+	
 	@Id
 	private Long id;
 	
@@ -32,11 +31,11 @@ public class Polish {
 	
 	private Integer qty;
 	
-	@ManyToMany
-	List<Pads> pads;
+	private Size size;
 	
 	@ManyToOne
 	private Manufacturer manufacturer;
 	
 	private String imageUrl;
+
 }
