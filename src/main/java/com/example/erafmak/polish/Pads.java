@@ -2,6 +2,7 @@ package com.example.erafmak.polish;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,6 +31,7 @@ public class Pads {
 	private Integer qty;
 	
 	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
 	private Manufacturer manufacturer;
 	
 	private String imageUrl;

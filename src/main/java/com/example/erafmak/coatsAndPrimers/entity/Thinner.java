@@ -1,8 +1,10 @@
 package com.example.erafmak.coatsAndPrimers.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -28,7 +30,7 @@ public class Thinner {
 	
 	private Double price;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Weigth weigth;
 	
 	private Integer qty;
@@ -36,6 +38,7 @@ public class Thinner {
 	private String imageUrl;
 	
 	@ManyToOne
-	Manufacturer manufacturer;
+	@JoinColumn(referencedColumnName = "id")
+	private Manufacturer manufacturer;
 
 }

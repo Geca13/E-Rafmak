@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -33,7 +35,7 @@ public class Coat {
 	
 	private Double price;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Weigth weigth;
 	
 	private Integer qty;
@@ -44,6 +46,7 @@ public class Coat {
 	private List<Hardener> hardeners = new ArrayList<>();
 	
 	@ManyToOne
-	Manufacturer manufacturer;
+	@JoinColumn(referencedColumnName = "id")
+	private Manufacturer manufacturer;
 
 }

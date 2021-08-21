@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -36,6 +37,7 @@ public class Polish {
 	List<Pads> pads;
 	
 	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
 	private Manufacturer manufacturer;
 	
 	private String imageUrl;

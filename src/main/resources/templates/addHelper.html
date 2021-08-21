@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafmak</title>
+  
+  <style>
+ 
+    </style>
+</head>
+
+<body>
+
+<h1>Hello</h1>
+
+<form th:action="@{/newHelper}" th:object="${helper}" method="post">
+ <label>Description</label>
+ <input type="text" th:field="*{description}" />
+ 
+  <label>Price</label>
+ <input type="text" th:field="*{price}" />
+ 
+ <label>Quantity</label>
+ <input type="text" th:field="*{qty}" />
+ 
+  <label>Image Url</label>
+ <input type="text" th:field="*{imageUrl}" />
+ 
+ <label>Manufacturer</label>
+ <select  th:field="*{manufacturer}">
+     <option value="">-Select-</option>
+      <option th:each="manufacturer : ${manufacturers}"
+        th:value="${manufacturer.id}"
+        th:text="${manufacturer.name}"/>
+       </select>
+       
+  <select th:field="${helper.dimension}" >
+    
+      <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.sander.Dimension).values()}"
+      
+      th:value="${dimension}"
+            th:text="${dimension.displayValue}"/>
+       </select>     
+ 
+ <button type="submit">Create</button>
+</form>
+
+</body>
+
+</html>

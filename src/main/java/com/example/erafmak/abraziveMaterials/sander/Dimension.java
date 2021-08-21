@@ -12,7 +12,9 @@ public enum Dimension {
 	OSMA("70mm x 400mm"),
 	DEVETA("50M * 115mm"),
 	DESETA("115mm * 125mm"),
-	EDINAESETA("77mm");
+	EDINAESETA("77mm"),
+	DVANAESETA("115mm x 230mm"),
+	TRINAESETA("70mm x 125mm");
 	
 	
 	

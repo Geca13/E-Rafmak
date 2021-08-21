@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.erafmak.abraziveMaterials.helpers.Helper;
 import com.example.erafmak.abraziveMaterials.helpers.HelperRepository;
 import com.example.erafmak.abraziveMaterials.sander.Condition;
 import com.example.erafmak.abraziveMaterials.sander.Dimension;
@@ -110,6 +111,8 @@ public class ERafmakApplication {
 		
 		try {
 			
+			System.out.println("Post construct called");
+			
 			originRepository.save(new Origin(1L, "Finland"));
 			originRepository.save(new Origin(2L, "Nederlands"));
 			originRepository.save(new Origin(3L, "Italy"));
@@ -117,11 +120,11 @@ public class ERafmakApplication {
 			originRepository.save(new Origin(5L, "Germany"));
 			
 			manufacturerRepository.save(new Manufacturer(1L, "MIRKA",originRepository.findById(1L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(1L, "DeBeer",originRepository.findById(2L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(1L, "Spralac",originRepository.findById(2L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(1L, "Finixa",originRepository.findById(4L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(1L, "Sata",originRepository.findById(5L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(1L, "Spiralflex",originRepository.findById(3L).get() ,""));
+			manufacturerRepository.save(new Manufacturer(2L, "DeBeer",originRepository.findById(2L).get() ,""));
+			manufacturerRepository.save(new Manufacturer(3L, "Spralac",originRepository.findById(2L).get() ,""));
+			manufacturerRepository.save(new Manufacturer(4L, "Finixa",originRepository.findById(4L).get() ,""));
+			manufacturerRepository.save(new Manufacturer(5L, "Sata",originRepository.findById(5L).get() ,""));
+			manufacturerRepository.save(new Manufacturer(6L, "Spiralflex",originRepository.findById(3L).get() ,""));
 			
 			sanderRepository.save(new Sander(1L, "Silver Disk", 100, 10 , 2100.00 ,Dimension.VTORA, Type.PAPER,Granulation.TRETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://helcom-trade.hr/upload/catalog/product/228/thumb/mirka-qsilver-150mm-500x500_5eb2b12eb4c0d_300x300r.jpg"));
 			sanderRepository.save(new Sander(2L, "Silver Disk", 100, 10 , 1910.00,Dimension.VTORA, Type.PAPER,Granulation.CHETVRTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://helcom-trade.hr/upload/catalog/product/228/thumb/mirka-qsilver-150mm-500x500_5eb2b12eb4c0d_300x300r.jpg"));
@@ -485,22 +488,30 @@ public class ERafmakApplication {
 			toolRepository.save(new Tool(6L, "Finixa Palm Sander" , "75mm/3 inch - 2.5mm orbital palm sander" , 8800.00, 5, Power.PNEUMATIC, manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SAM021.jpg"));
 			toolRepository.save(new Tool(6L, "Finixa Electric Polisher" , "1050W 700-2500RPM" , 18000.00, 5, Power.ELECTRIC, manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/POL552.jpg"));
 			
-			safetyRepository.save(new Safety(1L, "" , "" , 1300.00 , 10 , Size.L,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(2L, "" , "" , 1300.00 , 10 , Size.XL,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(3L, "" , "" , 2300.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(4L, "" , "" , 250.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(5L, "" , "" , 1400.00 , 10 , Size.S,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(6L, "" , "" , 1400.00 , 10 , Size.M,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(7L, "" , "" , 1400.00 , 10 , Size.L,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(8L, "" , "" , 1400.00 , 10 , Size.XL,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(9L, "" , "" , 1400.00 , 10 , Size.XXL,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(10L, "" , "" , 1400.00 , 10 , Size.XXXL,manufacturerRepository.findById(4L).get(),"" ));
-			safetyRepository.save(new Safety(11L, "" , "" , 5200.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(5L).get(),"" ));
+			safetyRepository.save(new Safety(1L, "Finixa GCN 09" , "Nitril Disposable Gloves - 09 - 100pcs" , 1300.00 , 10 , Size.L,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/GCN08-09-106.jpg" ));
+			safetyRepository.save(new Safety(2L, "Finixa GCN 10" , "Nitril Disposable Gloves - 10 - 100pcs" , 1300.00 , 10 , Size.XL,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/GCN08-09-106.jpg" ));
+			safetyRepository.save(new Safety(3L, "Finixa MAS 00" , "Spray mask A1 P2" , 2300.00 , 10 , Size.STRECHABLE , manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/MAS002.jpg" ));
+			safetyRepository.save(new Safety(4L, "Finixa MAS 13" , "Carbon Dust Mask Safety Class FFP2." , 250.00 , 10 , Size.STRECHABLE , manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/MAS135_339_mas-13_1599661775.jpg" ));
+			safetyRepository.save(new Safety(5L, "Finixa Spray Overalls" , "Polyester spray overall with optional grey knee protection" , 1400.00 , 10 , Size.S,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SOG1.jpg" ));
+			safetyRepository.save(new Safety(6L, "Finixa Spray Overalls" , "Polyester spray overall with optional grey knee protection" , 1400.00 , 10 , Size.M,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SOG1.jpg" ));
+			safetyRepository.save(new Safety(7L, "Finixa Spray Overalls" , "Polyester spray overall with optional grey knee protection" , 1400.00 , 10 , Size.L,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SOG1.jpg" ));
+			safetyRepository.save(new Safety(8L, "Finixa Spray Overalls" , "Polyester spray overall with optional grey knee protection" , 1400.00 , 10 , Size.XL,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SOG1.jpg" ));
+			safetyRepository.save(new Safety(9L, "Finixa Spray Overalls" , "Polyester spray overall with optional grey knee protection" , 1400.00 , 10 , Size.XXL,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SOG1.jpg" ));
+			safetyRepository.save(new Safety(10L, "Finixa Spray Overalls" , "Polyester spray overall with optional grey knee protection" , 1400.00 , 10 , Size.XXXL,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SOG1.jpg" ));
+			safetyRepository.save(new Safety(11L, "SATA Air Star F" , "Spray Mask A2 P3" , 5200.00 , 10 , Size.STRECHABLE,manufacturerRepository.findById(5L).get(),"https://www.sata.com/assets/pim/assets/592x839/HERO-BILD-134353-AIR-STAR-F-FILTER.PNG" ));
+			
+			helperRepository.save(new Helper(1L , "Mirka File Board Flexible Yellow" ,  5500.00 , 5 , Dimension.OSMA ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391150111_001.jpg?w=306"));
+			helperRepository.save(new Helper(2L , "Mirka Sanding Block 36H Grey" ,  1300.00 , 5 , Dimension.DVANAESETA ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391702011_003.jpg?w=306"));
+			helperRepository.save(new Helper(3L , "Mirka Sanding Block 22H Grey" ,  1100.00 , 5 , Dimension.TRETA ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391502011_003.jpg?w=306"));
+			helperRepository.save(new Helper(4L , "Mirka Sanding Block 2-Sided Soft/Hard" ,  500.00 , 5 , Dimension.TRINAESETA ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8390900111_003.jpg?w=306"));
+			helperRepository.save(new Helper(5L , "Mirka Rubber Sanding Block" ,  1300.00 , 5 , Dimension.TRINAESETA ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8390100111_003.jpg?w=306"));
+			helperRepository.save(new Helper(6L , "Mirka Curved Pad for 70x198mm Block 22H" ,  900.00 , 5 , Dimension.TRETA ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391515011_001.jpg?w=306"));
+			helperRepository.save(new Helper(7L , "Finixa File Board" ,  3500.00 , 5 , Dimension.OSMA ,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SAB323.jpg"));
 			
 			
 			
 			} catch (Exception e) {
-			// TODO: handle exception
+				System.out.println("Post construct NOT called");
 		}
 	}
 
