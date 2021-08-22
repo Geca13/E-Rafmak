@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafmak</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+ 
+    </style>
+</head>
+
+<body>
+  <div th:replace="fragments/navbar :: navbar"></div>
+
+
+
+ <section class='sectionn cocktail-sectionn' th:object="${primer}">
+ 
+       <h2 class ='sectionn-title' th:text="*{name}"></h2>
+       <form th:action="@{/updatePrimerName/{id}(id=${primer.id})}" method="post"  >
+          <input type="text" name="name" placeholder="update name" >
+          <button>change</button>
+          </form>
+      
+       <h3 class ='sectionn-title' th:text="*{description}"></h3>
+       <form th:action="@{/updatePrimerDescription/{id}(id=${primer.id})}" method="post"  >
+          <input type="text" name="description" placeholder="update description" >
+          <button>change</button>
+          </form>
+          
+       <div class ='drink'>
+        <img th:src="*{imageUrl}" alt='image' />
+        
+        <div class='drink-info'>
+          <p >
+          Price :
+            <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
+          </p>
+          <form th:action="@{/updatePrimerPrice/{id}(id=${primer.id})}" method="post" >
+          <input type="text" name="price" placeholder="update price here" >
+          <button>change</button>
+          </form>
+          <br> <br>
+          <p >
+          Manufacturer
+            <span th:text="*{manufacturer.name}" class='drink-data'></span> 
+          </p>
+          <form th:action="@{/updatePrimerManufacturer/{id}(id=${primer.id})}" method="post" >
+          <select  th:name="manufacturer">
+            <option value="">-Select-</option>
+            <option th:each="manufacturer : ${manufacturers}"
+              th:value="${manufacturer.name}"
+              th:text="${manufacturer.name}"/>
+          </select>
+          <button>change</button>
+          </form>
+          <br> <br>
+          <p>
+          Available items:
+            <span th:text="*{qty}" class='drink-data'></span> 
+          </p>
+          <form th:action="@{/addQuantityToPrimer/{id}(id=${primer.id})}" method="post" >
+          <input type="text" name="quantity" placeholder="add more quantity" >
+          <button>change</button>
+          </form>
+          
+          <form th:action="@{/deletePrimer/{id}(id=${primer.id})}" method="post" >
+          
+          <button>delete</button>
+          </form>
+          
+        </div>
+       </div>
+       
+        <div class='roomslist-center'>
+             <article class='room' th:each="hardener : ${primer.hardeners}" >
+            <div class='img-container'>
+              <img th:src="${hardener.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${hardener.price}"></h6>
+                  <p>MKD</p>
+
+              </div>
+              <a th:href="@{/hardener/{id}(id=${hardener.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${hardener.name} + ' ' + ${hardener.description} + ' ' + ${hardener.weigth.displayValue}"></p>
+        </article>
+
+            </div>
+    </section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</body>
+
+</html>

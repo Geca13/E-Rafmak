@@ -19,8 +19,6 @@ public class HelperController {
 	@Autowired
 	ManufacturerService manService;
 	
-	@Autowired
-	HelperRepository helperRepository;
 	
 	@GetMapping("/newHelper")
 	public String helperModel(Model model) {
@@ -74,7 +72,7 @@ public class HelperController {
 	}
 	
 	@PostMapping("/addQuantity/{id}")
-	public String updateManufactorer(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
+	public String updateHelperQuantity(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateHelperQuantity(id , quantity);
 		return "redirect:/helper/" + id;
 	}

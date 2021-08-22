@@ -24,9 +24,9 @@ public class Putty {
 	@Id
 	private Long id;
 	
-	private String puttyName;
+	private String name;
 	
-	private String puttyDescription;
+	private String description;
 	
 	private Double price;
 	

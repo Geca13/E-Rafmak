@@ -15,8 +15,10 @@
 
 <h1>Hello</h1>
 
-<form th:action="@{/newHelper}" th:object="${helper}" method="post">
+<form th:action="@{/newPrimer}" th:object="${primer}" method="post">
 <div>
+<label>Description</label>
+  <input type="text" th:field="*{name}" />
   <label>Description</label>
   <input type="text" th:field="*{description}" />
  
@@ -41,13 +43,27 @@
         th:text="${manufacturer.name}"/>
        </select>
        
-  <select th:field="${helper.dimension}" >
+  <select th:field="${primer.weigth}" >
     
-      <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.sander.Dimension).values()}"
+      <option th:each="weigth : ${T(com.example.erafmak.coatsAndPrimers.entity.Weigth).values()}"
       
-      th:value="${dimension}"
-            th:text="${dimension.displayValue}"/>
-       </select>     
+      th:value="${weigth}"
+            th:text="${weigth.displayValue}"/>
+       </select>   
+       
+         <div class="col">
+      <label >Select Harters:</label>
+     <div class="form-group">
+    <ul>
+        <li th:each="hardener : ${hardeners}"><input type="checkbox"
+                th:field="*{hardeners}" th:value="${hardener.id}"   /> <label
+                th:text="${hardener.description + ' ' + hardener.description}"></label></li>
+</ul>
+  
+  </div>
+      
+      
+    </div>
  
  <button type="submit">Create</button>
  

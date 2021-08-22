@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.erafmak.manufacturers.Manufacturer;
@@ -29,9 +28,9 @@ public class Coat {
 	@Id
 	private Long id;
 	
-	private String coatName;
+	private String name;
 	
-	private String coatDescription;
+	private String description;
 	
 	private Double price;
 	
