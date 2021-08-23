@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafmak</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+ 
+    </style>
+</head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<h1>Hand Blocks</h1>
+
+ <section class='roomsList'>
+            <div class='roomslist-center'>
+             <article class='room' th:each="polish : ${polishes}" >
+            <div class='img-container'>
+              <img th:src="${polish.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${polish.price}"></h6>
+                  <p>MKD</p>
+
+              </div>
+              <a th:href="@{/polish/{id}(id=${polish.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${polish.name} + ' ' + ${polish.description} "></p>
+        </article>
+
+            </div>
+        </section>
+
+</body>
+
+</html>

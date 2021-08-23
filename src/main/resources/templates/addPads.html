@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafmak</title>
+  
+  <style>
+ 
+    </style>
+</head>
+
+<body>
+
+<h1>Hello</h1>
+
+<form th:action="@{/newPads}" th:object="${pads}" method="post">
+<div>
+<label>Description</label>
+  <input type="text" th:field="*{name}" />
+  <label>Description</label>
+  <input type="text" th:field="*{description}" />
+ 
+  <label>Price</label>
+  <input type="text" th:field="*{price}" />
+ </div>
+ <div>
+ <label>Quantity</label>
+ <input type="text" th:field="*{qty}" />
+ 
+  <label>Image Url</label>
+ <input type="text" th:field="*{imageUrl}" />
+ </div>
+ 
+ <div>
+ 
+ <label>Manufacturer</label>
+ <select  th:field="*{manufacturer}">
+     <option value="">-Select-</option>
+      <option th:each="manufacturer : ${manufacturers}"
+        th:value="${manufacturer.id}"
+        th:text="${manufacturer.name}"/>
+       </select>
+       
+     
+ 
+ <button type="submit">Create</button>
+ 
+ </div>
+</form>
+
+</body>
+
+</html>

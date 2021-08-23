@@ -18,7 +18,7 @@ public class PuttyService {
 	@Autowired
 	ManufacturerService manService;
 	
-	 public Putty newPutty(Putty putty) {
+	    public  Putty newPutty(Putty putty) {
 			
 			return puttyRepository.save(putty);
 			
