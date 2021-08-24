@@ -1,6 +1,5 @@
 package com.example.erafmak.sprayGuns.entity;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -29,7 +28,9 @@ public class Nozzle {
 	@Enumerated
 	private NozzleSize nozzleSize;
 	
-	private Double prize;
+	private Double price;
+	
+	private Integer qty;
 	
 	private String imageUrl;
 	

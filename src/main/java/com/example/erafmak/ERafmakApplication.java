@@ -377,23 +377,23 @@ public class ERafmakApplication {
 			puttyRepository.save(new Putty(3L,"1-909" , "Universal Body Filler" ,660.00,Weigth.ONE, 10, "https://grupaurban.pl/wp-content/uploads/2021/01/EA027-1-909.1-1.02L-1.3kg-500x73-Universal-Body-Filler-Light-DL-570x463.png" , manufacturerRepository.findById(2L).get()));
 			puttyRepository.save(new Putty(4L,"6080" , "Spray Filler" ,1000.00,Weigth.ONE, 10, "https://www.gmolton.com/dynimage/gallerylarge/3402/image.png" , manufacturerRepository.findById(2L).get()));
 			
-			nozzleRepository.save(new Nozzle(1L, "Nozzle set for SPG 100" , NozzleSize.PRV, 1200.00, "https://www.finixa.com/site/data/images/product/SPG100K1.jpg", manufacturerRepository.findById(4L).get()));
-			nozzleRepository.save(new Nozzle(2L, "Nozzle set for SPG 100" , NozzleSize.VTOR, 1200.00, "https://www.finixa.com/site/data/images/product/SPG100K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(1L, "Nozzle set for SPG 100" , NozzleSize.PRV, 1200.00,5, "https://www.finixa.com/site/data/images/product/SPG100K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(2L, "Nozzle set for SPG 100" , NozzleSize.VTOR, 1200.00,5, "https://www.finixa.com/site/data/images/product/SPG100K1.jpg", manufacturerRepository.findById(4L).get()));
 			
-			nozzleRepository.save(new Nozzle(3L, "Nozzle set for SPG 500" , NozzleSize.TRET, 1500.00, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
-			nozzleRepository.save(new Nozzle(4L, "Nozzle set for SPG 500" , NozzleSize.PETTI, 1500.00, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
-			nozzleRepository.save(new Nozzle(5L, "Nozzle set for SPG 500" , NozzleSize.SEDMA, 1500.00, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
-			nozzleRepository.save(new Nozzle(6L, "Nozzle set for SPG 500" , NozzleSize.OSMA, 1500.00, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
-			nozzleRepository.save(new Nozzle(7L, "Nozzle set for SPG 500" , NozzleSize.DEVETA, 1500.00, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(3L, "Nozzle set for SPG 500" , NozzleSize.TRET, 1500.00,5, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(4L, "Nozzle set for SPG 500" , NozzleSize.PETTI, 1500.00,5, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(5L, "Nozzle set for SPG 500" , NozzleSize.SEDMA, 1500.00,5, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(6L, "Nozzle set for SPG 500" , NozzleSize.OSMA, 1500.00,5, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
+			nozzleRepository.save(new Nozzle(7L, "Nozzle set for SPG 500" , NozzleSize.DEVETA, 1500.00,5, "https://www.finixa.com/site/data/images/product/SPG500K1.jpg", manufacturerRepository.findById(4L).get()));
 			
-			nozzleRepository.save(new Nozzle(8L, "Nozzle set for SATA JET 100 RP" , NozzleSize.CETVRT, 6500.00, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
-			nozzleRepository.save(new Nozzle(9L, "Nozzle set for SATA JET 100 RP" , NozzleSize.SESTI, 6500.00, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
+			nozzleRepository.save(new Nozzle(8L, "Nozzle set for SATA JET 100 RP" , NozzleSize.CETVRT, 6500.00,5, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
+			nozzleRepository.save(new Nozzle(9L, "Nozzle set for SATA JET 100 RP" , NozzleSize.SESTI, 6500.00,5, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
 			
-			nozzleRepository.save(new Nozzle(10L, "Nozzle set for SATA JET 5500 RP" ,NozzleSize.TRET, 12500.00, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
-			nozzleRepository.save(new Nozzle(11L, "Nozzle set for SATA JET 5500 RP" ,NozzleSize.PETTI, 12500.00, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
+			nozzleRepository.save(new Nozzle(10L, "Nozzle set for SATA JET 5500 RP" ,NozzleSize.TRET, 12500.00,5, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
+			nozzleRepository.save(new Nozzle(11L, "Nozzle set for SATA JET 5500 RP" ,NozzleSize.PETTI, 12500.00,5, "https://www.prodip.eu/image/cache/data/SATA/sata_5000_b_rp_tryskova_sada_10920-600x600.jpg", manufacturerRepository.findById(5L).get()));
 			
-			nozzleRepository.save(new Nozzle(12L, "Nozzle set for SATA JET 5500 HVLP" ,NozzleSize.TRET, 13500.00, "https://dkstatic.blob.core.windows.net/images/736326/500x500/mfrsat_sata_1063635.jpg", manufacturerRepository.findById(5L).get()));
-			nozzleRepository.save(new Nozzle(13L, "Nozzle set for SATA JET 5500 HVLP" ,NozzleSize.PETTI, 13500.00, "https://dkstatic.blob.core.windows.net/images/736326/500x500/mfrsat_sata_1063635.jpg", manufacturerRepository.findById(5L).get()));
+			nozzleRepository.save(new Nozzle(12L, "Nozzle set for SATA JET 5500 HVLP" ,NozzleSize.TRET, 13500.00,5, "https://dkstatic.blob.core.windows.net/images/736326/500x500/mfrsat_sata_1063635.jpg", manufacturerRepository.findById(5L).get()));
+			nozzleRepository.save(new Nozzle(13L, "Nozzle set for SATA JET 5500 HVLP" ,NozzleSize.PETTI, 13500.00,5, "https://dkstatic.blob.core.windows.net/images/736326/500x500/mfrsat_sata_1063635.jpg", manufacturerRepository.findById(5L).get()));
 			
 			List<Nozzle> f100 = new ArrayList<>();
 			f100.add(nozzleRepository.findById(1L).get());

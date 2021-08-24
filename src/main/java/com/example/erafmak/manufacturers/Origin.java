@@ -18,6 +18,6 @@ public class Origin {
 	@Id
 	private Long id;
 	
-	private String country;
+	private String name;
 
 }
