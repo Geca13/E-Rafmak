@@ -22,6 +22,7 @@ body {
   background: var(--mainWhite);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.4;
+  min-height: 100vh;
 }
 h1 {
   font-size: 3em;
@@ -982,3 +983,45 @@ nav {
     color: var(--clr-primary-7);
   }
 }
+
+  .sidebar {
+  
+  position: fixed;
+  width: 60px;
+  height: 100%;
+  background: blue;
+  transition: 0.5s;
+  overflow: hidden;
+  }
+  
+  .sidebar: hover {
+  width: 300px;
+  }
+  
+  .sidebar ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%
+  }
+  
+  .sidebar ul li {
+  position: relative;
+  width: 100%;
+  list-style: none
+  
+  }
+  
+  .sidebar ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: green;
+  
+  }
+  
+  .sidebar ul li: hover {
+  background: red;
+  }
