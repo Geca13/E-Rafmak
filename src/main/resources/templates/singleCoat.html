@@ -18,22 +18,22 @@
 
 
 
- <section class='sectionn cocktail-sectionn' th:object="${coat}">
+ <section class='section cocktail-section' th:object="${coat}">
  
-       <h2 class ='sectionn-title' th:text="*{name}"></h2>
+       <h2 class ='section-title' th:text="*{name}"></h2>
        <form th:action="@{/updateCoatName/{id}(id=${coat.id})}" method="post"  >
           <input type="text" name="name" placeholder="update name" >
           <button>change</button>
           </form>
       
-       <h3 class ='sectionn-title' th:text="*{description}"></h3>
+       <h3 class ='section-title' th:text="*{description}"></h3>
        <form th:action="@{/updateCoatDescription/{id}(id=${coat.id})}" method="post"  >
           <input type="text" name="description" placeholder="update description" >
           <button>change</button>
           </form>
           
        <div class ='drink'>
-        <img th:src="*{imageUrl}" alt='image' />
+        <img  th:src="*{imageUrl}" alt='image' />
         
         <div class='drink-info'>
           <p >

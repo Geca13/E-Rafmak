@@ -279,8 +279,8 @@ public class ERafmakApplication {
 			hardenerRepository.save(new Hardener(1L, "2099" , "2K Hardener Medium" , 600.00 ,Weigth.ONE, 10 , "https://www.autolac.com.au/core/media/media.nl?id=233228&c=1048819&h=377326c8cbcfd51c3422" , manufacturerRepository.findById(3L).get()));
 			hardenerRepository.save(new Hardener(2L, "2299" , "2K Hardener Medium Very Fast" , 600.00 ,Weigth.ONE, 10 , "https://www.autolac.com.au/core/media/media.nl?id=233228&c=1048819&h=377326c8cbcfd51c3422" , manufacturerRepository.findById(3L).get()));
 			
-			hardenerRepository.save(new Hardener(3L, "2501" , "HS Hardener Medium" , 750.00 ,Weigth.TWO, 10 , "https://www.autolac.com.au/core/media/media.nl?id=233236&c=1048819&h=dd6d7b3dff26aa54f462" , manufacturerRepository.findById(3L).get()));
-			hardenerRepository.save(new Hardener(4L, "2511" , "HS Hardener Fast" , 750.00 ,Weigth.TWO, 10 , "https://www.autolac.com.au/core/media/media.nl?id=233229&c=1048819&h=a5fd8b37ed8e21c74613" , manufacturerRepository.findById(3L).get()));
+			hardenerRepository.save(new Hardener(3L, "2501" , "HS Hardener Medium" , 1750.00 ,Weigth.TWO, 10 , "https://www.autolac.com.au/core/media/media.nl?id=233236&c=1048819&h=dd6d7b3dff26aa54f462" , manufacturerRepository.findById(3L).get()));
+			hardenerRepository.save(new Hardener(4L, "2511" , "HS Hardener Fast" , 1750.00 ,Weigth.TWO, 10 , "https://www.autolac.com.au/core/media/media.nl?id=233229&c=1048819&h=a5fd8b37ed8e21c74613" , manufacturerRepository.findById(3L).get()));
 			
             hardenerRepository.save(new Hardener(5L, "47-50" , "2K Hardener Medium" , 800.00 ,Weigth.ONE, 10 , "https://www.gakra.pl/1400-large_default/2k-47-50.jpg" , manufacturerRepository.findById(2L).get()));
 			hardenerRepository.save(new Hardener(6L, "47-40" , "2K Hardener Fast" , 800.00 ,Weigth.ONE, 10 , "https://cdn.salla.sa/2AgkNHFJwjcFmUIKMpyTZK9GMjtP3z7VoD3AhrCp.jpg" , manufacturerRepository.findById(2L).get()));
