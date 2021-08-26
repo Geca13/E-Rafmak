@@ -34,7 +34,7 @@ public class PuttyService {
 			puttyRepository.delete(putty);
 		}
 		
-		public List<Putty> thinners() {
+		public List<Putty> putties() {
 			return puttyRepository.findAll();
 		}
 

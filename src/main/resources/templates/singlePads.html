@@ -49,7 +49,7 @@
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/updatePadsManufacturer/{id}(id=${putty.id})}" method="post" >
+          <form th:action="@{/updatePadsManufacturer/{id}(id=${pads.id})}" method="post" >
           <select  th:name="manufacturer">
             <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"

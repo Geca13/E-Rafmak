@@ -421,9 +421,9 @@ public class ERafmakApplication {
 			gunRepository.save(new SprayGun(1L, "Finixa SPG 100" , 3500.00 , 10 , f100 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG1001.jpg" ));
 			gunRepository.save(new SprayGun(2L, "Finixa SPG 500" , 4400.00 , 10 , f500 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG5001.jpg" ));
 			
-			gunRepository.save(new SprayGun(1L, "SATA JET 100" , 1600.00 , 10 , sata100 , manufacturerRepository.findById(5L).get(), "https://www.sata.com/assets/pim/assets/592x839/HERO-BILD-189613-SATAJET-100-B-F-RP.PNG" ));
-			gunRepository.save(new SprayGun(2L, "SATA JET 5500 RP" , 34000.00 , 10 , satarp , manufacturerRepository.findById(5L).get(), "https://www.prpshop.it/3504-large_default/sata-satajet-x-5500-rp-o-professional-spray-gun.jpg" ));
-			gunRepository.save(new SprayGun(1L, "SATA JET 5500 HVLP" , 35000.00 , 10 , satahvlp , manufacturerRepository.findById(5L).get(), "https://www.prpshop.it/3490-large_default/sata-satajet-x-5500-hvlp-o-professional-spray-gun.jpg" ));
+			gunRepository.save(new SprayGun(3L, "SATA JET 100" , 1600.00 , 10 , sata100 , manufacturerRepository.findById(5L).get(), "https://www.sata.com/assets/pim/assets/592x839/HERO-BILD-189613-SATAJET-100-B-F-RP.PNG" ));
+			gunRepository.save(new SprayGun(4L, "SATA JET 5500 RP" , 34000.00 , 10 , satarp , manufacturerRepository.findById(5L).get(), "https://www.prpshop.it/3504-large_default/sata-satajet-x-5500-rp-o-professional-spray-gun.jpg" ));
+			gunRepository.save(new SprayGun(5L, "SATA JET 5500 HVLP" , 35000.00 , 10 , satahvlp , manufacturerRepository.findById(5L).get(), "https://www.prpshop.it/3490-large_default/sata-satajet-x-5500-hvlp-o-professional-spray-gun.jpg" ));
 			
 			extrasRepository.save(new Extras(1L , "Sata Gravity Cup" , "reusable" , 3200.00 , 10 , manufacturerRepository.findById(5L).get(), "https://www.sata.com/assets/pim/assets/800x533/27243_KUNSTSTOFFBECHER.png"));
 			extrasRepository.save(new Extras(2L , "Finixa Gravity Cup" , "reusable" , 800.00 , 10 , manufacturerRepository.findById(4L).get(), "https://www.finixa.com/site/data/images/product/SPG500C1.jpg"));

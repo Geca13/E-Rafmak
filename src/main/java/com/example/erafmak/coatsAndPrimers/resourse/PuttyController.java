@@ -45,7 +45,7 @@ public class PuttyController {
 	
 	@GetMapping("/putties")
 	public String getAllPutties(Model model) {
-		model.addAttribute("putties", service.thinners());
+		model.addAttribute("putties", service.putties());
 		return "putties";
 	}
 	
