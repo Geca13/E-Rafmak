@@ -2,29 +2,30 @@ package com.example.erafmak.abraziveMaterials.sander;
 
 public enum Granulation {
 
-	PRVA("40"),
-	VTORA("60"),
-	TRETA("80"),
-	CHETVRTA("100"),
-	PETTA("120"),
-	SHESTA("150"),
-	SEDMA("180"),
-	OSMA("240"),
-	DEVETA("280"),
-	DESETA("320"),
-	EDINAESETA("360"),
-	DVANAESETA("400"),
-	TRIENAESETA("500"),
-	CHETIRINAESETA("600"),
-	PETNAESETA("800"),
-	SESTNAESETA("1000"),
-	SEDUMNAESETA("1200"),
-	OSUMNAESETA("1500"),
-	DEVETNAESETA("2000"),
-	DVAESETA("2500"),
-	DVAESETIPRVA("3000"),
-	DVAESETIVTORA("4000"),
-	DVAESETITRETA("220");
+	P40("40"),
+	P60("60"),
+	P80("80"),
+	P100("100"),
+	P120("120"),
+	P150("150"),
+	P180("180"),
+	P220("220"),
+	P240("240"),
+	P280("280"),
+	P320("320"),
+	P360("360"),
+	P400("400"),
+	P500("500"),
+	P600("600"),
+	P800("800"),
+	P1000("1000"),
+	P1200("1200"),
+	P1500("1500"),
+	P2000("2000"),
+	P2500("2500"),
+	P3000("3000"),
+	P4000("4000");
+	
 	
 	
 private final String displayValue;

@@ -66,7 +66,7 @@ public class SafetyService {
 
 		public Safety updateSafetyQuantity(Long id, Integer quantity) {
 			Safety safety = findSafetyById(id);
-			safety.setQty(safety.getQty() + quantity);
+			//safety.setQty(safety.getQty() + quantity);
 			return safetyRepository.save(safety);
 			
 		}

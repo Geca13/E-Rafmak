@@ -27,6 +27,8 @@ public class SprayGun {
 	
 	private String name;
 	
+	private String description;
+	
 	private Double price;
 	
 	private Integer qty;

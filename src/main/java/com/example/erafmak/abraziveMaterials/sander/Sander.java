@@ -1,5 +1,7 @@
 package com.example.erafmak.abraziveMaterials.sander;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,18 +34,14 @@ public class Sander {
 	
 	private Integer piecesInPack;
 	
-	private Integer qty;
-	
-	private Double price;
-	
 	@Enumerated(EnumType.STRING)
 	private Dimension dimension;
 	
 	@Enumerated(EnumType.STRING)
 	private Type type;
 	
-	@Enumerated(EnumType.STRING)
-	private Granulation granulation;
+	@ManyToMany
+	private List<GranulationQty> granulationQty;
 	
 	@Enumerated(EnumType.STRING)
 	private Condition condition;
