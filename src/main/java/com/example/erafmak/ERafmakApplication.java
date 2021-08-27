@@ -180,7 +180,104 @@ public class ERafmakApplication {
 			granulationQtyRepository.save(new GranulationQty(37L, 10 , 1200.00 ,Granulation.P320));
 			granulationQtyRepository.save(new GranulationQty(38L, 10 , 1200.00 ,Granulation.P400));
 			
-		
+			granulationQtyRepository.save(new GranulationQty(39L, 10 , 2200.00, Granulation.P80));
+			granulationQtyRepository.save(new GranulationQty(40L, 10 , 1750.00, Granulation.P100));
+			granulationQtyRepository.save(new GranulationQty(41L, 10 , 1750.00, Granulation.P120));
+			granulationQtyRepository.save(new GranulationQty(42L, 10 , 1750.00 ,Granulation.P150));
+			granulationQtyRepository.save(new GranulationQty(43L, 10 , 1750.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(44L, 10 , 1750.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(45L, 10 , 1750.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(46L, 10 , 1750.00 ,Granulation.P400));
+			granulationQtyRepository.save(new GranulationQty(47L, 10 , 1750.00 ,Granulation.P500));
+			granulationQtyRepository.save(new GranulationQty(48L, 10 , 1750.00 ,Granulation.P600));
+			granulationQtyRepository.save(new GranulationQty(49L, 10 , 2200.00 ,Granulation.P800));
+			granulationQtyRepository.save(new GranulationQty(50L, 10 , 2200.00 ,Granulation.P1000));
+			
+			granulationQtyRepository.save(new GranulationQty(51L, 10 , 1750.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(52L, 10 , 1750.00 ,Granulation.P400));
+			granulationQtyRepository.save(new GranulationQty(53L, 10 , 1750.00 ,Granulation.P600));
+			granulationQtyRepository.save(new GranulationQty(54L, 10 , 2200.00 ,Granulation.P800));
+			
+			
+			granulationQtyRepository.save(new GranulationQty(55L, 10 , 2400.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(56L, 10 , 2400.00 ,Granulation.P360));
+			granulationQtyRepository.save(new GranulationQty(57L, 10 , 2400.00 ,Granulation.P500));
+			granulationQtyRepository.save(new GranulationQty(58L, 10 , 2400.00 ,Granulation.P1000));
+			granulationQtyRepository.save(new GranulationQty(59L, 10 , 2400.00 ,Granulation.P2000));
+			granulationQtyRepository.save(new GranulationQty(60L, 10 , 2400.00 ,Granulation.P3000));
+			granulationQtyRepository.save(new GranulationQty(61L, 10 , 2400.00 ,Granulation.P4000));
+			
+			granulationQtyRepository.save(new GranulationQty(62L, 10 , 1100.00 ,Granulation.P2000));
+			
+			granulationQtyRepository.save(new GranulationQty(63L, 10 , 950.00 ,Granulation.P220));
+			granulationQtyRepository.save(new GranulationQty(64L, 10 , 950.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(65L, 10 , 950.00 ,Granulation.P280));
+			granulationQtyRepository.save(new GranulationQty(66L, 10 , 950.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(67L, 10 , 950.00 ,Granulation.P360));
+			granulationQtyRepository.save(new GranulationQty(68L, 10 , 950.00 ,Granulation.P400));
+			granulationQtyRepository.save(new GranulationQty(69L, 10 , 950.00 ,Granulation.P500));
+			granulationQtyRepository.save(new GranulationQty(70L, 10 , 950.00 ,Granulation.P600));
+			granulationQtyRepository.save(new GranulationQty(71L, 10 , 950.00 ,Granulation.P800));
+			granulationQtyRepository.save(new GranulationQty(72L, 10 , 950.00 ,Granulation.P1000));
+			granulationQtyRepository.save(new GranulationQty(73L, 10 , 950.00 ,Granulation.P1200));
+			
+			granulationQtyRepository.save(new GranulationQty(74L, 10 , 1350.00 ,Granulation.P1500));
+			granulationQtyRepository.save(new GranulationQty(75L, 10 , 1350.00 ,Granulation.P2000));
+			
+			granulationQtyRepository.save(new GranulationQty(76L, 10 , 3300.00, Granulation.P80));
+			granulationQtyRepository.save(new GranulationQty(77L, 10 , 3300.00, Granulation.P120));
+			granulationQtyRepository.save(new GranulationQty(78L, 10 , 3300.00 ,Granulation.P150));
+			granulationQtyRepository.save(new GranulationQty(79L, 10 , 3300.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(80L, 10 , 3300.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(81L, 10 , 3300.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(82L, 10 , 3300.00 ,Granulation.P400));
+			granulationQtyRepository.save(new GranulationQty(83L, 10 , 3300.00 ,Granulation.P500));
+			
+			granulationQtyRepository.save(new GranulationQty(84L, 10 , 2300.00, Granulation.P80));
+			granulationQtyRepository.save(new GranulationQty(85L, 10 , 2200.00, Granulation.P120));
+			granulationQtyRepository.save(new GranulationQty(86L, 10 , 2200.00 ,Granulation.P150));
+			granulationQtyRepository.save(new GranulationQty(87L, 10 , 2200.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(88L, 10 , 2200.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(89L, 10 , 2200.00 ,Granulation.P320));
+			
+			granulationQtyRepository.save(new GranulationQty(90L, 10 , 2300.00, Granulation.P80));
+			granulationQtyRepository.save(new GranulationQty(91L, 10 , 2200.00, Granulation.P120));
+			granulationQtyRepository.save(new GranulationQty(92L, 10 , 2200.00 ,Granulation.P150));
+			granulationQtyRepository.save(new GranulationQty(93L, 10 , 2200.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(94L, 10 , 2200.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(95L, 10 , 2200.00 ,Granulation.P320));
+			
+			granulationQtyRepository.save(new GranulationQty(96L, 10 , 2200.00, Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(97L, 10 , 2200.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(98L, 10 , 2200.00 ,Granulation.P400));
+			granulationQtyRepository.save(new GranulationQty(99L, 10 , 2200.00 ,Granulation.P600));
+			granulationQtyRepository.save(new GranulationQty(100L, 10 , 2200.00 ,Granulation.P800));
+			
+			granulationQtyRepository.save(new GranulationQty(101L, 10 , 1100.00 ,Granulation.P60));
+			
+			granulationQtyRepository.save(new GranulationQty(102L, 10 , 450.00 ,Granulation.P360));
+			
+			granulationQtyRepository.save(new GranulationQty(103L, 10 , 950.00 ,Granulation.P80));
+			granulationQtyRepository.save(new GranulationQty(104L, 10 , 950.00 ,Granulation.P100));
+			granulationQtyRepository.save(new GranulationQty(105L, 10 , 950.00 ,Granulation.P120));
+			granulationQtyRepository.save(new GranulationQty(106L, 10 , 950.00 ,Granulation.P150));
+			granulationQtyRepository.save(new GranulationQty(107L, 10 , 950.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(108L, 10 , 950.00 ,Granulation.P220));
+			granulationQtyRepository.save(new GranulationQty(109L, 10 , 950.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(110L, 10 , 950.00 ,Granulation.P280));
+			granulationQtyRepository.save(new GranulationQty(111L, 10 , 950.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(112L, 10 , 950.00 ,Granulation.P360));
+			granulationQtyRepository.save(new GranulationQty(113L, 10 , 950.00 ,Granulation.P400));
+			
+			granulationQtyRepository.save(new GranulationQty(114L, 10 , 950.00 ,Granulation.P80));
+			granulationQtyRepository.save(new GranulationQty(115L, 10 , 950.00 ,Granulation.P120));
+			granulationQtyRepository.save(new GranulationQty(116L, 10 , 950.00 ,Granulation.P150));
+			granulationQtyRepository.save(new GranulationQty(117L, 10 , 950.00 ,Granulation.P180));
+			granulationQtyRepository.save(new GranulationQty(118L, 10 , 950.00 ,Granulation.P220));
+			granulationQtyRepository.save(new GranulationQty(119L, 10 , 950.00 ,Granulation.P240));
+			granulationQtyRepository.save(new GranulationQty(120L, 10 , 950.00 ,Granulation.P320));
+			granulationQtyRepository.save(new GranulationQty(121L, 10 , 950.00 ,Granulation.P400));
+			
 			
 			List<GranulationQty> silverDisk = new ArrayList<>();
 			
@@ -240,6 +337,106 @@ public class ERafmakApplication {
             autonet70x198.add(granulationQtyRepository.findById(30L).get());
             autonet70x198.add(granulationQtyRepository.findById(31L).get());
             
+            List<GranulationQty> abranetDisk150 = new ArrayList<>();
+			
+            abranetDisk150.add(granulationQtyRepository.findById(39L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(40L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(41L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(42L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(43L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(44L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(45L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(46L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(47L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(48L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(49L).get());
+            abranetDisk150.add(granulationQtyRepository.findById(50L).get());
+            
+            List<GranulationQty> abranetDisk80 = new ArrayList<>();
+			
+            abranetDisk80.add(granulationQtyRepository.findById(51L).get());
+            abranetDisk80.add(granulationQtyRepository.findById(52L).get());
+            abranetDisk80.add(granulationQtyRepository.findById(53L).get());
+            abranetDisk80.add(granulationQtyRepository.findById(54L).get());
+            
+            List<GranulationQty> abralonDisk150 = new ArrayList<>();
+            
+            abralonDisk150.add(granulationQtyRepository.findById(55L).get());
+            abralonDisk150.add(granulationQtyRepository.findById(56L).get());
+            abralonDisk150.add(granulationQtyRepository.findById(57L).get());
+            abralonDisk150.add(granulationQtyRepository.findById(58L).get());
+            abralonDisk150.add(granulationQtyRepository.findById(59L).get());
+            abralonDisk150.add(granulationQtyRepository.findById(60L).get());
+            abralonDisk150.add(granulationQtyRepository.findById(61L).get());
+            
+            List<GranulationQty> abralonDisk80 = new ArrayList<>();
+            abralonDisk150.add(granulationQtyRepository.findById(62L).get());
+            
+            List<GranulationQty> wpf = new ArrayList<>();
+			
+            wpf.add(granulationQtyRepository.findById(63L).get());
+            wpf.add(granulationQtyRepository.findById(64L).get());
+            wpf.add(granulationQtyRepository.findById(65L).get());
+            wpf.add(granulationQtyRepository.findById(66L).get());
+            wpf.add(granulationQtyRepository.findById(67L).get());
+            wpf.add(granulationQtyRepository.findById(68L).get());
+            wpf.add(granulationQtyRepository.findById(69L).get());
+            wpf.add(granulationQtyRepository.findById(70L).get());
+            wpf.add(granulationQtyRepository.findById(71L).get());
+            wpf.add(granulationQtyRepository.findById(72L).get());
+            wpf.add(granulationQtyRepository.findById(73L).get());
+            
+            List<GranulationQty> wpf1500 = new ArrayList<>();
+            
+            wpf1500.add(granulationQtyRepository.findById(74L).get());
+            wpf1500.add(granulationQtyRepository.findById(75L).get());
+            
+            List<GranulationQty> iridiumDisk = new ArrayList<>();
+			
+            iridiumDisk.add(granulationQtyRepository.findById(76L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(77L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(78L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(79L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(80L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(81L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(82L).get());
+            iridiumDisk.add(granulationQtyRepository.findById(83L).get());
+            
+            List<GranulationQty> qSilver = new ArrayList<>();
+			
+            qSilver.add(granulationQtyRepository.findById(84L).get());
+            qSilver.add(granulationQtyRepository.findById(85L).get());
+            qSilver.add(granulationQtyRepository.findById(86L).get());
+            qSilver.add(granulationQtyRepository.findById(87L).get());
+            qSilver.add(granulationQtyRepository.findById(88L).get());
+            qSilver.add(granulationQtyRepository.findById(89L).get());
+            
+            List<GranulationQty> qIridium = new ArrayList<>();
+			
+            qIridium.add(granulationQtyRepository.findById(90L).get());
+            qIridium.add(granulationQtyRepository.findById(91L).get());
+            qIridium.add(granulationQtyRepository.findById(92L).get());
+            qIridium.add(granulationQtyRepository.findById(93L).get());
+            qIridium.add(granulationQtyRepository.findById(94L).get());
+            qIridium.add(granulationQtyRepository.findById(95L).get());
+            
+            List<GranulationQty> goldSoft = new ArrayList<>();
+			
+            goldSoft.add(granulationQtyRepository.findById(96L).get());
+            goldSoft.add(granulationQtyRepository.findById(97L).get());
+            goldSoft.add(granulationQtyRepository.findById(98L).get());
+            goldSoft.add(granulationQtyRepository.findById(99L).get());
+            goldSoft.add(granulationQtyRepository.findById(100L).get());
+            
+            List<GranulationQty> goldDisk = new ArrayList<>();
+			
+            goldDisk.add(granulationQtyRepository.findById(101L).get());
+            
+            List<GranulationQty> mirlonDisk = new ArrayList<>();
+			
+            mirlonDisk.add(granulationQtyRepository.findById(102L).get());
+            
+            
 			
 			sanderRepository.save(new Sander(1L, "Silver Disk", 100, Dimension.VTORA, Type.PAPER, silverDisk , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://helcom-trade.hr/upload/catalog/product/228/thumb/mirka-qsilver-150mm-500x500_5eb2b12eb4c0d_300x300r.jpg"));
 			sanderRepository.save(new Sander(2L, "Deflex Disk", 50, Dimension.PRVA, Type.PAPER, deflexDisk , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://i.simpalsmedia.com/thumbor/0x350/i.simpalsmedia.com/marketplace/products/original/c7ffbaa08cd5826a9bdaf97fc36012df.jpg"));
@@ -247,71 +444,20 @@ public class ERafmakApplication {
 			sanderRepository.save(new Sander(4L, "Microstar Disk", 50, Dimension.EDINAESETA, Type.PLASTIC, microStar80, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://poetsenpolijsten.nl/wp-content/uploads/2016/08/Mirka-Microstar-77mm-738x738.jpg"));
 			sanderRepository.save(new Sander(5L, "Autonet Disk", 50, Dimension.VTORA, Type.WIRE ,autonet150, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/mf_webp/jpg/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka-autonet-schuurschijven-125mm_1_2.webp"));
 			sanderRepository.save(new Sander(6L, "Autonet Block", 50,Dimension.TRETA, Type.WIRE,autonet70x198, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.finqu.com/users/11009/thumbnails/product/6251022-mirka-autonet-70-198-2-800-auto-jpg_1920_1080.jpg"));
+			sanderRepository.save(new Sander(7L, "Abranet Disk", 50,Dimension.VTORA, Type.WIRE,abranetDisk150, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
+			sanderRepository.save(new Sander(8L, "Abranet Disk", 50,Dimension.EDINAESETA, Type.WIRE, abranetDisk80 , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/mf_webp/jpg/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka-abranet-schuurschijven-77mm_2.webp"));
+            sanderRepository.save(new Sander(9L, "Abralon Disk", 20, Dimension.VTORA, Type.FOAM, abralonDisk150 , Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
+			sanderRepository.save(new Sander(10L, "Abralon Disk", 20, Dimension.EDINAESETA, Type.FOAM, abralonDisk80 , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/1/0/10267-A8A7500_C_1.jpg"));
+			sanderRepository.save(new Sander(11L, "WPF", 50,Dimension.PETTA, Type.PAPER, wpf, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
+			sanderRepository.save(new Sander(12L, "WPF", 50 ,Dimension.SESTA, Type.PAPER, wpf1500 , Condition.WET, manufacturerRepository.findById(1L).get(),"https://www.svydis.lt/sites/default/files/styles/product_full/public/mirka_wpf.png?itok=qGhZpSSd"));
+			sanderRepository.save(new Sander(13L, "Iridium Disk", 100, Dimension.VTORA, Type.PLASTIC, iridiumDisk , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
+			sanderRepository.save(new Sander(14L, "Q Silver", 50, Dimension.CHETVRTA, Type.PAPER, qSilver , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
+			sanderRepository.save(new Sander(15L, "Q IRIDIUM", 100, Dimension.OSMA, Type.PLASTIC, qIridium , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
+			sanderRepository.save(new Sander(16L, "Gold Disk", 50 ,Dimension.VTORA, Type.PAPER,goldDisk, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.ultrimaxstore.com/images/ww/product/AVD1801.jpg"));
+			sanderRepository.save(new Sander(17L, "Mirlon Disk", 10,Dimension.VTORA, Type.WIRE,mirlonDisk, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Mirlon_Discs_1_360x.jpg?v=1571262599"));
+			sanderRepository.save(new Sander(18L, "Goldflex Soft", 200 ,Dimension.DESETA, Type.FOAM, goldSoft , Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/a/2/a291.jpg"));
 
-			
-			sanderRepository.save(new Sander(29L, "Abranet Disk", 50, 10 ,2300.00,Dimension.VTORA, Type.WIRE,Granulation.VTORA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(30L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.TRETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(31L, "Abranet Disk", 50, 10 ,1900.00 ,Dimension.VTORA, Type.WIRE,Granulation.PETTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(32L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.SHESTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(33L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.SEDMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(34L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.OSMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(35L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.DESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(36L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.DVANAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(37L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.TRIENAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(38L, "Abranet Disk", 50, 10 ,1900.00,Dimension.VTORA, Type.WIRE,Granulation.CHETIRINAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(39L, "Abranet Disk", 50, 10 ,2200.00,Dimension.VTORA, Type.WIRE,Granulation.PETNAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			sanderRepository.save(new Sander(40L, "Abranet Disk", 50, 10 ,2200.00,Dimension.VTORA, Type.WIRE,Granulation.SESTNAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Abranet_6_Inch_Sanding_Disc_1_03145c28-da43-473e-8fbf-b55c19795dd2_360x.jpg?v=1616514796"));
-			
-			sanderRepository.save(new Sander(41L, "Abralon Disk", 20, 10 , 2400.00 ,Dimension.VTORA, Type.FOAM,Granulation.SEDMA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			sanderRepository.save(new Sander(42L, "Abralon Disk", 20, 10 , 2400.00,Dimension.VTORA, Type.FOAM,Granulation.EDINAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			sanderRepository.save(new Sander(43L, "Abralon Disk", 20, 10 ,2400.00,Dimension.VTORA, Type.FOAM,Granulation.TRIENAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			sanderRepository.save(new Sander(44L, "Abralon Disk", 20, 10 ,2400.00,Dimension.VTORA, Type.FOAM,Granulation.SESTNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			sanderRepository.save(new Sander(45L, "Abralon Disk", 20, 10 ,2400.00,Dimension.VTORA, Type.FOAM,Granulation.DEVETNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			sanderRepository.save(new Sander(46L, "Abralon Disk", 20, 10 ,2400.00,Dimension.VTORA, Type.FOAM,Granulation.DVAESETIPRVA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			sanderRepository.save(new Sander(47L, "Abralon Disk", 20, 10 ,2400.00,Dimension.VTORA, Type.FOAM,Granulation.DVAESETIVTORA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://res.cloudinary.com/ecomsilver/image/upload/w_570,h_570,c_pad,q_auto/RestExpress/product-images/20698-1f047d04-0712-491a-912c-56199d1bda86-.jpg"));
-			
-			sanderRepository.save(new Sander(48L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.DVAESETITRETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(49L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.OSMA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(50L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.DEVETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(51L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.DESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(52L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.EDINAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(53L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.DVANAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(54L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.TRIENAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(55L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.CHETIRINAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(56L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.PETNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(57L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.SESTNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(58L, "WPF", 50, 10 ,900.00,Dimension.PETTA, Type.PAPER,Granulation.SEDUMNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Waterproof_Sanding_Sheets_1_360x.jpg?v=1571262577"));
-			sanderRepository.save(new Sander(59L, "WPF", 50, 10 ,1350.00,Dimension.SESTA, Type.PAPER,Granulation.OSUMNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://www.svydis.lt/sites/default/files/styles/product_full/public/mirka_wpf.png?itok=qGhZpSSd"));
-			sanderRepository.save(new Sander(60L, "WPF", 50, 10 ,1350.00,Dimension.SESTA, Type.PAPER,Granulation.DEVETNAESETA, Condition.WET, manufacturerRepository.findById(1L).get(),"https://www.svydis.lt/sites/default/files/styles/product_full/public/mirka_wpf.png?itok=qGhZpSSd"));
-			
-			sanderRepository.save(new Sander(61L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.TRETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(62L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.PETTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(63L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.SHESTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(64L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.SEDMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(65L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.OSMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(66L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.DESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(67L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.DVANAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			sanderRepository.save(new Sander(68L, "Iridium Disk", 100, 10 ,3300.00,Dimension.VTORA, Type.PLASTIC,Granulation.TRIENAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.brightontools.co.uk/files/img_cache/8332/468_349___11549378041_a1.jpg?1549378247"));
-			
-			sanderRepository.save(new Sander(75L, "Q Silver", 50, 10 ,2000.00,Dimension.CHETVRTA, Type.PAPER,Granulation.TRETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
-			sanderRepository.save(new Sander(76L, "Q Silver", 50, 10 ,2000.00,Dimension.CHETVRTA, Type.PAPER,Granulation.PETTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
-			sanderRepository.save(new Sander(77L, "Q Silver", 100, 10 ,4000.00,Dimension.CHETVRTA, Type.PAPER,Granulation.SHESTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
-			sanderRepository.save(new Sander(78L, "Q Silver", 100, 10 ,4000.00,Dimension.CHETVRTA, Type.PAPER,Granulation.SEDMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
-			sanderRepository.save(new Sander(79L, "Q Silver", 100, 10 ,4000.00,Dimension.CHETVRTA, Type.PAPER,Granulation.OSMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
-			sanderRepository.save(new Sander(80L, "Q Silver", 100, 10 ,4000.00,Dimension.CHETVRTA, Type.PAPER,Granulation.DESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://nonpaintpro.nl/wp-content/uploads/2018/12/mirka_q-silver_schuurstroken_70x420mm_met_14_gaten_1_1.jpg"));
-			
-			sanderRepository.save(new Sander(81L, "Q IRIDIUM", 100, 10 ,4300.00,Dimension.OSMA, Type.PLASTIC,Granulation.TRETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
-			sanderRepository.save(new Sander(82L, "Q IRIDIUM", 100, 10 ,4300.00,Dimension.OSMA, Type.PLASTIC,Granulation.PETTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
-			sanderRepository.save(new Sander(83L, "Q IRIDIUM", 100, 10,4300.00,Dimension.OSMA, Type.PLASTIC,Granulation.SHESTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
-			sanderRepository.save(new Sander(84L, "Q IRIDIUM", 100, 10,4300.00,Dimension.OSMA, Type.PLASTIC,Granulation.SEDMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
-			sanderRepository.save(new Sander(85L, "Q IRIDIUM", 100, 10,4300.00,Dimension.OSMA, Type.PLASTIC,Granulation.OSMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
-			sanderRepository.save(new Sander(86L, "Q IRIDIUM", 100, 10,4300.00,Dimension.OSMA, Type.PLASTIC,Granulation.DESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://images.ua.prom.st/3069480467_w640_h640_abrazivnaya-polosa-mirka.jpg"));
-			
-			sanderRepository.save(new Sander(87L, "Goldflex Soft", 200, 10 ,2000.00,Dimension.DESETA, Type.FOAM,Granulation.OSMA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/a/2/a291.jpg"));
-			sanderRepository.save(new Sander(88L, "Goldflex Soft", 200, 10 ,2000.00,Dimension.DESETA, Type.FOAM,Granulation.DESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/a/2/a291.jpg"));
-			sanderRepository.save(new Sander(89L, "Goldflex Soft", 200, 10 ,2000.00,Dimension.DESETA, Type.FOAM,Granulation.DVANAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/a/2/a291.jpg"));
-			sanderRepository.save(new Sander(90L, "Goldflex Soft", 200, 10 ,2000.00,Dimension.DESETA, Type.FOAM,Granulation.CHETIRINAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/a/2/a291.jpg"));
-			sanderRepository.save(new Sander(91L, "Goldflex Soft", 200, 10 ,2000.00,Dimension.DESETA, Type.FOAM,Granulation.PETNAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/a/2/a291.jpg"));
+            
 			
 			sanderRepository.save(new Sander(92L, "Autonet Roll", 1, 10 ,2110.00,Dimension.SEDMA, Type.WIRE,Granulation.TRETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://m.media-amazon.com/images/I/51llyH3sxkL._AC_SX425_.jpg"));
 			sanderRepository.save(new Sander(93L, "Autonet Roll", 1, 10 ,1910.00,Dimension.SEDMA, Type.WIRE,Granulation.PETTA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://m.media-amazon.com/images/I/51llyH3sxkL._AC_SX425_.jpg"));
@@ -346,15 +492,8 @@ public class ERafmakApplication {
 			sanderRepository.save(new Sander(119L, "Gold Roll", 1, 10 ,1950.00,Dimension.DEVETA, Type.PAPER,Granulation.EDINAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka_gold_115mm_1.jpg"));
 			sanderRepository.save(new Sander(120L, "Gold Roll", 1, 10 ,1950.00,Dimension.DEVETA, Type.PAPER,Granulation.DVANAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka_gold_115mm_1.jpg"));
 			
-			sanderRepository.save(new Sander(121L, "Gold Disk", 50, 10 , 2200.00 ,Dimension.VTORA, Type.PAPER,Granulation.VTORA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.ultrimaxstore.com/images/ww/product/AVD1801.jpg"));
-			sanderRepository.save(new Sander(122L, "Mirlon Disk", 10, 10 , 400.00,Dimension.VTORA, Type.WIRE,Granulation.EDINAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://cdn.shopify.com/s/files/1/0118/2262/products/Mirka_Mirlon_Discs_1_360x.jpg?v=1571262599"));
 			
-			sanderRepository.save(new Sander(123L, "Abralon Disk", 20, 10 ,1000.00,Dimension.EDINAESETA, Type.FOAM,Granulation.DEVETNAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.dtc-uk.com/media/catalog/product/cache/eaec396a7f4d3b0a500e60155ff13ed9/1/0/10267-A8A7500_C_1.jpg"));
 			
-			sanderRepository.save(new Sander(124L, "Abranet Disk", 50, 10 ,900.00,Dimension.EDINAESETA, Type.WIRE,Granulation.DESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/mf_webp/jpg/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka-abranet-schuurschijven-77mm_2.webp"));
-			sanderRepository.save(new Sander(125L, "Abranet Disk", 50, 10 ,900.00,Dimension.EDINAESETA, Type.WIRE,Granulation.DVANAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/mf_webp/jpg/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka-abranet-schuurschijven-77mm_2.webp"));
-			sanderRepository.save(new Sander(126L, "Abranet Disk", 50, 10 ,900.00,Dimension.EDINAESETA, Type.WIRE,Granulation.CHETIRINAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/mf_webp/jpg/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka-abranet-schuurschijven-77mm_2.webp"));
-			sanderRepository.save(new Sander(127L, "Abranet Disk", 50, 10 ,900.00,Dimension.EDINAESETA, Type.WIRE,Granulation.PETNAESETA, Condition.DRY, manufacturerRepository.findById(1L).get(),"https://www.nonpaints.com/media/mf_webp/jpg/media/catalog/product/cache/e3aef0ea27f589da506a087ef53e5914/m/i/mirka-abranet-schuurschijven-77mm_2.webp"));
 			
 		
 			
