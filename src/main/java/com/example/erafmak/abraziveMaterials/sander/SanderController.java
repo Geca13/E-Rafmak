@@ -46,6 +46,36 @@ public class SanderController {
 		return "sanders";
 	}
 	
+	@GetMapping("/sanders/discs")
+	public String getAllDiscs(Model model) {
+		model.addAttribute("sanders", service.discs());
+		return "sanders";
+	}
+	
+	@GetMapping("/sanders/rolls")
+	public String getAllRools(Model model) {
+		model.addAttribute("sanders", service.rolls());
+		return "sanders";
+	}
+	
+	@GetMapping("/sanders/blocks")
+	public String getAllBlocks(Model model) {
+		model.addAttribute("sanders", service.blocks());
+		return "sanders";
+	}
+	
+	@GetMapping("/sanders/softs")
+	public String getAllSofts(Model model) {
+		model.addAttribute("sanders", service.softs());
+		return "sanders";
+	}
+	
+	@GetMapping("/sanders/wets")
+	public String getAllWets(Model model) {
+		model.addAttribute("sanders", service.wets());
+		return "sanders";
+	}
+	
 	@GetMapping("/sander/{id}")
 	public String getSanderDetails(Model model , @PathVariable(value = "id")Long id) {
 		model.addAttribute("sander", service.findSanderById(id)) ;

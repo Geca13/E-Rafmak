@@ -1,5 +1,7 @@
 package com.example.erafmak.abraziveMaterials.helpers;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.example.erafmak.abraziveMaterials.sander.Dimension;
+import com.example.erafmak.abraziveMaterials.sander.Sander;
 import com.example.erafmak.manufacturers.Manufacturer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,5 +47,8 @@ public class Helper {
 	private Manufacturer manufacturer; 
 	
 	private String imageUrl;
+	
+	@ManyToMany
+	private List<Sander> sanders;
 
 }

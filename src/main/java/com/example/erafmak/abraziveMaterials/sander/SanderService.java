@@ -37,7 +37,7 @@ public class SanderService {
 
 	public Sander updatePrice(Long id, Double price) {
 		Sander sander = findSanderById(id);
-		sander.setPrice(price);
+		//sander.setPrice(price);
 		return sanderRepository.save(sander);
 		
 	}
@@ -58,9 +58,34 @@ public class SanderService {
 
 	public Sander updateSanderQuantity(Long id, Integer quantity) {
 		Sander sander = findSanderById(id);
-		sander.setQty(sander.getQty() + quantity);
+		//sander.setQty(sander.getQty() + quantity);
 		return sanderRepository.save(sander);
 		
+	}
+
+	public List<Sander> discs() {
+		List<Sander> discs = sanderRepository.findByNameContaining("Disk");
+		return discs;
+	}
+
+	public List<Sander> rolls() {
+		List<Sander> rolls = sanderRepository.findByNameContaining("Roll");
+		return rolls;
+	}
+
+	public List<Sander> blocks() {
+		List<Sander> blocks = sanderRepository.findByNameContaining("Block");
+		return blocks;
+	}
+
+	public List<Sander> softs() {
+		List<Sander> softs = sanderRepository.findByNameContaining("Soft");
+		return softs;
+	}
+
+	public List<Sander> wets() {
+		List<Sander> wets = sanderRepository.findByNameContaining("WPF");
+		return wets;
 	}
 
 }

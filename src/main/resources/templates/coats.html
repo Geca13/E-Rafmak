@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
   <link rel="stylesheet" th:href="@{/css/style.css}">
+     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <style>
  
     </style>
@@ -31,12 +34,14 @@
                   Details 
                   </a>
             </div>
-            <p class='room-info' th:text="${coat.name} + ' ' + ${coat.description} + ' ' + ${coat.weigth.displayValue}"></p>
+            <p class='room-info' th:text="${coat.name} + ' ' +${coat.weigth.displayValue}"></p>
         </article>
 
             </div>
         </section>
 
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>
 
 </html>

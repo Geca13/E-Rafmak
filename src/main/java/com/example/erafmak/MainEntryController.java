@@ -75,6 +75,11 @@ public class MainEntryController {
 		model.addAttribute("putties", putties.putties());
 		
 		model.addAttribute("sanders", sanders.sanders());
+		model.addAttribute("discs", sanders.discs());
+		model.addAttribute("wets", sanders.wets());
+		model.addAttribute("softs", sanders.softs());
+		model.addAttribute("blocks", sanders.blocks());
+		model.addAttribute("rolls", sanders.rolls());
 		
 		model.addAttribute("pads", pads.pads());
 		model.addAttribute("polishes", polishes.polishes());
