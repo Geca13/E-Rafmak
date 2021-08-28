@@ -32,8 +32,27 @@
        <div class ='drink'>
         <img  th:src="*{imageUrl}" alt='image' />
         
-        <div class='drink-info'>
+         <div class="container">
+           <div class="header"><h3>Details</h3></div>
+            <div class="main">
+             <div class="leftSide">
+               <article class='desc'>
+                 
+                  <h6 th:text="*{description}"></h6>
+                  <form th:action="@{/updateCoatDescription/{id}(id=${coat.id})}" method="post"  >
+          <input type="text" name="description" placeholder="update description" >
+          <button>change</button>
+          </form>
+               </article>
+              </div>
+              <div class="rightSide">
+              <div class="thirdItem">
+                <div class='drink-info'>
         
+          <p >
+          Liters :
+            <span th:text="*{weigth.displayValue}" class='drink-data'>MKD</span> 
+          </p>
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
@@ -42,7 +61,7 @@
           <input type="text" name="price" placeholder="update price here" >
           <button>change</button>
           </form>
-          <br> <br>
+          
           <p >
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
@@ -56,7 +75,7 @@
           </select>
           <button>change</button>
           </form>
-          <br> <br>
+          
           <div>
           <p>
           Available items:
@@ -68,13 +87,7 @@
           </form>
           </div>
           
-          <div>
-       <p th:text="*{description}"></p>
-       <form th:action="@{/updateCoatDescription/{id}(id=${coat.id})}" method="post"  >
-          <input type="text" name="description" placeholder="update description" >
-          <button>change</button>
-          </form>
-          </div>
+         
           <form th:action="@{/deleteCoat/{id}(id=${coat.id})}" method="post" >
           
           <button>delete</button>
@@ -83,8 +96,18 @@
         </div>
        </div>
        <div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+             <br><br>
+             
+       <div>
+       
          <h2>Matching Hardeners</h2>
        </div>
+       <br><br>
        
         <div class='roomslist-center'>
              <article class='room' th:each="hardener : ${coat.hardeners}" >

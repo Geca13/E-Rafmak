@@ -507,6 +507,39 @@ h6 {
   grid-column-gap: 30px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.main{
+   display: flex;
+   flex-wrap: wrap;
+}
+.leftSide{
+    flex:0 0 65%;
+
+}
+
+.rightSide{
+    flex: 1;
+    
+}
+
+
+
+/* add media query for growing and shrinking */
+@media (max-width: 600px) {
+.main{
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column
+  }
+}
+
+
 @media screen and (min-width: 776px) {
   .roomslist-center {
     width: 90vw;
@@ -518,6 +551,8 @@ h6 {
     max-width: 1170px;
   }
 }
+
+
 
 
 
@@ -610,7 +645,7 @@ Cocktail
   width: var(--smallWidth);
   max-width: var(--fullWidth);
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
 .drink img {
   border-radius: var(--mainBorderRadius);
@@ -620,7 +655,7 @@ Cocktail
 .drink p {
   font-weight: bold;
   text-transform: capitalize;
-  line-height: 0.5;
+  line-height: 1.5;
 }
 .drink span {
   margin-right: 0.5rem;
@@ -707,24 +742,82 @@ Cocktail
 }
 
 .footer {
-	height: 5rem;
+	height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--mainGrey);
+  background: var(--darkGrey);
   text-align: center;
-  span {
-    color: var(--lightShadow);
-  }
-  h5 {
-    color: var(--clr-white);
-    margin: 0.1rem;
-    font-weight: 400;
-    text-transform: none;
-    line-height: 1.25;
-  }
+  
+  
   @media (min-width: 776px) {
     flex-direction: row;
+  }
+}
+
+.single-room-info {
+  width: 80vw;
+  display: flex;
+  grid-template-columns: 1fr;
+  margin: 2rem auto;
+}
+.desc,
+.info {
+  margin: 1rem 0;
+}
+.desc h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.desc p {
+  line-height: 1.5;
+}
+.info h3,
+.info h6 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+.info h6 {
+  font-weight: 300;
+}
+
+@media screen and (min-width: 992px) {
+  .single-room-images,
+  .single-room-info,
+  .room-extras {
+    width: 95vw;
+    max-width: 1170px;
+  }
+  .single-room-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2rem;
+  }
+  .info {
+    padding-left: 3rem;
+  }
+}
+
+#parent {
+  display: flex;
+}
+#narrow {
+  width: 200px;
+  background: lightblue;
+  /* Just so it's visible */
+}
+#wide {
+  flex: 1;
+  /* Grow to rest of container */
+  background: lightgreen;
+  /* Just so it's visible */
+}
+@media (max-width: 600px) {
+#main{
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column
   }
 }

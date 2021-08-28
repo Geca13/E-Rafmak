@@ -18,7 +18,7 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
-<div class="container">
+
 
  <div class='section cocktail-section' th:object="${hardener}">
  
@@ -28,30 +28,44 @@
           <button>change</button>
           </form>
       
-       <h3 class ='section-title' th:text="*{description}"></h3>
-       <form th:action="@{/updateHardenerDescription/{id}(id=${hardener.id})}" method="post"  >
+       <div class ='drink'>
+        <img  th:src="*{imageUrl}" alt='image' />
+        
+         <div class="container">
+           <div class="header"><h3>Details</h3></div>
+            <div class="main">
+             <div class="leftSide">
+               <article class='desc'>
+                 
+                  <h6 th:text="*{description}"></h6>
+                  <form th:action="@{/updateCoatDescription/{id}(id=${coat.id})}" method="post"  >
           <input type="text" name="description" placeholder="update description" >
           <button>change</button>
           </form>
-          
-       <div class ='drink'>
-        <img th:src="*{imageUrl}" alt='image' class="cocktail"/>
+               </article>
+              </div>
+              <div class="rightSide">
+              <div class="thirdItem">
+                <div class='drink-info'>
         
-        <div class='drink-info'>
+          <p >
+          Liters :
+            <span th:text="*{weigth.displayValue}" class='drink-data'>MKD</span> 
+          </p>
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
-          <form th:action="@{/updateHardenerPrice/{id}(id=${hardener.id})}" method="post" >
+          <form th:action="@{/updateCoatPrice/{id}(id=${coat.id})}" method="post" >
           <input type="text" name="price" placeholder="update price here" >
           <button>change</button>
           </form>
-          <br> <br>
+          
           <p >
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/updateManufacturer/{id}(id=${hardener.id})}" method="post" >
+          <form th:action="@{/updateCoatManufacturer/{id}(id=${coat.id})}" method="post" >
           <select  th:name="manufacturer">
             <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
@@ -60,25 +74,35 @@
           </select>
           <button>change</button>
           </form>
-          <br> <br>
+          
+          <div>
           <p>
           Available items:
             <span th:text="*{qty}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/addQuantityToHardener/{id}(id=${hardener.id})}" method="post" >
+          <form th:action="@{/addQuantityToCoat/{id}(id=${coat.id})}" method="post" >
           <input type="text" name="quantity" placeholder="add more quantity" >
           <button>change</button>
           </form>
+          </div>
           
-          <form th:action="@{/deleteHardener/{id}(id=${hardener.id})}" method="post" >
+         
+          <form th:action="@{/deleteCoat/{id}(id=${coat.id})}" method="post" >
           
           <button>delete</button>
           </form>
           
         </div>
        </div>
+       <div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+             <br><br>
     </div>
-</div>
+
 
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
