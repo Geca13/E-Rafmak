@@ -65,6 +65,13 @@ public class HelperService {
 		return helperRepository.save(helper);
 		
 	}
+
+	public Helper updateName(Long id, String name) {
+		Helper helper = findHelperById(id);
+		helper.setName(name);
+		return helperRepository.save(helper);
+		
+	}
 	
 
 }

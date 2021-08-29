@@ -1,14 +1,10 @@
-package com.example.erafmak.sprayGuns.entity;
-
+package com.example.erafmak.user.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.example.erafmak.manufacturers.Manufacturer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,23 +15,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Nozzle {
-	
+public class Role {
+
 	@Id
 	private Long id;
 	
-	private String description;
-	
 	@Enumerated(EnumType.STRING)
-	private NozzleSize nozzleSize;
-	
-	private Double price;
-	
-	private Integer qty;
-	
-	private String imageUrl;
-	
-	@ManyToOne
-	private Manufacturer manufacturer;
-
+	private RoleName role;
 }

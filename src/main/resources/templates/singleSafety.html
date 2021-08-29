@@ -20,10 +20,10 @@
 
 
 
- <section class='section cocktail-section' th:object="${sander}">
+ <section class='section cocktail-section' th:object="${safety}">
       
        <h2 class ='section-title' th:text="*{name}"></h2>
-       <form th:action="@{/updateSanderName/{id}(id=${sander.id})}" method="post"  >
+       <form th:action="@{/updateSafetyName/{id}(id=${safety.id})}" method="post"  >
           <input type="text" name="name" placeholder="update description" >
           <button>change</button>
           </form>
@@ -36,54 +36,46 @@
             <div class="main">
              <div class="leftSide" style="text-align:left">
                
-                    <p >
-          Manufacturer
-            <span th:text="*{manufacturer.name}" class='drink-data'></span> 
-          </p>
-          <form th:action="@{/updateSanderManufacturer/{id}(id=${sander.id})}" method="post" >
-          <select  th:name="manufacturer">
-            <option value="">-Select-</option>
-            <option th:each="manufacturer : ${manufacturers}"
-              th:value="${manufacturer.name}"
-              th:text="${manufacturer.name}"/>
-          </select>
+           <article class='desc'>
+                 
+                  <h6 th:text="*{description}"></h6>
+                  <form th:action="@{/updateSafetyDescription/{id}(id=${safety.id})}" method="post"  >
+          <input type="text" name="description" placeholder="update description" >
           <button>change</button>
           </form>
-          
-         <p >
-          Dimension
-            <span th:text="*{dimension.displayValue}" class='drink-data'></span> 
-          </p>
-          
-          <p >
-          Condition
-            <span th:text="*{condition.displayValue}" class='drink-data'></span> 
-          </p>
-          
-          <p >
-          Type
-            <span th:text="*{type.displayValue}" class='drink-data'></span> 
-          </p>
-             
+               </article>
               </div>
               <div class="rightSide">
               <div class="thirdItem">
+              
+               <p >
+               Manufacturer
+               <span th:text="*{manufacturer.name}" class='drink-data'></span> 
+               </p>
+              <form th:action="@{/updateSafetyManufacturer/{id}(id=${safety.id})}" method="post" >
+               <select  th:name="manufacturer">
+                <option value="">-Select-</option>
+                <option th:each="manufacturer : ${manufacturers}"
+                  th:value="${manufacturer.name}"
+                  th:text="${manufacturer.name}"/>
+              </select>
+               <button>change</button>
+              </form>
+              
+              <p >
+          Price
+            <span th:text="*{price}" class='drink-data'></span> 
+          </p>
                 
                   <ul>
-                  <li th:each="gran : ${sander.granulationQty}"> <p
-                th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '  + ${gran.qty}"  ></p>
+                  <li th:each="size : ${safety.sizeQty}"> <p
+                th:text="'size: '+${size.size.displayValue}"  ></p>
                 <div>
-                <form th:action="@{/addQuantityToSanderPerGranulation/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
+                <form th:action="@{/addQuantityToSafetyPerSize/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
                 <input name="quantity" placeholder="add more qty" type="text"/>
                 <button >add</button>
                 </form>
-                
-                <form th:action="@{/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
-                <input name="price" placeholder="set new price" type="text"/>
-                <button >add</button>
-                </form>
                 </div>
-                
                 </li>
                 </ul>
       

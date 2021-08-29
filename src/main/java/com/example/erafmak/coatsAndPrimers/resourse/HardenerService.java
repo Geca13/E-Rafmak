@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.entity.Hardener;
+import com.example.erafmak.coatsAndPrimers.entity.Primer;
+import com.example.erafmak.coatsAndPrimers.repository.CoatRepository;
 import com.example.erafmak.coatsAndPrimers.repository.HardenerRepository;
+import com.example.erafmak.coatsAndPrimers.repository.PrimerRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -16,6 +21,12 @@ public class HardenerService {
 	
 	@Autowired
 	ManufacturerService manService;
+	
+	@Autowired
+	PrimerRepository primerRepository;
+	
+	@Autowired
+	CoatRepository coatRepository;
 	
     public Hardener newHardener(Hardener hardener) {
 		
@@ -28,9 +39,36 @@ public class HardenerService {
 	}
 	
 	public void deleteHardener(Long id) {
-		Hardener sander = hardenerRepository.findById(id).get();
-		sander.setManufacturer(null);
-		hardenerRepository.delete(sander);
+		Hardener hardener = hardenerRepository.findById(id).get();
+		hardener.setManufacturer(null);
+		
+		removeFromPrimers(id, hardener);
+		
+		removeFromCoats(id, hardener);
+		
+		
+		hardenerRepository.delete(hardener);
+	}
+
+	private void removeFromCoats(Long id, Hardener hardener) {
+		List<Coat> coats = coatRepository.findAllByHardeners_Id(id);
+		for (Coat coat : coats) {
+			if(!coats.isEmpty()) {
+				coat.getHardeners().remove(hardener);
+			}
+			coatRepository.save(coat);
+		}
+	}
+
+	private void removeFromPrimers(Long id, Hardener hardener) {
+		List<Primer> primers = primerRepository.findAllByHardeners_Id(id);
+		if(!primers.isEmpty()) {
+		for (Primer primer : primers) {
+			primer.getHardeners().remove(hardener);
+			primerRepository.save(primer);
+		  }
+		
+		}
 	}
 	
 	public List<Hardener> hardeners() {

@@ -83,9 +83,9 @@ public class SanderController {
 		return "singleSander";
 	}
 	
-	@PostMapping("/updateSanderPrice/{id}")
-	public String updatePrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
-		service.updatePrice(id , price);
+	@PostMapping("/updateSanderPrice/{id}/{gid}")
+	public String updatePrice(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid , @Param(value = "price") Double price) {
+		service.updatePrice(gid , price);
 		return "redirect:/sander/" + id;
 	}
 	
@@ -101,9 +101,9 @@ public class SanderController {
 		return "redirect:/sander/" + id;
 	}
 	
-	@PostMapping("/addQuantityToSander/{id}")
-	public String updateQuantity(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateSanderQuantity(id , quantity);
+	@PostMapping("/addQuantityToSanderPerGranulation/{id}/{gid}")
+	public String updateQuantityPerGranulation(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid , @Param(value = "quantity")Integer quantity) {
+		service.updateSanderQuantity(gid , quantity);
 		return "redirect:/sander/" + id;
 	}
 

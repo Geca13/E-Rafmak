@@ -59,6 +59,12 @@ public class HelperController {
 		return "redirect:/helper/" + id;
 	}
 	
+	@PostMapping("/updateHelperName/{id}")
+	public String updateHelperName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
+		service.updateName(id , name);
+		return "redirect:/helper/" + id;
+	}
+	
 	@PostMapping("/updateDescription/{id}")
 	public String updateDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateDescription(id , description);

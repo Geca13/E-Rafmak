@@ -198,7 +198,6 @@ public class ERafmakApplication {
 			granulationQtyRepository.save(new GranulationQty(53L, 10 , 1750.00 ,Granulation.P600));
 			granulationQtyRepository.save(new GranulationQty(54L, 10 , 2200.00 ,Granulation.P800));
 			
-			
 			granulationQtyRepository.save(new GranulationQty(55L, 10 , 2400.00 ,Granulation.P180));
 			granulationQtyRepository.save(new GranulationQty(56L, 10 , 2400.00 ,Granulation.P360));
 			granulationQtyRepository.save(new GranulationQty(57L, 10 , 2400.00 ,Granulation.P500));
@@ -290,7 +289,6 @@ public class ERafmakApplication {
 			granulationQtyRepository.save(new GranulationQty(130L, 10 , 1750.00 ,Granulation.P360));
 			granulationQtyRepository.save(new GranulationQty(131L, 10 , 1750.00 ,Granulation.P1500));
 			
-			
 			List<GranulationQty> silverDisk = new ArrayList<>();
 			
 			silverDisk.add(granulationQtyRepository.findById(1L).get());
@@ -301,7 +299,6 @@ public class ERafmakApplication {
 			silverDisk.add(granulationQtyRepository.findById(6L).get());
 			silverDisk.add(granulationQtyRepository.findById(7L).get());
 			silverDisk.add(granulationQtyRepository.findById(8L).get());
-			
 			
             List<GranulationQty> deflexDisk = new ArrayList<>();
 			
@@ -702,8 +699,7 @@ public class ERafmakApplication {
 			ten.add(padsRepository.findById(6L).get());
 			ten.add(padsRepository.findById(7L).get());
 			ten.add(padsRepository.findById(9L).get());
-			
-			
+		
 			List<Pads> last = new ArrayList<>();
 			last.add(padsRepository.findById(3L).get());
 			last.add(padsRepository.findById(4L).get());
@@ -743,14 +739,13 @@ public class ERafmakApplication {
 			
 			List<SizeQuantity> overalls = new ArrayList<>();
 			
-			gloves.add(sizeQtyRepository.findById(3L).get());
-			gloves.add(sizeQtyRepository.findById(4L).get());
-			gloves.add(sizeQtyRepository.findById(5L).get());
-			gloves.add(sizeQtyRepository.findById(6L).get());
-			gloves.add(sizeQtyRepository.findById(7L).get());
-			gloves.add(sizeQtyRepository.findById(8L).get());
-			
-			
+			overalls.add(sizeQtyRepository.findById(3L).get());
+			overalls.add(sizeQtyRepository.findById(4L).get());
+			overalls.add(sizeQtyRepository.findById(5L).get());
+			overalls.add(sizeQtyRepository.findById(6L).get());
+			overalls.add(sizeQtyRepository.findById(7L).get());
+			overalls.add(sizeQtyRepository.findById(8L).get());
+		
 			safetyRepository.save(new Safety(1L, "Finixa Nitril Disposable Gloves" , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,", 1300.00 , gloves ,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/GCN08-09-106.jpg" ));
 			safetyRepository.save(new Safety(2L, "Finixa MAS 00 Spray mask A1 P2" , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,", 2300.00 , null, manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/MAS002.jpg" ));
 			safetyRepository.save(new Safety(3L, "Finixa MAS 13 Carbon Dust Mask Safety Class FFP2." , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,", 250.00 , null, manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/MAS135_339_mas-13_1599661775.jpg" ));
@@ -778,10 +773,6 @@ public class ERafmakApplication {
 			wet.add(sanderRepository.findById(20L).get());
 			wet.add(sanderRepository.findById(21L).get());
 
-
-			
-			
-			
 			helperRepository.save(new Helper(1L , "Mirka File Board Flexible Yellow" , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis," , 5500.00 , 5 , Dimension.D70X400 ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391150111_001.jpg?w=306", d70x400));
 			helperRepository.save(new Helper(2L , "Mirka Sanding Block 36H Grey" ,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis," , 1300.00 , 5 , Dimension.D115X230 ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391702011_003.jpg?w=306", d115x230));
 			helperRepository.save(new Helper(3L , "Mirka Sanding Block 22H Grey" , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,",  1100.00 , 5 , Dimension.D70X198 ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391502011_003.jpg?w=306", d70x198));
@@ -789,7 +780,6 @@ public class ERafmakApplication {
 			helperRepository.save(new Helper(5L , "Mirka Rubber Sanding Block" , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,",  1300.00 , 5 , Dimension.D70X125 ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8390100111_003.jpg?w=306",dry));
 			helperRepository.save(new Helper(6L , "Mirka Curved Pad for 70x198mm Block 22H" ,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,",  900.00 , 5 , Dimension.D70X198 ,manufacturerRepository.findById(1L).get(),"https://www.mirka.com/globalassets/pdm/8391515011_001.jpg?w=306",d70x198));
 			helperRepository.save(new Helper(7L , "Finixa File Board" , "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,",  3500.00 , 5 , Dimension.D70X400 ,manufacturerRepository.findById(4L).get(),"https://www.finixa.com/site/data/images/product/SAB323.jpg",d70x400));
-			
 			
 			
 			} catch (Exception e) {

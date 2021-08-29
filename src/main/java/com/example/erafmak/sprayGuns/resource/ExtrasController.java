@@ -38,7 +38,7 @@ public class ExtrasController {
 	@PostMapping("/deleteExtras/{id}")
 	public String deleteExtras(@PathVariable(value = "id")Long id) {
 		service.deleteExtras(id);
-		return "redirect:/extras";
+		return "redirect:/extrass";
 	}
 	
 	@GetMapping("/extrass")

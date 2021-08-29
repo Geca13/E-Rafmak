@@ -38,7 +38,7 @@
                <article class='desc'>
                  
                   <h6 th:text="*{description}"></h6>
-                  <form th:action="@{/updateCoatDescription/{id}(id=${coat.id})}" method="post"  >
+                  <form th:action="@{/updateHardenerDescription/{id}(id=${hardener.id})}" method="post"  >
           <input type="text" name="description" placeholder="update description" >
           <button>change</button>
           </form>
@@ -56,7 +56,7 @@
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
-          <form th:action="@{/updateCoatPrice/{id}(id=${coat.id})}" method="post" >
+          <form th:action="@{/updateHardenerPrice/{id}(id=${hardener.id})}" method="post" >
           <input type="text" name="price" placeholder="update price here" >
           <button>change</button>
           </form>
@@ -65,7 +65,7 @@
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/updateCoatManufacturer/{id}(id=${coat.id})}" method="post" >
+          <form th:action="@{/updateHardenerManufacturer/{id}(id=${hardener.id})}" method="post" >
           <select  th:name="manufacturer">
             <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
@@ -80,14 +80,14 @@
           Available items:
             <span th:text="*{qty}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/addQuantityToCoat/{id}(id=${coat.id})}" method="post" >
+          <form th:action="@{/addQuantityToHardener/{id}(id=${hardener.id})}" method="post" >
           <input type="text" name="quantity" placeholder="add more quantity" >
           <button>change</button>
           </form>
           </div>
           
          
-          <form th:action="@{/deleteCoat/{id}(id=${coat.id})}" method="post" >
+          <form th:action="@{/deleteHardener/{id}(id=${hardener.id})}" method="post" >
           
           <button>delete</button>
           </form>

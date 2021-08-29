@@ -15,6 +15,9 @@ public class SafetyService {
 	@Autowired
 	ManufacturerService manService;
 	
+	@Autowired
+	SizeQuantityRepository sqRepository;
+	
 	
 	    public Safety newSafety(Safety safety) {
 			
@@ -64,10 +67,10 @@ public class SafetyService {
 			
 		}
 
-		public Safety updateSafetyQuantity(Long id, Integer quantity) {
-			Safety safety = findSafetyById(id);
-			//safety.setQty(safety.getQty() + quantity);
-			return safetyRepository.save(safety);
+		public SizeQuantity updateSafetyQuantityPerSize(Long id, Long sid, Integer quantity) {
+			SizeQuantity qty = sqRepository.findById(sid).get();
+			qty.setQty(qty.getQty() + quantity);
+			return sqRepository.save(qty);
 			
 		}
 

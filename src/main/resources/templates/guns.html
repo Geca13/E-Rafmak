@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  
   <link rel="stylesheet" th:href="@{/css/style.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -19,23 +18,23 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<h1>Hand Blocks</h1>
+<h1>Coats</h1>
 
  <section class='roomsList'>
             <div class='roomslist-center'>
-             <article class='room' th:each="pad : ${pads}" >
+             <article class='room' th:each="gun : ${guns}" >
             <div class='img-container'>
-              <img th:src="${pad.imageUrl}" alt='sander image'/>
+              <img th:src="${gun.imageUrl}" alt='sander image'/>
               <div class="price-top">
-                  <h6 th:text = "${pad.price}"></h6>
+                  <h6 th:text = "${gun.price}"></h6>
                   <p>MKD</p>
 
               </div>
-              <a th:href="@{/pads/{id}(id=${pad.id})}" class='btn-primary room-link'>
+              <a th:href="@{/sprayGun/{id}(id=${gun.id})}" class='btn-primary room-link'>
                   Details 
                   </a>
             </div>
-            <p class='room-info' th:text="${pad.name}"></p>
+            <p class='room-info' th:text="${gun.name}"></p>
         </article>
 
             </div>

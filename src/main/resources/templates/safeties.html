@@ -23,26 +23,26 @@
 
  <section class='roomsList'>
             <div class='roomslist-center'>
-             <article class='room' th:each="pad : ${pads}" >
+             <article class='room' th:each="safety : ${safeties}" >
             <div class='img-container'>
-              <img th:src="${pad.imageUrl}" alt='sander image'/>
+              <img th:src="${safety.imageUrl}" alt='sander image'/>
               <div class="price-top">
-                  <h6 th:text = "${pad.price}"></h6>
-                  <p>MKD</p>
+                  <h6 th:text = "${safety.price}"></h6>
+                  <p>pieces</p>
 
               </div>
-              <a th:href="@{/pads/{id}(id=${pad.id})}" class='btn-primary room-link'>
+              <a th:href="@{/safety/{id}(id=${safety.id})}" class='btn-primary room-link'>
                   Details 
                   </a>
             </div>
-            <p class='room-info' th:text="${pad.name}"></p>
+            <p class='room-info' th:text="${safety.name}" ></p>
         </article>
 
             </div>
         </section>
-
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
+
 </body>
 
 </html>

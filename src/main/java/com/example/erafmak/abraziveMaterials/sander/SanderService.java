@@ -15,6 +15,9 @@ public class SanderService {
 	@Autowired
 	SanderRepository sanderRepository;
 	
+	@Autowired
+	GranulationQtyRepository gkRepository;
+	
 	public Sander newSander(Sander sander) {
 		
 		return sanderRepository.save(sander);
@@ -35,10 +38,10 @@ public class SanderService {
 		return sanderRepository.findAll();
 	}
 
-	public Sander updatePrice(Long id, Double price) {
-		Sander sander = findSanderById(id);
-		//sander.setPrice(price);
-		return sanderRepository.save(sander);
+	public GranulationQty updatePrice(Long gid, Double price) {
+		GranulationQty sander = gkRepository.findById(gid).get();
+		sander.setPrice(price);
+		return gkRepository.save(sander);
 		
 	}
 
@@ -56,10 +59,10 @@ public class SanderService {
 		
 	}
 
-	public Sander updateSanderQuantity(Long id, Integer quantity) {
-		Sander sander = findSanderById(id);
-		//sander.setQty(sander.getQty() + quantity);
-		return sanderRepository.save(sander);
+	public GranulationQty updateSanderQuantity(Long gid, Integer quantity) {
+		GranulationQty qty = gkRepository.findById(gid).get();
+		qty.setQty(qty.getQty() + quantity);
+		return gkRepository.save(qty);
 		
 	}
 

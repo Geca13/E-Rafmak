@@ -20,15 +20,16 @@
 
 
 
- <section class='section cocktail-section' th:object="${helper}">
-      
-       <h2 class ='sectionn-title' th:text="*{name}"></h2>
-       <form th:action="@{/updateHelperName/{id}(id=${helper.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update description" >
+ <section class='section cocktail-section' th:object="${sprayGun}">
+       <div>
+       <h2 class ='section-title' th:text="*{name}"></h2>
+       <form th:action="@{/updateSprayGunName/{id}(id=${sprayGun.id})}" method="post"  >
+          <input type="text" name="name" placeholder="update name" >
           <button>change</button>
           </form>
-          
-      <div class ='drink'>
+          </div>
+      
+       <div class ='drink'>
         <img  th:src="*{imageUrl}" alt='image' />
         
          <div class="container">
@@ -38,7 +39,7 @@
                <article class='desc'>
                  
                   <h6 th:text="*{description}"></h6>
-                  <form th:action="@{/updateDescription/{id}(id=${helper.id})}" method="post"  >
+                  <form th:action="@{/updateSprayGunDescription/{id}(id=${sprayGun.id})}" method="post"  >
           <input type="text" name="description" placeholder="update description" >
           <button>change</button>
           </form>
@@ -48,15 +49,12 @@
               <div class="thirdItem">
                 <div class='drink-info'>
         
-          <p >
-          Liters :
-            <span th:text="*{dimension.displayValue}" class='drink-data'>MKD</span> 
-          </p>
+          
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
-          <form th:action="@{/updatePrice/{id}(id=${helper.id})}" method="post" >
+          <form th:action="@{/updateSprayGunPrice/{id}(id=${sprayGun.id})}" method="post" >
           <input type="text" name="price" placeholder="update price here" >
           <button>change</button>
           </form>
@@ -65,7 +63,7 @@
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/updateManufacturer/{id}(id=${helper.id})}" method="post" >
+          <form th:action="@{/updateSprayGunManufacturer/{id}(id=${sprayGun.id})}" method="post" >
           <select  th:name="manufacturer">
             <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
@@ -80,14 +78,14 @@
           Available items:
             <span th:text="*{qty}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/addQuantity/{id}(id=${helper.id})}" method="post" >
+          <form th:action="@{/addQuantityToSprayGun/{id}(id=${sprayGun.id})}" method="post" >
           <input type="text" name="quantity" placeholder="add more quantity" >
           <button>change</button>
           </form>
           </div>
           
          
-          <form th:action="@{/deleteHelper/{id}(id=${helper.id})}" method="post" >
+          <form th:action="@{/deleteSprayGun/{id}(id=${sprayGun.id})}" method="post" >
           
           <button>delete</button>
           </form>
@@ -104,30 +102,28 @@
              
        <div>
        
-         <h2>Matching Abrazives</h2>
+         <h2>Matching Nozzles</h2>
        </div>
        <br><br>
        
         <div class='roomslist-center'>
-             <article class='room' th:each="sander : ${helper.sanders}" >
+             <article class='room' th:each="nozzle : ${sprayGun.nozzles}" >
             <div class='img-container'>
-              <img th:src="${sander.imageUrl}" alt='sander image'/>
+              <img th:src="${nozzle.imageUrl}" alt='sander image'/>
               <div class="price-top">
-                  <h6 th:text = "${sander.piecesInPack}"></h6>
-                  <p>Pieces</p>
+                  <h6 th:text = "${nozzle.price}"></h6>
+                  <p>MKD</p>
 
               </div>
-              <a th:href="@{/sander/{id}(id=${sander.id})}" class='btn-primary room-link'>
+              <a th:href="@{/nozzle/{id}(id=${nozzle.id})}" class='btn-primary room-link'>
                   Details 
                   </a>
             </div>
-            <p class='room-info' th:text="${sander.name} + ' ' + ${sander.dimension.displayValue}"></p>
+            <p class='room-info' th:text="${nozzle.description} + ' ' + ${nozzle.nozzleSize.displayValue}"></p>
         </article>
 
             </div>
     </section>
-
-
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>

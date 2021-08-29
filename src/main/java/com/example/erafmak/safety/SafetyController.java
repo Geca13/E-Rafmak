@@ -76,9 +76,9 @@ public class SafetyController {
 		return "redirect:/safety/" + id;
 	}
 	
-	@PostMapping("/addQuantityToPSafety/{id}")
-	public String updateQuantityToSafety(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateSafetyQuantity(id , quantity);
+	@PostMapping("/addQuantityToSafetyPerSize/{id}/{sid}")
+	public String updateQuantityToSafety(@PathVariable(value = "id")Long id ,@PathVariable(value = "sid")Long sid , @Param(value = "quantity")Integer quantity) {
+		service.updateSafetyQuantityPerSize(id , sid , quantity);
 		return "redirect:/safety/" + id;
 	}
 

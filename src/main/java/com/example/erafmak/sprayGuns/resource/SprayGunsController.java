@@ -51,10 +51,10 @@ public class SprayGunsController {
 	}
 	
 	@GetMapping("/sprayGun/{id}")
-	public String getPrimerDetails(Model model , @PathVariable(value = "id")Long id) {
+	public String getSprayGunDetails(Model model , @PathVariable(value = "id")Long id) {
 		model.addAttribute("sprayGun", service.findSprayGunById(id)) ;
 		model.addAttribute("manufacturers", manService.manufacturers()) ;
-		return "singlePrimer";
+		return "singleGun";
 	}
 	
 	@PostMapping("/updateSprayGunPrice/{id}")

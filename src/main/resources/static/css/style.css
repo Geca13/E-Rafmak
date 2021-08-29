@@ -71,6 +71,8 @@ a {
 }
 img {
   width: 100%;
+  max-width: 310px;
+  height: auto;
   display: block;
 }
 
@@ -649,7 +651,7 @@ Cocktail
 }
 .drink img {
   border-radius: var(--mainBorderRadius);
-  height: 500px;
+  height: auto;
   width: auto;
 }
 .drink p {

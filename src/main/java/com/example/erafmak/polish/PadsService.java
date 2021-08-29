@@ -15,6 +15,9 @@ public class PadsService {
 	@Autowired
 	ManufacturerService manService;
 	
+	@Autowired
+	PolishRepository polishRepository;
+	
 	    public Pads newPads(Pads pads) {
 			
 			return padsRepository.save(pads);
@@ -28,7 +31,18 @@ public class PadsService {
 		public void deletePads(Long id) {
 			Pads pads = padsRepository.findById(id).get();
 			pads.setManufacturer(null);
+			removePads(id, pads);
 			padsRepository.delete(pads);
+		}
+
+		private void removePads(Long id, Pads pads) {
+			List<Polish> polishes = polishRepository.findAllByPads_Id(id);
+			if(!polishes.isEmpty()) {
+			for (Polish polish : polishes) {
+				polish.pads.remove(pads);
+				polishRepository.save(polish);
+			}
+			}
 		}
 		
 		public List<Pads> pads() {
