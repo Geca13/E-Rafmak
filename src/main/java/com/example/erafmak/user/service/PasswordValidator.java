@@ -3,9 +3,8 @@ package com.example.erafmak.user.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.stereotype.Service;
 
-@Service
+
 public class PasswordValidator {
 	
 	private Pattern pattern;

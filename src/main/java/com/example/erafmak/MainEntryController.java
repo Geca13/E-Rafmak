@@ -96,4 +96,36 @@ public class MainEntryController {
 		
 		return "index";
 	}
+	
+	@GetMapping("/login")
+	public String getloginPage(Model model) {
+		
+		model.addAttribute("coats", coats.coats());
+		model.addAttribute("thinners", thinners.thinners());
+		model.addAttribute("primers", primers.primers());
+		model.addAttribute("hardeners", hardeners.hardeners());
+		model.addAttribute("putties", putties.putties());
+		
+		model.addAttribute("sanders", sanders.sanders());
+		model.addAttribute("discs", sanders.discs());
+		model.addAttribute("wets", sanders.wets());
+		model.addAttribute("softs", sanders.softs());
+		model.addAttribute("blocks", sanders.blocks());
+		model.addAttribute("rolls", sanders.rolls());
+		
+		model.addAttribute("pads", pads.pads());
+		model.addAttribute("polishes", polishes.polishes());
+		
+		
+		model.addAttribute("safeties", safeties.safeties());
+		model.addAttribute("extrass", extras.extrass());
+		
+		model.addAttribute("helpers", helpers.helpers());
+		model.addAttribute("nozzles", nozzles.nozzles());
+		model.addAttribute("guns", guns.guns());
+		model.addAttribute("tools", tools.tools());
+		
+		
+		return "login";
+	}
 }

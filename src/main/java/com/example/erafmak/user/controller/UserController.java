@@ -26,7 +26,7 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public String completeRegistration(@ModelAttribute(value = "user")User user) {
-		
+		service.registerNewUser(user);
 		return "";
 	}
 
