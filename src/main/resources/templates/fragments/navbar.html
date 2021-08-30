@@ -240,15 +240,25 @@
             
           </li>
           
+          <li>
+          <div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+          <a href="#">Register</a>
+          </div>
+          </li>
+          <li>
+           <div sec:authorize="hasRole('ROLE_ANONYMOUS')" class="login-container">
+            <form th:action="@{/login}" method="post">
+             <input type="text"  placeholder="Email" name="username" required >
+             <input type="text" placeholder="Password" name="password" required>
+             <button type="submit">Login</button>
+             </form>
+            </div>
+          </li>
           
-          <li><a href="#">CONTACT US</a></li>
           
-          <li><a href="#">Login / Register</a></li>
         </ul>
       </div>
-      <div class="search-box">
-        <a href="#">Login / Register</a>
-      </div>
+     
     </div>
   </nav>
            

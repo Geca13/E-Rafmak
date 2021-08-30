@@ -824,64 +824,58 @@ Cocktail
   }
 }
 
-  /*Trigger Button*/
-.login-trigger {
-  font-weight: bold;
-  color: #fff;
-  background: linear-gradient(to bottom right, #B05574, #F87E7B);
-  padding: 15px 30px;
-  border-radius: 30px;
-  position: relative; 
-  top: 50%;
+/* Style the input container */
+.navbar .login-container {
+  float: right;
 }
 
-/*Modal*/
-h4 {
-  font-weight: bold;
-  color: #fff;
-}
-.close {
-  color: #fff;
-  transform: scale(1.2)
-}
-.modal-content {
-  font-weight: bold;
-  background: linear-gradient(to bottom right,#F87E7B,#B05574);
-}
-.form-control {
-  margin: 1em 0;
-}
-.form-control:hover, .form-control:focus {
-  box-shadow: none;  
-  border-color: #fff;
-}
-.username, .password {
+/* Style the input field inside the navbar */
+.navbar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 10px;
   border: none;
-  border-radius: 0;
-  box-shadow: none;
-  border-bottom: 2px solid #eee;
-  padding-left: 0;
-  font-weight: normal;
-  background: transparent;  
+  width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
 }
-.form-control::-webkit-input-placeholder {
-  color: #eee;  
+
+/* Style the button inside the input container */
+.navbar .login-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 24px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 10px;
+  border: none;
+  cursor: pointer;
 }
-.form-control:focus::-webkit-input-placeholder {
-  font-weight: bold;
-  color: #fff;
+
+.navbar .login-container button:hover {
+  background: #ccc;
+  padding-left: 5px;
 }
-.login {
-  padding: 6px 20px;
-  border-radius: 20px;
-  background: none;
-  border: 2px solid #FAB87F;
-  color: #FAB87F;
-  font-weight: bold;
-  transition: all .5s;
-  margin-top: 1em;
-}
-.login:hover {
-  background: #FAB87F;
-  color: #fff;
+
+/* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .navbar .login-container {
+    float: none;
+  }
+ .navbar input[type=text], .navbar .login-container  {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .navbar input[type=text] {
+    border: 1px solid #ccc;
+  }
+  
+  
+  .navbar input[type=text] {
+    border: 1px solid #ccc;
+  }
+  
+  
 }
