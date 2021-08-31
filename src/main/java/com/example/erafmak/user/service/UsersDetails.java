@@ -12,12 +12,17 @@ import com.example.erafmak.user.entity.User;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-public class UserDetailsService implements UserDetails {
+
+public class UsersDetails implements UserDetails {
 	
 	private User user;
 
 	
+
+	public UsersDetails(User user) {
+		super();
+		this.user = user;
+	}
 
 	@Override
 	public String getPassword() {

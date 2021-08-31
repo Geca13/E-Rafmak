@@ -1,6 +1,7 @@
 package com.example.erafmak;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ import com.example.erafmak.sprayGuns.resource.ExtrasService;
 import com.example.erafmak.sprayGuns.resource.NozzleService;
 import com.example.erafmak.sprayGuns.resource.SprayGunsService;
 import com.example.erafmak.tools.ToolService;
+import com.example.erafmak.user.entity.User;
+import com.example.erafmak.user.entity.UserRepository;
+import com.example.erafmak.user.service.UsersDetails;
 
 @Controller
 public class MainEntryController {
@@ -64,9 +68,12 @@ public class MainEntryController {
 	
 	@Autowired
 	ToolService tools;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	@GetMapping("/")
-	public String getIndexPage(Model model) {
+	public String getIndexPage(Model model,@AuthenticationPrincipal UsersDetails user) {
 		
 		model.addAttribute("coats", coats.coats());
 		model.addAttribute("thinners", thinners.thinners());
@@ -92,7 +99,9 @@ public class MainEntryController {
 		model.addAttribute("nozzles", nozzles.nozzles());
 		model.addAttribute("guns", guns.guns());
 		model.addAttribute("tools", tools.tools());
-		
+		String userEmail = user.getUsername();
+        User user1 = userRepository.findByEmail(userEmail);
+           model.addAttribute("user", user1);
 		
 		return "index";
 	}

@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.erafmak.user.entity.User;
-import com.example.erafmak.user.service.UserService;
+import com.example.erafmak.user.service.UserServiceImpl;
 
 @Controller
 public class UserController {
 	
 	@Autowired
-	UserService service;
+	UserServiceImpl service;
 	
 	@GetMapping("/register")
 	public String registerPage(Model model) {
 		
 		model.addAttribute("user", new User());
 		
-		return "register";
+		return "registrationForm";
 	}
 	
 	@PostMapping("/register")
 	public String completeRegistration(@ModelAttribute(value = "user")User user) {
 		service.registerNewUser(user);
-		return "";
+		return "redirect:/register";
 	}
 
 }

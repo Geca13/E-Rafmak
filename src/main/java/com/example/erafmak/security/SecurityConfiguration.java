@@ -11,14 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.example.erafmak.user.service.UserService;
+import com.example.erafmak.user.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder(){
@@ -47,7 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				"/signUpForm**",
 				"/forgotPassword**",
 				"/newPassword**",
-				"/**",
 				"/products/productDetails/{id}**",
 				"/js/**",
 				"/css/**",
