@@ -53,6 +53,9 @@ import com.example.erafmak.sprayGuns.repository.SprayGunRepository;
 import com.example.erafmak.tools.Power;
 import com.example.erafmak.tools.Tool;
 import com.example.erafmak.tools.ToolRepository;
+import com.example.erafmak.user.entity.Role;
+import com.example.erafmak.user.entity.RoleName;
+import com.example.erafmak.user.entity.RoleRepository;
 
 @SpringBootApplication
 public class ERafmakApplication {
@@ -111,6 +114,9 @@ public class ERafmakApplication {
 	
 	@Autowired
 	GranulationQtyRepository granulationQtyRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ERafmakApplication.class, args);
@@ -121,7 +127,8 @@ public class ERafmakApplication {
 		
 		try {
 			
-			System.out.println("Post construct called");
+			roleRepository.save(new Role(1L, RoleName.ROLE_ADMIN));
+			roleRepository.save(new Role(2L, RoleName.ROLE_USER));
 			
 			originRepository.save(new Origin(1L, "Finland"));
 			originRepository.save(new Origin(2L, "Nederlands"));

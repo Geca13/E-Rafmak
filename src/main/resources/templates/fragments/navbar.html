@@ -254,11 +254,22 @@
              </form>
             </div>
           </li>
+          
           <li>
-             <a sec:authorize="isAuthenticated()" th:href="@{/cart}" class="nav-item nav-link" >cart</a>
+          <div>
+             <a sec:authorize="isAuthenticated()" th:href="@{/cart}">cart</a>
+          </div>
+             
+         </li>
+         
+          <li sec:authentication="principal.username">>
+          
+            
          </li>
           <li>
-             <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-item nav-link" >Logout</a>
+          <div>
+             <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+          </div>
          </li>
          
         </ul>

@@ -16,7 +16,252 @@
 </head>
 
 <body>
-  <div th:replace="fragments/navbar :: navbar"></div>
+  <nav >
+      <div class="navbar">
+      <i class='bx bx-menu'></i>
+      <div class="logo"><a href="#">Rafmak</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">Rafmak</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+        
+        
+          <li>
+          <a th:href="@{/sanders}">Abrazives</a>
+              <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li class="more">
+                <span><a th:href="@{/sanders/discs}">Discs</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="disc : ${discs}"> <a
+                th:text="${disc.name}" th:href="@{/sander/{id}(id=${disc.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/sanders/blocks}">Blocks</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="block : ${blocks}"> <a
+                th:text="${block.name}" th:href="@{/sander/{id}(id=${block.id})}" ></a></li>
+                </ul>
+              </li>
+              <li class="more">
+                <span><a th:href="@{/sanders/rolls}">Rolls</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="roll : ${rolls}"> <a
+                th:text="${roll.name}" th:href="@{/sander/{id}(id=${roll.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/sanders/softs}">Softs</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="soft : ${softs}"> <a
+                th:text="${soft.name}" th:href="@{/sander/{id}(id=${soft.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/sanders/wets}">WPF</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="wet : ${wets}"> <a
+                th:text="${wet.name }" th:href="@{/sander/{id}(id=${wet.id})}" ></a></li>
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a th:href="@{/coats}">Coats & Primers</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li class="more">
+                <span><a th:href="@{/coats}">Coats</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="coat : ${coats}"> <a
+                th:text="${coat.name}" th:href="@{/coat/{id}(id=${coat.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/primers}">Primers</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="primer : ${primers}"> <a
+                th:text="${primer.name}" th:href="@{/primer/{id}(id=${primer.id})}" ></a></li>
+                </ul>
+              </li>
+              <li class="more">
+                <span><a th:href="@{/hardeners}">Hardeners</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="hardener : ${hardeners}"> <a
+                th:text="${hardener.name}" th:href="@{/hardener/{id}(id=${hardener.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/thinners}">Thinners</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="thinner : ${thinners}"> <a
+                th:text="${thinner.name}" th:href="@{/thinner/{id}(id=${thinner.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/putties}">Putties</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="putty : ${putties}"> <a
+                th:text="${putty.name}" th:href="@{/putty/{id}(id=${putty.id})}" ></a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+           <li>
+            <a th:href="@{/tools}">Tools&Equip</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow1 arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li class="more">
+                <span><a th:href="@{/tools}">Tools</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="tool : ${tools}"> <a
+                th:text="${tool.name}" th:href="@{/tool/{id}(id=${tool.id})}" ></a></li>
+                </ul>
+              </li>
+              
+               <li class="more">
+                <span><a th:href="@{/guns}">Sprays</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="gun : ${guns}"> <a
+                th:text="${gun.name}" th:href="@{/sprayGun/{id}(id=${gun.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/nozzles}">Nozzles</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="nozzle : ${nozzles}"> <a
+                th:text="${nozzle.description}" th:href="@{/nozzle/{id}(id=${nozzle.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/helpers}">Blocks</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="helper : ${helpers}"> <a
+                th:text="${helper.name}" th:href="@{/helper/{id}(id=${helper.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/safeties}">Safety</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="safety : ${safeties}"> <a
+                th:text="${safety.name}" th:href="@{/safety/{id}(id=${safety.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/extrass}">Extras</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="extra : ${extrass}"> <a
+                th:text="${extra.name}" th:href="@{/extras/{id}(id=${extra.id})}" ></a></li>
+                </ul>
+              </li>
+             </ul>
+            </li>
+          
+          
+          <li>
+            <a th:href="@{/polishes}">Polish</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li class="more">
+                <span><a th:href="@{/polishes}">Polish</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="polish : ${polishes}"> <a
+                th:text="${polish.name}" th:href="@{/polish/{id}(id=${polish.id})}" ></a></li>
+                </ul>
+              </li>
+              
+              <li class="more">
+                <span><a th:href="@{/pads}">Pads</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+              
+                <ul class="more-sub-menu sub-menu">
+                  <li th:each="pad : ${pads}"> <a
+                th:text="${pad.name}" th:href="@{/pads/{id}(id=${pad.id})}" ></a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+          </li>
+   
+        </ul>
+      </div>
+     
+    </div>
+  </nav>
   
  <div class="form_wrapper">
   <div class="form_container">
