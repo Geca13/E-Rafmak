@@ -23,10 +23,12 @@
  <section class='section cocktail-section' th:object="${sander}">
       
        <h2 class ='section-title' th:text="*{name}"></h2>
-       <form th:action="@{/updateSanderName/{id}(id=${sander.id})}" method="post"  >
+       <div sec:authorize="hasRole('ROLE_ADMIN')">
+         <form th:action="@{/updateSanderName/{id}(id=${sander.id})}" method="post"  >
           <input type="text" name="name" placeholder="update description" >
-          <button>change</button>
-          </form>
+           <button>change</button>
+         </form>
+        </div> 
           <br><br><br>
        <div class ='drink'>
         <img th:src="*{imageUrl}" alt='image' />
@@ -40,16 +42,17 @@
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
-          <form th:action="@{/updateSanderManufacturer/{id}(id=${sander.id})}" method="post" >
-          <select  th:name="manufacturer">
-            <option value="">-Select-</option>
-            <option th:each="manufacturer : ${manufacturers}"
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
+           <form th:action="@{/updateSanderManufacturer/{id}(id=${sander.id})}" method="post" >
+            <select  th:name="manufacturer">
+             <option value="">-Select-</option>
+             <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
-          </select>
-          <button>change</button>
-          </form>
-          
+             </select>
+             <button>change</button>
+            </form>
+           </div>
          <p >
           Dimension
             <span th:text="*{dimension.displayValue}" class='drink-data'></span> 
@@ -72,7 +75,7 @@
                   <ul>
                   <li th:each="gran : ${sander.granulationQty}"> <p
                 th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '  + ${gran.qty}"  ></p>
-                <div>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/addQuantityToSanderPerGranulation/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
                 <input name="quantity" placeholder="add more qty" type="text"/>
                 <button >add</button>

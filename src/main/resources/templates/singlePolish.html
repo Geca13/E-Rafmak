@@ -23,11 +23,12 @@
  <section class='section cocktail-section' th:object="${polish}">
  
        <h2 class ='section-title' th:text="*{name}"></h2>
-       <form th:action="@{/updatePolishName/{id}(id=${polish.id})}" method="post"  >
+       <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <form th:action="@{/updatePolishName/{id}(id=${polish.id})}" method="post"  >
           <input type="text" name="name" placeholder="update name" >
           <button>change</button>
-          </form>
-      
+        </form>
+       </div>
        <div class ='drink'>
         <img  th:src="*{imageUrl}" alt='image' />
         
@@ -38,10 +39,12 @@
                <article class='desc'>
                  
                   <h6 th:text="*{description}"></h6>
-                  <form th:action="@{/updatePolishDescription/{id}(id=${polish.id})}" method="post"  >
-          <input type="text" name="description" placeholder="update description" >
-          <button>change</button>
-          </form>
+             <div sec:authorize="hasRole('ROLE_ADMIN')">     
+             <form th:action="@{/updatePolishDescription/{id}(id=${polish.id})}" method="post"  >
+              <input type="text" name="description" placeholder="update description" >
+               <button>change</button>
+             </form>
+             </div>
                </article>
               </div>
               <div class="rightSide">
@@ -53,42 +56,44 @@
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
-          <form th:action="@{/updatePolishPrice/{id}(id=${polish.id})}" method="post" >
-          <input type="text" name="price" placeholder="update price here" >
-          <button>change</button>
-          </form>
-          
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form th:action="@{/updatePolishPrice/{id}(id=${polish.id})}" method="post" >
+             <input type="text" name="price" placeholder="update price here" >
+             <button>change</button>
+            </form>
+          </div>
           <p >
           Manufacturer
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/updatePolishManufacturer/{id}(id=${polish.id})}" method="post" >
-          <select  th:name="manufacturer">
+           <select  th:name="manufacturer">
             <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
-          </select>
+           </select>
           <button>change</button>
           </form>
-          
+          </div>
           <div>
           <p>
           Available items:
             <span th:text="*{qty}" class='drink-data'></span> 
           </p>
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/addQuantityToPolish/{id}(id=${polish.id})}" method="post" >
           <input type="text" name="quantity" placeholder="add more quantity" >
           <button>change</button>
           </form>
           </div>
-          
-         
+          </div>
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/deletePolish/{id}(id=${polish.id})}" method="post" >
-          
-          <button>delete</button>
+           <button>delete</button>
           </form>
-          
+          </div>
         </div>
        </div>
        <div>

@@ -256,19 +256,19 @@
           </li>
           
           <li>
-          <div>
-             <a sec:authorize="isAuthenticated()" th:href="@{/cart}">cart</a>
+          <div sec:authorize="isAuthenticated()">
+             <a  th:href="@{/cart}"><i class='bx bxs-cart'></i></a>
           </div>
              
          </li>
          
-          <li sec:authentication="principal.username">>
-          
-            
+          <li sec:authorize="isAuthenticated()" >
+          <i class='bx bx-user' ></i>
+            <span sec:authentication="principal.username"></span>
          </li>
-          <li>
+          <li sec:authorize="isAuthenticated()">
           <div>
-             <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+             <a  th:href="@{/logout}"><i class='bx bxs-log-out' ></i></a>
           </div>
          </li>
          
