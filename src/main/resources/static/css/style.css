@@ -1,5 +1,6 @@
 /* Googlefont Poppins CDN Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
 *{
   margin: 0;
   padding: 0;
@@ -126,6 +127,16 @@ nav .navbar .links li a{
   color: #fff;
   font-size: 15px;
   font-weight: 500;
+}
+
+.fa-sign-out-alt {
+  
+  font-size: 25px;
+  
+}
+
+.fa-shopping-cart {
+	font-size: 25px;
 }
 .links li:hover .htmlcss-arrow,
 .links li:hover .js-arrow{
@@ -842,7 +853,7 @@ Cocktail
 .navbar .login-container button {
   float: right;
   padding: 6px;
-  margin-top: 8px;
+  margin-top: -47px;
   margin-right: 16px;
   background: #ddd;
   font-size: 10px;
@@ -876,6 +887,35 @@ Cocktail
     border: 1px solid #ccc;
   }
   
+  .navbar button[type=submit] {
+    margin-top: 20px;
+    margin-left: 10px;
+  
+  }
+  
 }
 
-
+.info-msg,
+.success-msg,
+.warning-msg,
+.error-msg {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+.info-msg {
+  color: #059;
+  background-color: #BEF;
+}
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+}
+.warning-msg {
+  color: #9F6000;
+  background-color: #FEEFB3;
+}
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+}

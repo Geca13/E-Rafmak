@@ -45,9 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(
 				"/register**",
-				"/forgotPassword**",
-				"/newPassword**",
-				"/products/productDetails/{id}**",
+				"/coats**",
+				
 				"/js/**",
 				"/css/**",
 				"/img/**")
@@ -64,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.invalidateHttpSession(true)
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login?logout")
+		.logoutSuccessUrl("/login")
 		.permitAll();
 	}
  }

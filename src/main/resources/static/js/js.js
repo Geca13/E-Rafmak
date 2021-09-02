@@ -26,4 +26,13 @@ jsArrow.onclick = function() {
  navLinks.classList.toggle("show3");
 }
 
+if (typeof(Storage) !== "undefined") {
+  // Store
+  localStorage.setItem("user", "Smith");
+  // Retrieve
+  document.getElementById("user").innerHTML = localStorage.getItem("lastname");
+} else {
+  document.getElementById("user").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+
 

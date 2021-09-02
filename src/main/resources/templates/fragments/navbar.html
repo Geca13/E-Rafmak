@@ -240,35 +240,35 @@
             
           </li>
           
-          <li>
-          <div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+          <li sec:authorize="hasRole('ROLE_ANONYMOUS')">
+          
           <a th:href="@{/register}">Register</a>
-          </div>
+         
           </li>
-          <li>
-           <div sec:authorize="hasRole('ROLE_ANONYMOUS')" class="login-container">
+          <li class="login-container" sec:authorize="hasRole('ROLE_ANONYMOUS')">
+           
             <form th:action="@{/login}" method="post">
              <input type="text"  placeholder="Email" name="username" required >
              <input type="text" placeholder="Password" name="password" required>
-             <button type="submit">Login</button>
+              <button type="submit">Login</button>
              </form>
-            </div>
+            
           </li>
           
           <li>
           <div sec:authorize="isAuthenticated()">
-             <a  th:href="@{/cart}"><i class='bx bxs-cart'></i></a>
+             <a  th:href="@{/cart}"><i class="fas fa-shopping-cart"></i></a>
           </div>
              
          </li>
          
           <li sec:authorize="isAuthenticated()" >
-          <i class='bx bx-user' ></i>
-            <span sec:authentication="principal.username"></span>
+          <i class="fas fa-user"></i>
+            <span sec:authentication="principal.username" id="user"></span>
          </li>
           <li sec:authorize="isAuthenticated()">
           <div>
-             <a  th:href="@{/logout}"><i class='bx bxs-log-out' ></i></a>
+             <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i></a>
           </div>
          </li>
          
