@@ -60,12 +60,13 @@
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
+   
 }
 
 .img-slider .navigation .btn{
-  background: rgba(255, 255, 255, 0.5);
-  width: 12px;
-  height: 12px;
+  background: #f5ba1a;
+  width: 15px;
+  height: 15px;
   margin: 10px;
   border-radius: 50%;
   cursor: pointer;

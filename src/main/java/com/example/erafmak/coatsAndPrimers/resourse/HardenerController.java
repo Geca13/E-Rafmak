@@ -20,11 +20,18 @@ public class HardenerController {
 	@Autowired
 	ManufacturerService manService;
 	
+	@Autowired
+	CoatService coatService;
+	
+	@Autowired
+	PrimerService primerService;
+	
 	
 	@GetMapping("/newHardener")
 	public String hardenerModel(Model model) {
 		model.addAttribute("hardener", new Hardener());
 		model.addAttribute("manufacturers", manService.manufacturers());
+		
 		return "addHardener";
 	}
 	

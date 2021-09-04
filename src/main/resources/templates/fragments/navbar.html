@@ -240,20 +240,6 @@
             
           </li>
           
-          <li sec:authorize="hasRole('ROLE_ANONYMOUS')">
-          
-          <a th:href="@{/register}">Register</a>
-         
-          </li>
-          <li class="login-container" sec:authorize="hasRole('ROLE_ANONYMOUS')">
-           
-            <form th:action="@{/login}" method="post">
-             <input type="text"  placeholder="Email" name="username" required >
-             <input type="text" placeholder="Password" name="password" required>
-              <button type="submit">Login</button>
-             </form>
-            
-          </li>
           
           <li>
           <div sec:authorize="isAuthenticated()">
@@ -261,7 +247,7 @@
           </div>
              
          </li>
-         
+         <!--  
           <li sec:authorize="isAuthenticated()" >
           <i class="fas fa-user"></i>
             <span sec:authentication="principal.username" id="user"></span>
@@ -271,8 +257,45 @@
              <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i></a>
           </div>
          </li>
-         
+         -->
         </ul>
+      </div>
+      
+      <div class="search-box" >
+        <i class='bx bxs-user'></i>
+        
+         <div class="input-box" sec:authorize="hasRole('ROLE_ANONYMOUS')">
+          <form th:action="@{/login}" method="post">
+             <input class="input1" type="text"  placeholder="Email" name="username" required >
+             <input class="input2" type="text" placeholder="Password" name="password" required>
+              <button class="login" type="submit">Login</button>
+             </form>
+             <p>Not registered? <span>Click <a th:href="@{/register}" >here</a></span></p>
+        </div>
+        
+        <div class="input-box" sec:authorize="isAuthenticated()">
+        
+        <ul>
+          <li>
+          <div>
+          <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+          
+          </li>
+          
+          <li>
+          <div>
+          <i class="fas fa-user"></i>
+            <span sec:authentication="principal.username" id="user"></span>
+          </div>
+          
+          </li>
+          
+        </ul>
+          
+          
+         
+        </div>
       </div>
      
     </div>

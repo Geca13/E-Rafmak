@@ -28,9 +28,10 @@ public class HardenerService {
 	@Autowired
 	CoatRepository coatRepository;
 	
-    public Hardener newHardener(Hardener hardener) {
+    public void newHardener(Hardener hardener) {
 		
-		return hardenerRepository.save(hardener);
+    	
+		hardenerRepository.save(hardener);
 		
 	}
 	

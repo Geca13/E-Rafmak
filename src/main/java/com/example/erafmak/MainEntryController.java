@@ -137,4 +137,9 @@ public class MainEntryController {
 		
 		return "login";
 	}
+	
+	@GetMapping("/logoutSuccess")
+	public String logout() {
+		return "login";
+	}
 }
