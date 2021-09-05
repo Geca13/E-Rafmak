@@ -18,7 +18,9 @@ public class CoatService {
 	ManufacturerService manService;
 	
     public Coat newCoat(Coat coat) {
-		
+    Integer id = coats().size();
+    	
+		coat.setId(id+1L);
 		return coatRepository.save(coat);
 		
 	}

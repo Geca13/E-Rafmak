@@ -1,5 +1,7 @@
 package com.example.erafmak.safety;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -23,12 +25,13 @@ public class SafetyController {
 	public String primerModel(Model model) {
 		model.addAttribute("safety", new Safety());
 		model.addAttribute("manufacturers", manService.manufacturers());
+		model.addAttribute("sizes", service.sizes());
 		return "addSafety";
 	}
 	
 	@PostMapping("/newSafety")
-	public String createPrimer(@ModelAttribute(value = "coat")Safety safety) {
-		service.newSafety(safety);
+	public String createPrimer(@ModelAttribute(value = "safety")Safety safety, @Param(value = "sizes")List<Size>sizes) {
+		service.newSafety(safety , sizes);
 	return "redirect:/";
 		
 	}

@@ -19,11 +19,20 @@ public class SafetyService {
 	SizeQuantityRepository sqRepository;
 	
 	
-	    public Safety newSafety(Safety safety) {
+	    public Safety newSafety(Safety safety, List<Size> sizes) {
+	    	
+			safetyRepository.save(safety);
+			
+			for (Size size : sizes) {
+	    		SizeQuantity quantity = new SizeQuantity();
+	    		quantity.setSize(size);
+	    		sqRepository.save(quantity);
+	    		safety.getSizeQty().add(quantity);			}
 			
 			return safetyRepository.save(safety);
-			
 		}
+	    
+	    
 		
 		public Safety findSafetyById(Long id) {
 			return safetyRepository.findById(id).get();
@@ -37,6 +46,10 @@ public class SafetyService {
 		
 		public List<Safety> safeties() {
 			return safetyRepository.findAll();
+		}
+		
+		public List<SizeQuantity> sizes(){
+			return sqRepository.findAll();
 		}
 
 		public Safety updatePrice(Long id, Double price) {

@@ -28,7 +28,7 @@ public class CoatController {
 	public String coatModel(Model model) {
 		model.addAttribute("coat", new Coat());
 		model.addAttribute("manufacturers", manService.manufacturers());
-		model.addAttribute("harters", harService.hardeners());
+		model.addAttribute("hardeners", harService.hardeners());
 		return "addCoat";
 	}
 	

@@ -74,7 +74,7 @@
                 
                   <ul>
                   <li th:each="gran : ${sander.granulationQty}"> <p
-                th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '  + ${gran.qty}"  ></p>
+                th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '}"  ></p>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/addQuantityToSanderPerGranulation/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
                 <input name="quantity" placeholder="add more qty" type="text"/>

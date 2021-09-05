@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -16,62 +16,74 @@
 
 <body>
 
-<h1>Hello</h1>
 
-<form th:action="@{/newCoat}" th:object="${coat}" method="post">
-<div>
-<label>Description</label>
-  <input type="text" th:field="*{name}" />
-  <label>Description</label>
-  <input type="text" th:field="*{description}" />
- 
-  <label>Price</label>
-  <input type="text" th:field="*{price}" />
- </div>
- <div>
- <label>Quantity</label>
- <input type="text" th:field="*{qty}" />
- 
-  <label>Image Url</label>
- <input type="text" th:field="*{imageUrl}" />
- </div>
- 
- <div>
- 
- <label>Manufacturer</label>
- <select  th:field="*{manufacturer}">
+<div class="container">
+  <form th:action="@{/newCoat}" th:object="${coat}" method="post">
+    <h1>New Coat Form</h1>
+    
+    <div class="form-group">
+      <select  th:field="*{manufacturer}">
      <option value="">-Select-</option>
       <option th:each="manufacturer : ${manufacturers}"
         th:value="${manufacturer.id}"
-        th:text="${manufacturer.name}"/>
+        th:text="${manufacturer.name}"
+        />
        </select>
-       
-  <select th:field="${coat.weigth}" >
+      <label  for="select" class="control-label">Manufacturer</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{name}" type="text" required="required"/>
+      <label for="input" class="control-label">Product Name</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <textarea th:field="*{description}" required="required"></textarea>
+      <label for="textarea" class="control-label">Product Description</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{price}" required="required"/>
+      <label for="textarea" class="control-label">Product Price</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{qty}" required="required"/>
+      <label for="textarea" class="control-label">Product Quantity</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{imageUrl}" required="required"/>
+      <label for="textarea" class="control-label">Image Url</label><i class="bar"></i>
+    </div>
+   
+       <div class="form-group">
+     <select th:field="${coat.weigth}" >
     
       <option th:each="weigth : ${T(com.example.erafmak.coatsAndPrimers.entity.Weigth).values()}"
       
       th:value="${weigth}"
             th:text="${weigth.displayValue}"/>
-       </select>   
-       
-         <div class="col">
-      <label >Select Harters:</label>
-     <div class="form-group">
-    <ul>
-        <li th:each="hardener : ${hardeners}"><input type="checkbox"
-                th:field="*{hardeners}" th:value="${hardener.id}"   /> <label
-                th:text="${hardener.description + ' ' + hardener.description}"></label></li>
-</ul>
-  
-  </div>
-      
-      
+       </select>
+      <label  for="select" class="control-label">Select Weight</label><i class="bar"></i>
     </div>
  
- <button type="submit">Create</button>
+    <h3>Select Matching Hardeners</h3>
+    
+    <ul>
+  <li th:each="hardener : ${hardeners}">
+    <input type="checkbox" th:field="*{hardeners}" th:value="${hardener.id}" />
+    <label  th:text="${hardener.name}"></label>
+  </li>
+</ul>
+  
+     <div class="button-container">
+    <button type="submit" class="button"><span>Submit</span></button>
+  </div>
+  </form>
  
- </div>
-</form>
+</div>
+
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>

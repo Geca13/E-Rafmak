@@ -142,4 +142,9 @@ public class MainEntryController {
 	public String logout() {
 		return "login";
 	}
+	
+	@GetMapping("/administration")
+	public String administration() {
+		return "administration";
+	}
 }

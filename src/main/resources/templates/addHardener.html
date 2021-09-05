@@ -16,47 +16,61 @@
 
 <body>
 
-<h1>Hello</h1>
+
 
 <form th:action="@{/newHardener}" th:object="${hardener}" method="post">
-<div>
-<label>Description</label>
-  <input type="text" th:field="*{name}" />
-  <label>Description</label>
-  <input type="text" th:field="*{description}" />
- 
-  <label>Price</label>
-  <input type="text" th:field="*{price}" />
- </div>
- <div>
- <label>Quantity</label>
- <input type="text" th:field="*{qty}" />
- 
-  <label>Image Url</label>
- <input type="text" th:field="*{imageUrl}" />
- </div>
- 
- <div>
- 
- <label>Manufacturer</label>
- <select  th:field="*{manufacturer}">
+  <h1>New Hardener Form</h1>
+    
+    <div class="form-group">
+      <select  th:field="*{manufacturer}">
      <option value="">-Select-</option>
       <option th:each="manufacturer : ${manufacturers}"
         th:value="${manufacturer.id}"
-        th:text="${manufacturer.name}"/>
+        th:text="${manufacturer.name}"
+        />
        </select>
-       
-  <select th:field="${hardener.weigth}" >
+      <label  for="select" class="control-label">Manufacturer</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{name}" type="text" required="required"/>
+      <label for="input" class="control-label">Product Name</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <textarea th:field="*{description}" required="required"></textarea>
+      <label for="textarea" class="control-label">Product Description</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{price}" required="required"/>
+      <label for="textarea" class="control-label">Product Price</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{qty}" required="required"/>
+      <label for="textarea" class="control-label">Product Quantity</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input th:field="*{imageUrl}" required="required"/>
+      <label for="textarea" class="control-label">Image Url</label><i class="bar"></i>
+    </div>
+   
+       <div class="form-group">
+     <select th:field="${hardener.weigth}" >
     
       <option th:each="weigth : ${T(com.example.erafmak.coatsAndPrimers.entity.Weigth).values()}"
       
       th:value="${weigth}"
             th:text="${weigth.displayValue}"/>
-       </select>     
- 
- <button type="submit">Create</button>
- 
- </div>
+       </select>
+      <label  for="select" class="control-label">Select Weight</label><i class="bar"></i>
+    </div>
+    
+     <div class="button-container">
+    <button type="submit" class="button"><span>Submit</span></button>
+  </div>
 </form>
 
 <div th:replace="fragments/footer :: footer"></div>
