@@ -25,7 +25,7 @@ public class ExtrasController {
 	public String extrasModel(Model model) {
 		model.addAttribute("extras", new Extras());
 		model.addAttribute("manufacturers", manService.manufacturers());
-		return "addExtras";
+		return "addExtrass";
 	}
 	
 	@PostMapping("/newExtras")

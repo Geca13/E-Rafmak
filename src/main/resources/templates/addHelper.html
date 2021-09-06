@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -16,10 +16,10 @@
 
 <body>
 
-<h1>Hello</h1>
+<div class="container">
 
 <form th:action="@{/newHelper}" th:object="${helper}" method="post">
-  <h1>New Coat Form</h1>
+  <h1>New Helper Form</h1>
     
     <div class="form-group">
       <select  th:field="*{manufacturer}">
@@ -60,7 +60,7 @@
        <div class="form-group">
      <select th:field="${helper.dimension}" >
     
-      <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.helpers.Dimension).values()}"
+      <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.sander.Dimension).values()}"
       
       th:value="${dimension}"
             th:text="${dimension.displayValue}"/>
@@ -82,6 +82,7 @@
   </div>
  
 </form>
+</div>
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>

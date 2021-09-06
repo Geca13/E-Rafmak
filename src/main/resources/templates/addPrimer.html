@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
+  
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -17,7 +18,7 @@
 <body>
 
 
-
+<div class="container">
 <form th:action="@{/newPrimer}" th:object="${primer}" method="post">
  <h1>New Primer Form</h1>
     
@@ -58,7 +59,7 @@
     </div>
    
        <div class="form-group">
-     <select th:field="${coat.weigth}" >
+     <select th:field="${primer.weigth}" >
     
       <option th:each="weigth : ${T(com.example.erafmak.coatsAndPrimers.entity.Weigth).values()}"
       
@@ -81,6 +82,7 @@
     <button type="submit" class="button"><span>Submit</span></button>
   </div>
 </form>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>

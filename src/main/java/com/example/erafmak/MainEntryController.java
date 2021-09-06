@@ -143,8 +143,9 @@ public class MainEntryController {
 		return "login";
 	}
 	
-	@GetMapping("/administration")
-	public String administration() {
+	@GetMapping("/admin")
+	public String administration(Model model) {
+		
 		return "administration";
 	}
 }

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -16,19 +16,19 @@
 
 <body>
 
-<h1>Hello New Sander</h1>
 
+<div class="container">
 <form th:action="@{/newSander}" th:object="${sander}" method="post">
 <div>
   <label>Description</label>
   <input type="text" th:field="*{name}" />
  
   <label>Price</label>
-  <input type="text" th:field="*{price}" />
+  
  </div>
  <div>
  <label>Quantity</label>
- <input type="text" th:field="*{qty}" />
+ 
  
   <label>Image Url</label>
  <input type="text" th:field="*{imageUrl}" />
@@ -58,14 +58,7 @@
             th:text="${condition.displayValue}"/>
        </select>
  
-  <label>Granulation</label>
-  <select th:field="${sander.granulation}" >
-    
-      <option th:each="granulation : ${T(com.example.erafmak.abraziveMaterials.sander.Granulation).values()}"
-      
-      th:value="${granulation}"
-            th:text="${granulation.displayValue}"/>
-       </select> 
+  
  </div>
  
  <div>
@@ -90,7 +83,7 @@
  
  </div>
 </form>
-
+</div>
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>

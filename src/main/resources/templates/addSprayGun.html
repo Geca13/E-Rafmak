@@ -18,7 +18,7 @@
 
 
 <div class="container">
-  <form th:action="@{/newSprayGun}" th:object="${coat}" method="post">
+  <form th:action="@{/newSprayGun}" th:object="${sprayGun}" method="post">
     <h1>New Spray Gun Form</h1>
     
     <div class="form-group">
@@ -63,7 +63,7 @@
     <ul>
   <li th:each="nozzle : ${nozzles}">
     <input type="checkbox" th:field="*{nozzles}" th:value="${nozzle.id}" />
-    <label  th:text="${nozzle.name}"></label>
+    <label  th:text="${nozzle.description}"></label>
   </li>
 </ul>
   

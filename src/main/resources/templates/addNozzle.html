@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -17,9 +17,9 @@
 <body>
 
 
-
+<div class="container">
 <form th:action="@{/newNozzle}" th:object="${nozzle}" method="post">
-  <h1>New Coat Form</h1>
+  <h1>New Nozzle Form</h1>
     
     <div class="form-group">
       <select  th:field="*{manufacturer}">
@@ -33,7 +33,7 @@
     </div>
     
     <div class="form-group">
-      <input th:field="*{name}" type="text" required="required"/>
+      <input th:field="*{description}" type="text" required="required"/>
       <label for="input" class="control-label">Product Name</label><i class="bar"></i>
     </div>
     
@@ -60,7 +60,7 @@
        <div class="form-group">
      <select th:field="${nozzle.nozzleSize}" >
     
-      <option th:each="weigth : ${T(com.example.erafmak.sprayGuns.entity.NozzleSize).values()}"
+      <option th:each="nozzleSize : ${T(com.example.erafmak.sprayGuns.entity.NozzleSize).values()}"
       
       th:value="${nozzleSize}"
             th:text="${nozzleSize.displayValue}"/>
@@ -72,7 +72,7 @@
     <button type="submit" class="button"><span>Submit</span></button>
   </div>
 </form>
-
+</div>
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>
