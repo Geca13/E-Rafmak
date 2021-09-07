@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class ToolController {
 	
 	@Autowired
@@ -30,7 +33,7 @@ public class ToolController {
 	@PostMapping("/newTool")
 	public String createTool(@ModelAttribute(value = "hardener")Tool tool) {
 		service.newTool(tool);
-	return "redirect:/";
+	return "redirect:/tool/"+tool.getId();
 		
 	}
 	

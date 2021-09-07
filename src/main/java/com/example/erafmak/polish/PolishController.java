@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.resourse.HardenerService;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class PolishController {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class PolishController {
 	@PostMapping("/newPolish")
 	public String createPolish(@ModelAttribute(value = "polish")Polish polish) {
 		service.newPolish(polish);
-	return "redirect:/";
+	return "redirect:/polish/" + polish.getId();
 		
 	}
 	

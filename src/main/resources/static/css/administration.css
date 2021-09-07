@@ -23,6 +23,7 @@ h1 {
   justify-content: flex-start;
   flex-wrap: wrap;
   background: #bbb;
+  margin-top: 70px;
 }
 .card {
   width: var(--cardWidth);

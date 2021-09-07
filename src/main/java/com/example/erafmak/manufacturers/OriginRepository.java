@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface OriginRepository extends JpaRepository<Origin, Long> {
 
 	Origin findByName(String origin);
+	
+	Boolean existsByName(String origin);
 
 }

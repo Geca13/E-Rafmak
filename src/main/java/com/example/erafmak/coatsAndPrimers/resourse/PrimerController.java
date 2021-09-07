@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.erafmak.coatsAndPrimers.entity.Primer;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class PrimerController {
 	
 	@Autowired
@@ -34,7 +37,7 @@ public class PrimerController {
 	@PostMapping("/newPrimer")
 	public String createPrimer(@ModelAttribute(value = "coat")Primer primer) {
 		service.newPrimer(primer);
-	return "redirect:/";
+	return "redirect:/primer/" + primer.getId();
 		
 	}
 	

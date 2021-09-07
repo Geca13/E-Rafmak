@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.erafmak.manufacturers.ManufacturerService;
 import com.example.erafmak.sprayGuns.entity.SprayGun;
 
 @Controller
+@RequestMapping("/products")
 public class SprayGunsController {
 	
 	@Autowired
@@ -34,7 +37,7 @@ public class SprayGunsController {
 	@PostMapping("/newSprayGun")
 	public String createSprayGun(@ModelAttribute(value = "gun")SprayGun gun) {
 		service.newSprayGun(gun);
-	return "redirect:/";
+	return "redirect:/sprayGun/" + gun.getId();
 		
 	}
 	

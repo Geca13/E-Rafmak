@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.erafmak.coatsAndPrimers.entity.Thinner;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class ThinnerController {
 	
 	@Autowired
@@ -32,7 +34,7 @@ public class ThinnerController {
 	@PostMapping("/newThinner")
 	public String createThinner(@ModelAttribute(value = "thinner")Thinner thinner) {
 		service.newThinner(thinner);
-	return "redirect:/";
+	return "redirect:/thinner/" + thinner.getId();
 		
 	}
 	

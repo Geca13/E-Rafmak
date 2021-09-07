@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class SafetyController {
 	
 	@Autowired
@@ -32,7 +35,7 @@ public class SafetyController {
 	@PostMapping("/newSafety")
 	public String createPrimer(@ModelAttribute(value = "safety")Safety safety, @Param(value = "sizes")List<Size>sizes) {
 		service.newSafety(safety , sizes);
-	return "redirect:/";
+	return "redirect:/safety/" + safety.getId();
 		
 	}
 	

@@ -17,7 +17,7 @@ public class ManufacturerController {
 	@GetMapping("/addManufacturer")
 	public String createManufacturer(Model model) {
 		model.addAttribute("manufacturer", new Manufacturer());
-		model.addAttribute("origins", service.origins());
+		model.addAttribute("origins", service.getCountriesList());
 		return "addManufacturer";
 	}
 	

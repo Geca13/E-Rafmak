@@ -247,11 +247,13 @@
           </div>
              
          </li>
-         <!--  
-          <li sec:authorize="isAuthenticated()" >
-          <i class="fas fa-user"></i>
-            <span sec:authentication="principal.username" id="user"></span>
+         
+          <li sec:authorize="hasRole('ROLE_ADMIN')" >
+          <span><a th:href="@{/admin}">Administration</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
          </li>
+         <!--  
           <li sec:authorize="isAuthenticated()">
           <div>
              <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i></a>

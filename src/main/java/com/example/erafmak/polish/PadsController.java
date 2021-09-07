@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.erafmak.coatsAndPrimers.entity.Putty;
 import com.example.erafmak.coatsAndPrimers.entity.Thinner;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class PadsController {
 	
 	@Autowired
@@ -33,7 +35,7 @@ public class PadsController {
 	@PostMapping("/newPads")
 	public String createPads(@ModelAttribute(value = "pads")Pads pads) {
 		service.newPads(pads);
-	return "redirect:/";
+	return "redirect:/pads/" + pads.getId();
 		
 	}
 	

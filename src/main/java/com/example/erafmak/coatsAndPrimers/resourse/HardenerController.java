@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.erafmak.coatsAndPrimers.entity.AddHarterToCoat;
 import com.example.erafmak.coatsAndPrimers.entity.Hardener;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class HardenerController {
 	
 	@Autowired
@@ -40,7 +41,7 @@ public class HardenerController {
 	@PostMapping("/newHardener")
 	public String createHardener(@ModelAttribute(value = "hardener")Hardener hardener) {
 		service.newHardener(hardener);
-	return "redirect:/addHardenerToCoats/" + hardener.getId();
+	return "redirect:/hardener/" + hardener.getId();
 		
 	}
 	
@@ -93,22 +94,7 @@ public class HardenerController {
 		return "redirect:/hardener/" + id;
 	}
 	
-	@GetMapping("/addHardenerToCoats/{id}")
-	public String getCoatsForm(Model model , @PathVariable("id") Long id) {
-		model.addAttribute("addHarterToCoat", new AddHarterToCoat());
-		model.addAttribute("coats", coatService.coats());
-		model.addAttribute("hardener",service.findHardenerById(id));
-		return "coatsToHardener";
-	}
 	
-	@PostMapping("/addHardenerToCoats/{id}")
-	public String setCoatsToHardener(@PathVariable("id")Long id, @ModelAttribute(value = "addHarterToCoat") AddHarterToCoat addHarterToCoat) {
-		Hardener hardener = service.findHardenerById(id);
-		
-		addHarterToCoat.setHardener(hardener);
-		return "redirect:/";
-		
-	}
 
 
 }

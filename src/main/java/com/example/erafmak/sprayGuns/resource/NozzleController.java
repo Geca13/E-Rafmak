@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.erafmak.manufacturers.ManufacturerService;
 import com.example.erafmak.sprayGuns.entity.Nozzle;
 
 @Controller
+@RequestMapping("/products")
 public class NozzleController {
 	
 	@Autowired
@@ -30,7 +33,7 @@ public class NozzleController {
 	@PostMapping("/newNozzle")
 	public String createNozzle(@ModelAttribute(value = "coat")Nozzle nozzle) {
 		service.newNozzle(nozzle);
-	return "redirect:/";
+	return "redirect:/nozzle/" + nozzle.getId();
 		
 	}
 	

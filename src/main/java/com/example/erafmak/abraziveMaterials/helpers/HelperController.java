@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
+@RequestMapping("/products")
 public class HelperController {
 	
 	@Autowired
@@ -30,7 +33,7 @@ public class HelperController {
 	@PostMapping("/newHelper")
 	public String createHelper(@ModelAttribute(value = "helper")Helper helper) {
 		service.newHelper(helper);
-	return "redirect:/";
+	return "redirect:/helper/"+ helper.getId();
 		
 	}
 	

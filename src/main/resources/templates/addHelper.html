@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
   <link rel="stylesheet" th:href="@{/css/forms.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -15,6 +16,8 @@
 </head>
 
 <body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container">
 
@@ -32,29 +35,29 @@
       <label  for="select" class="control-label">Manufacturer</label><i class="bar"></i>
     </div>
     
-    <div class="form-group">
-      <input th:field="*{name}" type="text" required="required"/>
-      <label for="input" class="control-label">Product Name</label><i class="bar"></i>
+   <div class="form-group">
+      <input th:field="*{name}" maxlength="100" type="text" required="required"/>
+      <label for="input"  class="control-label">Product Name</label><i class="bar"></i>
     </div>
     
     <div class="form-group">
-      <textarea th:field="*{description}" required="required"></textarea>
+      <textarea th:field="*{description}" maxlength="250" required="required"></textarea>
       <label for="textarea" class="control-label">Product Description</label><i class="bar"></i>
     </div>
     
     <div class="form-group">
-      <input th:field="*{price}" required="required"/>
-      <label for="textarea" class="control-label">Product Price</label><i class="bar"></i>
+      <input th:field="*{price}" maxlength="10" required="required"/>
+      <label for="input" class="control-label">Product Price</label><i class="bar"></i>
     </div>
     
     <div class="form-group">
-      <input th:field="*{qty}" required="required"/>
-      <label for="textarea" class="control-label">Product Quantity</label><i class="bar"></i>
+      <input th:field="*{qty}" maxlength="5" required="required"/>
+      <label for="input" class="control-label">Product Quantity</label><i class="bar"></i>
     </div>
     
     <div class="form-group">
-      <input th:field="*{imageUrl}" required="required"/>
-      <label for="textarea" class="control-label">Image Url</label><i class="bar"></i>
+      <input th:field="*{imageUrl}" maxlength="250" required="required"/>
+      <label for="input" class="control-label">Image Url</label><i class="bar"></i>
     </div>
    
        <div class="form-group">
