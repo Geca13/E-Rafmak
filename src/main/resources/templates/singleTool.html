@@ -24,7 +24,7 @@
  
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
-         <form th:action="@{/updateToolName/{id}(id=${tool.id})}" method="post"  >
+         <form th:action="@{/products/updateToolName/{id}(id=${tool.id})}" method="post"  >
           <input type="text" name="name" placeholder="update name" >
            <button>change</button>
          </form>
@@ -40,7 +40,7 @@
                  
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
-                   <form th:action="@{/updateToolDescription/{id}(id=${tool.id})}" method="post"  >
+                   <form th:action="@{/products/updateToolDescription/{id}(id=${tool.id})}" method="post"  >
                     <input type="text" name="description" placeholder="update description" >
                      <button>change</button>
                    </form>
@@ -60,7 +60,7 @@
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/updateToolPrice/{id}(id=${tool.id})}" method="post" >
+           <form th:action="@{/products/updateToolPrice/{id}(id=${tool.id})}" method="post" >
             <input type="text" name="price" placeholder="update price here" >
              <button>change</button>
            </form>
@@ -70,7 +70,7 @@
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/updateToolManufacturer/{id}(id=${tool.id})}" method="post" >
+           <form th:action="@{/products/updateToolManufacturer/{id}(id=${tool.id})}" method="post" >
             <select  th:name="manufacturer">
              <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"

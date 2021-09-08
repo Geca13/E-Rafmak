@@ -45,13 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(
 				"/register**",
-				"/coats**",
+				"/products/**",
 				
 				"/js/**",
 				"/css/**",
 				"/img/**")
 		.permitAll()
-		.antMatchers("/administration/**","/users/**","/orders/**").hasRole("ADMIN")
+		.antMatchers("/admin/**").hasRole("ADMIN")
 		.anyRequest()
 		.authenticated()
 		.and()

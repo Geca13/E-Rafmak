@@ -15,6 +15,7 @@ import com.example.erafmak.user.entity.User;
 import com.example.erafmak.user.entity.UserRepository;
 import com.example.erafmak.user.errors.EmailAllreadyExistExceptionMessage;
 import com.example.erafmak.user.errors.InvalidPasswordException;
+import com.example.erafmak.user.errors.UserNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,11 +37,15 @@ public class UserServiceImpl implements UserService {
 		
 		validatePassword(user);
 		
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		setPasswordToUser(user);
 		
 		setRoles(user);
 		
 		return userRepository.save(user);
+	}
+
+	private void setPasswordToUser(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 	}
 
 	private void setRoles(User user) {
@@ -73,5 +78,33 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
+    public void forgotPassword(String token, String email) throws UserNotFoundException {
+		
+		User user = userRepository.findByEmail(email);
+		if(user != null) {
+			user.setToken(token);
+			userRepository.save(user);
+		} else {
+			throw new UserNotFoundException("We dont have user with "+ email + " email, in our database ");
+		}
+	}
+    
+    
+    public User getToken(String token) {
+		   
+		return userRepository.findByToken(token);
+	}
+	
+	
+    public void updatePassword(User user, String newPassword) throws InvalidPasswordException {
+		
+    	validatePassword(user);
+    	
+ 	    setPasswordToUser(user);
+		    
+		user.setToken(null);
+		
+		userRepository.save(user);
+	}
 
 }

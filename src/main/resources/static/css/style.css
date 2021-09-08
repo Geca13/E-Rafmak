@@ -427,6 +427,15 @@ nav .navbar .links li .sub-menu li{
       transform: rotate(90deg);
     }
 }
+
+.forgot {
+	font-size: 11px;
+	text-decoration: none;
+	position: absolute;
+	left: 63%;
+	top: 40%;
+	color: red;
+}
 @media (max-width:370px){
   nav .navbar .nav-links{
   max-width: 100%;

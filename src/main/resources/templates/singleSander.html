@@ -24,7 +24,7 @@
       
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
-         <form th:action="@{/updateSanderName/{id}(id=${sander.id})}" method="post"  >
+         <form th:action="@{/products/updateSanderName/{id}(id=${sander.id})}" method="post"  >
           <input type="text" name="name" placeholder="update description" >
            <button>change</button>
          </form>
@@ -43,7 +43,7 @@
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/updateSanderManufacturer/{id}(id=${sander.id})}" method="post" >
+           <form th:action="@{/products/updateSanderManufacturer/{id}(id=${sander.id})}" method="post" >
             <select  th:name="manufacturer">
              <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"
@@ -76,12 +76,12 @@
                   <li th:each="gran : ${sander.granulationQty}"> <p
                 th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '}"  ></p>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <form th:action="@{/addQuantityToSanderPerGranulation/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
+                <form th:action="@{/products/addQuantityToSanderPerGranulation/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
                 <input name="quantity" placeholder="add more qty" type="text"/>
                 <button >add</button>
                 </form>
                 
-                <form th:action="@{/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
+                <form th:action="@{/products/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
                 <input name="price" placeholder="set new price" type="text"/>
                 <button >add</button>
                 </form>

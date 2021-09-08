@@ -24,7 +24,7 @@
       
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
-       <form th:action="@{/updateSafetyName/{id}(id=${safety.id})}" method="post"  >
+       <form th:action="@{/products/updateSafetyName/{id}(id=${safety.id})}" method="post"  >
           <input type="text" name="name" placeholder="update description" >
           <button>change</button>
           </form>
@@ -42,7 +42,7 @@
                  
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <form th:action="@{/updateSafetyDescription/{id}(id=${safety.id})}" method="post"  >
+                    <form th:action="@{/products/updateSafetyDescription/{id}(id=${safety.id})}" method="post"  >
                      <input type="text" name="description" placeholder="update description" >
                      <button>change</button>
                     </form>
@@ -57,7 +57,7 @@
                <span th:text="*{manufacturer.name}" class='drink-data'></span> 
                </p>
                <div sec:authorize="hasRole('ROLE_ADMIN')">
-              <form th:action="@{/updateSafetyManufacturer/{id}(id=${safety.id})}" method="post" >
+              <form th:action="@{/products/updateSafetyManufacturer/{id}(id=${safety.id})}" method="post" >
                <select  th:name="manufacturer">
                 <option value="">-Select-</option>
                 <option th:each="manufacturer : ${manufacturers}"
@@ -76,7 +76,7 @@
                   <li th:each="size : ${safety.sizeQty}"> <p
                 th:text="'size: '+${size.size.displayValue}"  ></p>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <form th:action="@{/addQuantityToSafetyPerSize/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
+                <form th:action="@{/products/addQuantityToSafetyPerSize/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
                 <input name="quantity" placeholder="add more qty" type="text"/>
                 <button >add</button>
                 </form>

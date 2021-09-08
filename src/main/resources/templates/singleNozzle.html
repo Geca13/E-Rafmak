@@ -24,7 +24,7 @@
  
        <h2 class ='section-title' th:text="*{description}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
-       <form th:action="@{/updateNozzleDescription/{id}(id=${nozzle.id})}" method="post"  >
+       <form th:action="@{/products/updateNozzleDescription/{id}(id=${nozzle.id})}" method="post"  >
           <input type="text" name="description" placeholder="update name" >
           <button>change</button>
           </form>
@@ -47,7 +47,7 @@
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/updateNozzlePrice/{id}(id=${nozzle.id})}" method="post" >
+           <form th:action="@{/products/updateNozzlePrice/{id}(id=${nozzle.id})}" method="post" >
             <input type="text" name="price" placeholder="update price here" >
             <button>change</button>
            </form>
@@ -67,7 +67,7 @@
             <span th:text="*{manufacturer.name}" class='drink-data'></span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/updateNozzleManufacturer/{id}(id=${nozzle.id})}" method="post" >
+           <form th:action="@{/products/updateNozzleManufacturer/{id}(id=${nozzle.id})}" method="post" >
             <select  th:name="manufacturer">
              <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"
@@ -83,14 +83,14 @@
             <span th:text="*{qty}" class='drink-data'></span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/addQuantityToNozzle/{id}(id=${nozzle.id})}" method="post" >
+           <form th:action="@{/products/addQuantityToNozzle/{id}(id=${nozzle.id})}" method="post" >
             <input type="text" name="quantity" placeholder="add more quantity" >
             <button>change</button>
            </form>
           </div>
           </div>
          <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/deleteNozzle/{id}(id=${nozzle.id})}" method="post" >
+          <form th:action="@{/products/deleteNozzle/{id}(id=${nozzle.id})}" method="post" >
             <button>delete</button>
            </form>
           </div>

@@ -20,7 +20,7 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container">
-<form th:action="@{/newSander}" th:object="${sander}" method="post">
+<form th:action="@{/products/newSander}" th:object="${sander}" method="post">
 <div>
   <label>Description</label>
   <input type="text" th:field="*{name}" />
