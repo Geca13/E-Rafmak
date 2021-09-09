@@ -74,7 +74,7 @@ public class UserController {
 			
 			sendEmail(email,resetPasswordLink);
 			
-			model.addAttribute("message", "Email with reset password link has been sent, please go to your email");
+			model.addAttribute("emailSentMessage", "Email with reset password link has been sent, please go to your email");
 			
 		} catch (UserNotFoundException e) {
 			model.addAttribute("error", e.getMessage());
@@ -117,6 +117,7 @@ public class UserController {
 			 return "message";
 		}
 		    model.addAttribute("token", token);
+		    model.addAttribute("user", user);
 		     return "newPassword";
 	}
 	
@@ -136,7 +137,7 @@ public class UserController {
 		    service.updatePassword(user, password);
 		} catch (InvalidPasswordException e) {
 			model.addAttribute("error", e.getMessage());
-			 return "newPassword";
+			 return "redirect:/newPassword?token=" + token;
 		}
             model.addAttribute("message", "You have succesfully changed your password and you can easily log in now...");
         }

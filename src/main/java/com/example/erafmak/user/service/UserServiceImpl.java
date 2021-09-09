@@ -98,13 +98,22 @@ public class UserServiceImpl implements UserService {
 	
     public void updatePassword(User user, String newPassword) throws InvalidPasswordException {
 		
-    	validatePassword(user);
     	
- 	    setPasswordToUser(user);
+    	PasswordValidator validator = new PasswordValidator();
+    	user.setPassword(passwordEncoder.encode(newPassword));
+		if(validator.validate(newPassword)== false) {
+	    	throw new InvalidPasswordException("Your chosen password doesnt fit our creteria , it must contain at least 1 number, UpperCase and LowerCase letters and 1 special character");
+        }
+ 	    
 		    
 		user.setToken(null);
 		
 		userRepository.save(user);
 	}
+    
+    
+      
+      
+     
 
 }

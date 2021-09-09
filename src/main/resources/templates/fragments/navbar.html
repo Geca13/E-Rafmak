@@ -269,7 +269,7 @@
          <div class="input-box" sec:authorize="hasRole('ROLE_ANONYMOUS')">
           <form th:action="@{/login}" method="post">
              <input class="input1" type="text"  placeholder="Email" name="username" required >
-             <input class="input2" type="text" placeholder="Password" name="password" required>
+             <input class="input2" type="password" placeholder="Password" name="password" required>
               <button class="login" type="submit">Login</button>
              </form>
              <p>Not registered? <span>Click <a th:href="@{/register}" >here</a></span></p>
