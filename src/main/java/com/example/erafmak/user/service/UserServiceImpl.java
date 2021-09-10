@@ -3,6 +3,7 @@ package com.example.erafmak.user.service;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -73,8 +74,13 @@ public class UserServiceImpl implements UserService {
 		  if(user == null) {
 		    	throw new UsernameNotFoundException("You are not signUped with that email");
 		}
-		
-		      return new UsersDetails(user);
+		return new UsersDetails(user);
+	}
+	
+	public User findAuthenticatedUser(@AuthenticationPrincipal UsersDetails user) {
+		String userEmail = user.getUsername();
+        User authenticated = userRepository.findByEmail(userEmail);
+        return authenticated;
 	}
 	
 	
