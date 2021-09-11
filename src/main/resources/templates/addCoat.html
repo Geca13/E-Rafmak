@@ -20,7 +20,7 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container">
-  <form th:action="@{/products/newCoat}" th:object="${coat}" method="post">
+  <form th:action="@{/products/newCoat}" th:object="${coat}" enctype="multipart/form-data" method="post">
     <h2>New Coat Form</h2>
     
     <div class="form-group">
@@ -54,10 +54,15 @@
     </div>
     
     <div class="form-group">
-      <input th:field="*{imageUrl}" maxlength="250" required="required"/>
-      <label for="textarea" class="control-label">Image Url</label><i class="bar"></i>
+      <input type="file" name="fileImage" id="fileImage" maxlength="250" required="required"/>
+      <label for="textarea" class="control-label">Image</label><i class="bar"></i>
     </div>
-   
+   <!--  
+   <div class="form-group">
+      <input th:field="*{imageUrl}" maxlength="250" required="required"/>
+      <label for="textarea" class="control-label">Image </label><i class="bar"></i>
+    </div>
+    -->
        <div class="form-group">
      <select th:field="${coat.weigth}" >
     

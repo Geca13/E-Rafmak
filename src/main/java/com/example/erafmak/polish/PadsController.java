@@ -24,6 +24,8 @@ public class PadsController {
 	@Autowired
 	ManufacturerService manService;
 	
+	private final String REDIRECT = "redirect:/products/pads/";
+	
 	
 	@GetMapping("/newPads")
 	public String padModel(Model model) {
@@ -35,14 +37,14 @@ public class PadsController {
 	@PostMapping("/newPads")
 	public String createPads(@ModelAttribute(value = "pads")Pads pads) {
 		service.newPads(pads);
-	return "redirect:/pads/" + pads.getId();
+	return REDIRECT + pads.getId();
 		
 	}
 	
 	@PostMapping("/deletePads/{id}")
 	public String deletePads(@PathVariable(value = "id")Long id) {
 		service.deletePads(id);
-		return "redirect:/pads";
+		return REDIRECT;
 	}
 	
 	@GetMapping("/pads")
@@ -61,31 +63,31 @@ public class PadsController {
 	@PostMapping("/updatePadsPrice/{id}")
 	public String updatePadsPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/pads/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updatePadsName/{id}")
 	public String updatePadsName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updatePadsName(id , name);
-		return "redirect:/pads/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updatePadsDescription/{id}")
 	public String updatePadsDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updatePadsDescription(id , description);
-		return "redirect:/pads/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updatePadsManufacturer/{id}")
 	public String updatePadsManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/pads/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToPads/{id}")
 	public String updateQuantityToPads(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updatePadsQuantity(id , quantity);
-		return "redirect:/pads/" + id;
+		return REDIRECT + id;
 	}
 
 }

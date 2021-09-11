@@ -115,8 +115,8 @@ public class UserController {
 	public String newPasswordForm(@Param(value = "token") String token, Model model) {
 		User user = service.getToken(token);
 		 if(user == null) {
-			model.addAttribute("message", "Invalid Token");
-			 return "message";
+			model.addAttribute("tokenMessage", "The password was already changed with this token , if it wasn't you please use forgot password option again and cheng ethe password to your email. ");
+			 return "newPassword";
 		}
 		    model.addAttribute("token", token);
 		    model.addAttribute("user", user);
@@ -129,21 +129,16 @@ public class UserController {
 		String token = request.getParameter("token");
 		String password = request.getParameter("password");
 		User user = service.getToken(token);
-         if(user == null) {
-            model.addAttribute("message", "Invalid Token");
-			 return "message";
-			 
-	       } else {
-			 
+        
         try {
 		    service.updatePassword(user, password);
 		} catch (InvalidPasswordException e) {
 			model.addAttribute("error", e.getMessage());
 			 return "redirect:/newPassword?token=" + token;
 		}
-            model.addAttribute("message", "You have succesfully changed your password and you can easily log in now...");
-        }
-	         return "redirect:/login";
+            model.addAttribute("successMessage", "You have succesfully changed your password and you can easily log in now...");
+        
+	         return "login";
 	}
 
 }

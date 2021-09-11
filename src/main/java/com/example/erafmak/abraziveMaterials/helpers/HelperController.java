@@ -22,6 +22,8 @@ public class HelperController {
 	@Autowired
 	ManufacturerService manService;
 	
+	private final String REDIRECT = "redirect:/products/helper/";
+	
 	
 	@GetMapping("/newHelper")
 	public String helperModel(Model model) {
@@ -33,14 +35,14 @@ public class HelperController {
 	@PostMapping("/newHelper")
 	public String createHelper(@ModelAttribute(value = "helper")Helper helper) {
 		service.newHelper(helper);
-	return "redirect:/helper/"+ helper.getId();
+	return REDIRECT+ helper.getId();
 		
 	}
 	
 	@PostMapping("/deleteHelper/{id}")
 	public String deleteHelper(@PathVariable(value = "id")Long id) {
 		service.deleteHelper(id);
-		return "redirect:/helpers";
+		return "redirect:/products/helpers";
 	}
 	
 	@GetMapping("/helpers")
@@ -59,31 +61,31 @@ public class HelperController {
 	@PostMapping("/updatePrice/{id}")
 	public String updatePrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/helper/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateHelperName/{id}")
 	public String updateHelperName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateName(id , name);
-		return "redirect:/helper/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateDescription/{id}")
 	public String updateDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateDescription(id , description);
-		return "redirect:/helper/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateManufacturer/{id}")
 	public String updateManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/helper/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantity/{id}")
 	public String updateHelperQuantity(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateHelperQuantity(id , quantity);
-		return "redirect:/helper/" + id;
+		return REDIRECT + id;
 	}
 	
 	

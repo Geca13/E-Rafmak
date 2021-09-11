@@ -20,10 +20,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="disc : ${discs}"> <a
-                th:text="${disc.name}" th:href="@{/products/sander/{id}(id=${disc.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
@@ -31,20 +27,13 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="block : ${blocks}"> <a
-                th:text="${block.name}" th:href="@{/products/sander/{id}(id=${block.id})}" ></a></li>
-                </ul>
+               
               </li>
               <li class="more">
                 <span><a th:href="@{/products/sanders/rolls}">Rolls</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
-              
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="roll : ${rolls}"> <a
-                th:text="${roll.name}" th:href="@{/products/sander/{id}(id=${roll.id})}" ></a></li>
-                </ul>
+               
               </li>
               
               <li class="more">
@@ -52,10 +41,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="soft : ${softs}"> <a
-                th:text="${soft.name}" th:href="@{/products/sander/{id}(id=${soft.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
@@ -63,10 +48,7 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="wet : ${wets}"> <a
-                th:text="${wet.name }" th:href="@{/products/sander/{id}(id=${wet.id})}" ></a></li>
-                </ul>
+            
               </li>
               
             </ul>
@@ -84,10 +66,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="coat : ${coats}"> <a
-                th:text="${coat.name}" th:href="@{/products/coat/{id}(id=${coat.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
@@ -95,20 +73,13 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="primer : ${primers}"> <a
-                th:text="${primer.name}" th:href="@{/products/primer/{id}(id=${primer.id})}" ></a></li>
-                </ul>
+             
               </li>
               <li class="more">
                 <span><a th:href="@{/products/hardeners}">Hardeners</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
-              
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="hardener : ${hardeners}"> <a
-                th:text="${hardener.name}" th:href="@{/products/hardener/{id}(id=${hardener.id})}" ></a></li>
-                </ul>
+             
               </li>
               
               <li class="more">
@@ -116,21 +87,13 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="thinner : ${thinners}"> <a
-                th:text="${thinner.name}" th:href="@{/products/thinner/{id}(id=${thinner.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
                 <span><a th:href="@{/products/putties}">Putties</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
-              
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="putty : ${putties}"> <a
-                th:text="${putty.name}" th:href="@{/products/putty/{id}(id=${putty.id})}" ></a></li>
-                </ul>
+             
               </li>
               
             </ul>
@@ -146,10 +109,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="tool : ${tools}"> <a
-                th:text="${tool.name}" th:href="@{/products/tool/{id}(id=${tool.id})}" ></a></li>
-                </ul>
               </li>
               
                <li class="more">
@@ -157,10 +116,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="gun : ${guns}"> <a
-                th:text="${gun.name}" th:href="@{/products/sprayGun/{id}(id=${gun.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
@@ -168,32 +123,20 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="nozzle : ${nozzles}"> <a
-                th:text="${nozzle.description}" th:href="@{/products/nozzle/{id}(id=${nozzle.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
                 <span><a th:href="@{/products/helpers}">Blocks</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
-              
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="helper : ${helpers}"> <a
-                th:text="${helper.name}" th:href="@{/products/helper/{id}(id=${helper.id})}" ></a></li>
-                </ul>
+             
               </li>
               
               <li class="more">
                 <span><a th:href="@{/products/safeties}">Safety</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
-              
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="safety : ${safeties}"> <a
-                th:text="${safety.name}" th:href="@{/products/safety/{id}(id=${safety.id})}" ></a></li>
-                </ul>
+            
               </li>
               
               <li class="more">
@@ -201,10 +144,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="extra : ${extrass}"> <a
-                th:text="${extra.name}" th:href="@{/products/extras/{id}(id=${extra.id})}" ></a></li>
-                </ul>
               </li>
              </ul>
             </li>
@@ -219,10 +158,6 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="polish : ${polishes}"> <a
-                th:text="${polish.name}" th:href="@{/products/polish/{id}(id=${polish.id})}" ></a></li>
-                </ul>
               </li>
               
               <li class="more">
@@ -230,28 +165,15 @@
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
               
-                <ul class="more-sub-menu sub-menu">
-                  <li th:each="pad : ${pads}"> <a
-                th:text="${pad.name}" th:href="@{/products/pads/{id}(id=${pad.id})}" ></a></li>
-                </ul>
               </li>
               
             </ul>
             
           </li>
           
-          
-          <li>
-          <div sec:authorize="isAuthenticated()">
-             <a  th:href="@{/cart}"><i class="fas fa-shopping-cart"></i></a>
-          </div>
-             
-         </li>
          
           <li sec:authorize="hasRole('ROLE_ADMIN')" >
-          <span><a th:href="@{/admin}">Administration</a>
-                <i class='bx bxs-chevron-right arrow more-arrow'></i>
-              </span>
+          <span><a th:href="@{/admin}">Administration</a> </span>
          </li>
          <!--  
           <li sec:authorize="isAuthenticated()">
@@ -272,8 +194,8 @@
              <input class="input2" type="password" placeholder="Password" name="password" required>
               <button class="login" type="submit">Login</button>
              </form>
-             <p>Not registered? <span>Click <a th:href="@{/register}" >here</a></span></p>
-              <a class="forgot" th:href="@{/forgotPassword}" >Forgot Password ?</a>
+             <p>Forgot Password ? <span>Click <a th:href="@{/forgotPassword}" >here</a></span></p>
+              
         </div>
         
         <div class="input-box" sec:authorize="isAuthenticated()">
@@ -286,11 +208,7 @@
           
           </li>
           
-          <li>
-          <div>
-          <i class="fas fa-user"></i>
-            <span sec:authentication="principal.username" id="user"></span>
-          </div>
+         
           
           </li>
           

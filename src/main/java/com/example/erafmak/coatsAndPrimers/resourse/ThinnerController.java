@@ -23,6 +23,8 @@ public class ThinnerController {
 	@Autowired
 	ManufacturerService manService;
 	
+	private final String REDIRECT = "redirect:/products/thinner/";
+	
 	
 	@GetMapping("/newThinner")
 	public String thinnerModel(Model model) {
@@ -34,7 +36,7 @@ public class ThinnerController {
 	@PostMapping("/newThinner")
 	public String createThinner(@ModelAttribute(value = "thinner")Thinner thinner) {
 		service.newThinner(thinner);
-	return "redirect:/thinner/" + thinner.getId();
+	return REDIRECT + thinner.getId();
 		
 	}
 	
@@ -60,31 +62,31 @@ public class ThinnerController {
 	@PostMapping("/updateThinnerPrice/{id}")
 	public String updateThinnerPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/thinner/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateThinnerName/{id}")
 	public String updateThinnerName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateThinnerName(id , name);
-		return "redirect:/thinner/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateThinnerDescription/{id}")
 	public String updateThinnerDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateThinnerDescription(id , description);
-		return "redirect:/thinner/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateThinnerManufacturer/{id}")
 	public String updateThinnerManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/thinner/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToThinner/{id}")
 	public String updateQuantityToThinner(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateThinnerQuantity(id , quantity);
-		return "redirect:/thinner/" + id;
+		return REDIRECT + id;
 	}
 
 

@@ -29,6 +29,8 @@ public class HardenerController {
 	@Autowired
 	PrimerService primerService;
 	
+	private final String REDIRECT = "redirect:/products/coat/";
+	
 	
 	@GetMapping("/newHardener")
 	public String hardenerModel(Model model) {
@@ -41,7 +43,7 @@ public class HardenerController {
 	@PostMapping("/newHardener")
 	public String createHardener(@ModelAttribute(value = "hardener")Hardener hardener) {
 		service.newHardener(hardener);
-	return "redirect:/hardener/" + hardener.getId();
+	return REDIRECT + hardener.getId();
 		
 	}
 	
@@ -67,31 +69,31 @@ public class HardenerController {
 	@PostMapping("/updateHardenerPrice/{id}")
 	public String updateHardenerPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/hardener/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateHardenerName/{id}")
 	public String updateHardenerName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateHardenerName(id , name);
-		return "redirect:/hardener/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateHardenerDescription/{id}")
 	public String updateHardenerDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateHardenerDescription(id , description);
-		return "redirect:/hardener/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateHardenerManufacturer/{id}")
 	public String updateHardenerManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/hardener/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToHardener/{id}")
 	public String updateQuantityToHardener(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateHardenerQuantity(id , quantity);
-		return "redirect:/hardener/" + id;
+		return REDIRECT + id;
 	}
 	
 	

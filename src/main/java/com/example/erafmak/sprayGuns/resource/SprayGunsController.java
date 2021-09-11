@@ -26,6 +26,8 @@ public class SprayGunsController {
 	@Autowired
 	NozzleService nozzleService;
 	
+	private final String REDIRECT = "redirect:/products/sprayGun/";
+	
 	@GetMapping("/newSprayGun")
 	public String sprayGunModel(Model model) {
 		model.addAttribute("sprayGun", new SprayGun());
@@ -37,7 +39,7 @@ public class SprayGunsController {
 	@PostMapping("/newSprayGun")
 	public String createSprayGun(@ModelAttribute(value = "gun")SprayGun gun) {
 		service.newSprayGun(gun);
-	return "redirect:/sprayGun/" + gun.getId();
+	return REDIRECT + gun.getId();
 		
 	}
 	
@@ -63,26 +65,32 @@ public class SprayGunsController {
 	@PostMapping("/updateSprayGunPrice/{id}")
 	public String updateSprayGunPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/sprayGun/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateSprayGunName/{id}")
 	public String updateSprayGunName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateSprayGunName(id , name);
-		return "redirect:/sprayGun/" + id;
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/updateSprayGunDescription/{id}")
+	public String updateSprayGunDescription(@PathVariable(value = "id")Long id , @Param(value = "name") String description) {
+		service.updateSprayGunName(id , description);
+		return REDIRECT + id;
 	}
 	
 	
 	@PostMapping("/updateSprayGunManufacturer/{id}")
 	public String updateSprayGunManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/sprayGun/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToSprayGun/{id}")
 	public String updateQuantityToSprayGun(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateSprayGunQuantity(id , quantity);
-		return "redirect:/sprayGun/" + id;
+		return REDIRECT + id;
 	}
 
 }

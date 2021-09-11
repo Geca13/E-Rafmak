@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.example.erafmak.manufacturers.Manufacturer;
 
@@ -51,5 +52,13 @@ public class Coat {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Manufacturer manufacturer;
+	
+	@Transient
+	public String getImagePath() {
+		if(imageUrl == null || id == null) 
+			return null;
+		
+		return "/coat-image/" + id + "/" + imageUrl;
+	}
 
 }

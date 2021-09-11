@@ -23,6 +23,8 @@ public class NozzleController {
 	@Autowired
 	ManufacturerService manService;
 	
+	private final String REDIRECT = "redirect:/products/nozzle/";
+	
 	@GetMapping("/newNozzle")
 	public String nozzleModel(Model model) {
 		model.addAttribute("nozzle", new Nozzle());
@@ -33,7 +35,7 @@ public class NozzleController {
 	@PostMapping("/newNozzle")
 	public String createNozzle(@ModelAttribute(value = "coat")Nozzle nozzle) {
 		service.newNozzle(nozzle);
-	return "redirect:/nozzle/" + nozzle.getId();
+	return REDIRECT + nozzle.getId();
 		
 	}
 	
@@ -59,31 +61,31 @@ public class NozzleController {
 	@PostMapping("/updateNozzlePrice/{id}")
 	public String updateNozzlePrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/nozzle/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateNozzleName/{id}")
 	public String updateNozzleName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateNozzleName(id , name);
-		return "redirect:/nozzle/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateNozzleDescription/{id}")
 	public String updateNozzleDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateNozzleDescription(id , description);
-		return "redirect:/nozzle/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateNozzleManufacturer/{id}")
 	public String updateNozzleManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/nozzle/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToNozzle/{id}")
 	public String updateQuantityToNozzle(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateNozzleQuantity(id , quantity);
-		return "redirect:/nozzle/" + id;
+		return REDIRECT + id;
 	}
 
 }

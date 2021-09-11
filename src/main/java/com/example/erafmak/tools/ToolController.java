@@ -22,6 +22,7 @@ public class ToolController {
 	@Autowired
 	ManufacturerService manService;
 	
+	private final String REDIRECT = "redirect:/products/tool/";
 	
 	@GetMapping("/newTool")
 	public String toolModel(Model model) {
@@ -33,7 +34,7 @@ public class ToolController {
 	@PostMapping("/newTool")
 	public String createTool(@ModelAttribute(value = "hardener")Tool tool) {
 		service.newTool(tool);
-	return "redirect:/tool/"+tool.getId();
+	return REDIRECT + tool.getId();
 		
 	}
 	
@@ -59,31 +60,31 @@ public class ToolController {
 	@PostMapping("/updateToolPrice/{id}")
 	public String updateToolPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/tool/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateToolName/{id}")
 	public String updateToolName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateToolName(id , name);
-		return "redirect:/tool/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateToolDescription/{id}")
 	public String updateToolDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateToolDescription(id , description);
-		return "redirect:/tool/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateToolManufacturer/{id}")
 	public String updateToolManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/tool/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToTool/{id}")
 	public String updateQuantityToTool(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateToolQuantity(id , quantity);
-		return "redirect:/tool/" + id;
+		return REDIRECT + id;
 	}
 
 }

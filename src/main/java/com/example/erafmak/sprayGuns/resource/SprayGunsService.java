@@ -53,6 +53,13 @@ public class SprayGunsService {
 		
 	}
 	
+	public SprayGun updateSprayGunDescription(Long id, String description) {
+		SprayGun gun = findSprayGunById(id);
+		gun.setName(description);
+		return sprayGunRepository.save(gun);
+		
+	}
+	
 	public SprayGun updateManufacturer(Long id, String manufacturer) {
 		SprayGun gun = findSprayGunById(id);
 		gun.setManufacturer(manService.findByName(manufacturer));

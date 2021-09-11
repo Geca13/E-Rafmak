@@ -24,6 +24,8 @@ public class PuttyController {
 	@Autowired
 	ManufacturerService manService;
 	
+	private final String REDIRECT = "redirect:/products/putty/";
+	
 	
 	@GetMapping("/newPutty")
 	public String puttyModel(Model model) {
@@ -35,7 +37,7 @@ public class PuttyController {
 	@PostMapping("/newPutty")
 	public String createPutty(@ModelAttribute(value = "putty")Putty putty) {
 		service.newPutty(putty);
-	return "redirect:/putty/" + putty.getId();
+	return REDIRECT + putty.getId();
 		
 	}
 	
@@ -61,31 +63,31 @@ public class PuttyController {
 	@PostMapping("/updatePuttyPrice/{id}")
 	public String updatePuttyPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return "redirect:/putty/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updatePuttyName/{id}")
 	public String updatePuttyName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updatePuttyName(id , name);
-		return "redirect:/putty/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updatePuttyDescription/{id}")
 	public String updatePuttyDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updatePuttyDescription(id , description);
-		return "redirect:/putty/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updatePuttyManufacturer/{id}")
 	public String updatePuttyManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return "redirect:/putty/" + id;
+		return REDIRECT + id;
 	}
 	
 	@PostMapping("/addQuantityToPutty/{id}")
 	public String updateQuantityToPutty(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updatePuttyQuantity(id , quantity);
-		return "redirect:/putty/" + id;
+		return REDIRECT + id;
 	}
 
 

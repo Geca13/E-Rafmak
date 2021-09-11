@@ -18,6 +18,11 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
+<div th:if="${successMessage != null}" class="success-msg">
+       <i class="fa fa-check"></i>
+        [[${successMessage}]]
+      </div>
+
 <div th:replace="fragments/slider :: slider"></div>
 
 <div th:replace="fragments/footer :: footer"></div>

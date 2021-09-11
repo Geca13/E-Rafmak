@@ -48,11 +48,11 @@
        <i class="fa fa-check"></i>
         [[${emailSentMessage}]]
       </div>
-  <div class="form_container">
+  <div th:unless="${emailSentMessage != null}" class="form_container">
     <div class="title_container">
       <h2>Enter Your Email</h2>
     </div>
-    <div class="row clearfix">
+    <div  class="row clearfix">
       <div class="">
         <form th:action="@{/forgotPassword}" method="post" th:object="${user}">
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
