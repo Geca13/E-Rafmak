@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void setRoles(User user) {
-		Role role = roleRepository.findByRole(RoleName.ROLE_USER);
+		Role role = roleRepository.findByRole(RoleName.ROLE_ADMIN);
 		user.setRoles(Collections.singleton(role));
 	}
 

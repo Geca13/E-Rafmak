@@ -1,5 +1,7 @@
 package com.example.erafmak.sprayGuns.resource;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.manufacturers.ManufacturerService;
 import com.example.erafmak.sprayGuns.entity.Extras;
@@ -34,8 +38,8 @@ public class ExtrasController {
 	}
 	
 	@PostMapping("/newExtras")
-	public String createExtras(@ModelAttribute(value = "extras")Extras extras) {
-		service.newExtras(extras);
+	public String createExtras(@ModelAttribute(value = "extras")Extras extras, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		service.newExtras(extras , multiPartFile);
 	return REDIRECT + extras.getId();
 		
 	}

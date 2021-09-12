@@ -1,9 +1,17 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.coatsAndPrimers.entity.Putty;
 import com.example.erafmak.coatsAndPrimers.repository.PuttyRepository;
@@ -18,7 +26,27 @@ public class PuttyService {
 	@Autowired
 	ManufacturerService manService;
 	
-	    public  Putty newPutty(Putty putty) {
+	    public  Putty newPutty(Putty putty , MultipartFile multiPartFile) throws IOException {
+	    	
+	    	String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+			
+			Path currentPath = Paths.get(".");
+			Path absolutePath = currentPath.toAbsolutePath();
+			
+			putty.setImageUrl("/img/putties/" + fileName);
+			
+			String uploadDir = absolutePath + "/src/main/resources/static/img/putties/";
+			Path uploadPath = Paths.get(uploadDir);
+			
+	        try (InputStream inputStream = multiPartFile.getInputStream()) {
+				
+				
+				Path filePath = uploadPath.resolve(fileName);
+				Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
+				
+			} catch (IOException e) {
+				throw new IOException("Something went wrong during image upload");
+			}
 			
 			return puttyRepository.save(putty);
 			

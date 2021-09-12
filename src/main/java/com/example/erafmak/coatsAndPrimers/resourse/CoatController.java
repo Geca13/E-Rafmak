@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.manufacturers.ManufacturerService;
+import com.example.erafmak.user.errors.ImageNotFoundException;
 
 @Controller
 @RequestMapping("/products")
@@ -50,9 +51,18 @@ public class CoatController {
 	}
 	
 	@PostMapping("/deleteCoat/{id}")
-	public String deleteCoat(@PathVariable(value = "id")Long id) {
-		service.deleteCoat(id);
-		return "redirect:/coats";
+	public String deleteCoat(Model model , @PathVariable(value = "id")Long id) {
+		Coat coat = service.findCoatById(id);
+		try {
+			service.deleteCoat(id);
+		} catch (ImageNotFoundException e) {
+			model.addAttribute("coat", coat);
+			model.addAttribute("manufacturer", coat.getManufacturer()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singleCoat";
+		}
+		
+		return "redirect:/products/coats";
 	}
 	
 	@GetMapping("/coats")
@@ -92,9 +102,16 @@ public class CoatController {
 		return REDIRECT + id;
 	}
 	
+	
 	@PostMapping("/addQuantityToCoat/{id}")
 	public String updateQuantityToCoat(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
 		service.updateCoatQuantity(id , quantity);
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/updateCoatImage/{id}")
+	public String updateQuantityToCoat(@PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		service.updateCoatImage(id , multiPartFile);
 		return REDIRECT + id;
 	}
 

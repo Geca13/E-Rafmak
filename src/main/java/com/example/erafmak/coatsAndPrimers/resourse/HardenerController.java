@@ -1,5 +1,7 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.coatsAndPrimers.entity.Hardener;
 import com.example.erafmak.manufacturers.ManufacturerService;
@@ -29,7 +33,7 @@ public class HardenerController {
 	@Autowired
 	PrimerService primerService;
 	
-	private final String REDIRECT = "redirect:/products/coat/";
+	private final String REDIRECT = "redirect:/products/hardener/";
 	
 	
 	@GetMapping("/newHardener")
@@ -41,8 +45,8 @@ public class HardenerController {
 	}
 	
 	@PostMapping("/newHardener")
-	public String createHardener(@ModelAttribute(value = "hardener")Hardener hardener) {
-		service.newHardener(hardener);
+	public String createHardener(@ModelAttribute(value = "hardener")Hardener hardener, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		service.newHardener(hardener, multiPartFile);
 	return REDIRECT + hardener.getId();
 		
 	}

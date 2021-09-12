@@ -1,9 +1,18 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.erafmak.coatsAndPrimers.entity.Primer;
 import com.example.erafmak.coatsAndPrimers.repository.PrimerRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
@@ -17,8 +26,28 @@ public class PrimerService {
 	@Autowired
 	ManufacturerService manService;
 	
-    public Primer newPrimer(Primer primer) {
+    public Primer newPrimer(Primer primer , MultipartFile multiPartFile) throws IOException {
 		
+        String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+		
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		primer.setImageUrl("/img/primers/" + fileName);
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/primers/";
+		Path uploadPath = Paths.get(uploadDir);
+		
+        try (InputStream inputStream = multiPartFile.getInputStream()) {
+			
+			
+			Path filePath = uploadPath.resolve(fileName);
+			Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
+			
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload");
+		}
+        
 		return primerRepository.save(primer);
 		
 	}

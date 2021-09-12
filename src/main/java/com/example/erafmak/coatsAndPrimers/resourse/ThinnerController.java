@@ -1,5 +1,7 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.coatsAndPrimers.entity.Thinner;
 import com.example.erafmak.manufacturers.ManufacturerService;
@@ -34,8 +38,8 @@ public class ThinnerController {
 	}
 	
 	@PostMapping("/newThinner")
-	public String createThinner(@ModelAttribute(value = "thinner")Thinner thinner) {
-		service.newThinner(thinner);
+	public String createThinner(@ModelAttribute(value = "thinner")Thinner thinner, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException{
+		service.newThinner(thinner , multiPartFile);
 	return REDIRECT + thinner.getId();
 		
 	}

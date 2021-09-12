@@ -1,5 +1,7 @@
 package com.example.erafmak.abraziveMaterials.helpers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -33,8 +37,8 @@ public class HelperController {
 	}
 	
 	@PostMapping("/newHelper")
-	public String createHelper(@ModelAttribute(value = "helper")Helper helper) {
-		service.newHelper(helper);
+	public String createHelper(@ModelAttribute(value = "helper")Helper helper , @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		service.newHelper(helper, multiPartFile);
 	return REDIRECT+ helper.getId();
 		
 	}

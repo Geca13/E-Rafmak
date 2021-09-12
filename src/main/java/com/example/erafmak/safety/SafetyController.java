@@ -1,5 +1,6 @@
 package com.example.erafmak.safety;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -35,8 +38,8 @@ public class SafetyController {
 	}
 	
 	@PostMapping("/newSafety")
-	public String createPrimer(@ModelAttribute(value = "safety")Safety safety, @Param(value = "sizes")List<Size>sizes) {
-		service.newSafety(safety , sizes);
+	public String createPrimer(@ModelAttribute(value = "safety")Safety safety, @Param(value = "sizes")List<Size>sizes, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		service.newSafety(safety , sizes , multiPartFile);
 	return REDIRECT + safety.getId();
 		
 	}

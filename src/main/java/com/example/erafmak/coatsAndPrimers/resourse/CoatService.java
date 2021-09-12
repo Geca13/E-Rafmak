@@ -1,5 +1,6 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.repository.CoatRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
+import com.example.erafmak.user.errors.ImageNotFoundException;
 
 @Service
 public class CoatService {
@@ -26,21 +28,28 @@ public class CoatService {
 	@Autowired
 	ManufacturerService manService;
 	
-    public Coat newCoat(Coat coat, MultipartFile multiPartFile) throws IOException {
-    Long id = coats().size() +1l;
+    public Coat newCoat(Coat coat , MultipartFile multiPartFile) throws IOException {
     	
+        Long id = coats().size() +1l;
 		coat.setId(id);
-		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
-		coat.setImageUrl(fileName);
-		Coat saved = coatRepository.save(coat);
-		String uploadDir = "./coat-image/"+ saved.getId();
-		Path uploadPath = Paths.get(uploadDir);
-		if(!Files.exists(uploadPath)) {
-			Files.createDirectories(uploadPath);
-		}
+		uploadImage(coat, multiPartFile);
 		
-		try (InputStream inputStream = multiPartFile.getInputStream()) {
-			
+		return coatRepository.save(coat);
+		
+	}
+
+	private void uploadImage(Coat coat, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+		
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		coat.setImageUrl("/img/coats/" + fileName);
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/coats/";
+		Path uploadPath = Paths.get(uploadDir);
+		
+        try (InputStream inputStream = multiPartFile.getInputStream()) {
 			
 			Path filePath = uploadPath.resolve(fileName);
 			Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
@@ -48,10 +57,6 @@ public class CoatService {
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-		
-		
-		return coatRepository.save(coat);
-		
 	}
 	
 	public Coat findCoatById(Long id) {
@@ -59,10 +64,27 @@ public class CoatService {
 	}
 	
 	public void deleteCoat(Long id) {
+		
 		Coat coat = coatRepository.findById(id).get();
+		deleteImage(coat);
 		coat.setManufacturer(null);
 		coat.setHardeners(null);
+		
 		coatRepository.delete(coat);
+	}
+
+	private void deleteImage(Coat coat) {
+		String storedImage = coat.getImagePath().substring(coat.getImagePath().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/coats/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(!file.exists()) {
+            	throw new ImageNotFoundException("The coat image can't be located , or it doesn't exist");
+            }
+            file.delete();
 	}
 	
 	public List<Coat> coats() {
@@ -100,6 +122,21 @@ public class CoatService {
 	public Coat updateCoatQuantity(Long id, Integer quantity) {
 		Coat coat = findCoatById(id);
 		coat.setQty(coat.getQty() + quantity);
+		return coatRepository.save(coat);
+		
+	}
+
+	public Coat updateCoatImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+		Coat coat = findCoatById(id);
+		deleteImage(coat);
+		
+		try {
+			
+			uploadImage(coat, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload");
+		}
 		return coatRepository.save(coat);
 		
 	}

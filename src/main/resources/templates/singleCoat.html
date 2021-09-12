@@ -19,10 +19,16 @@
   <div th:replace="fragments/navbar :: navbar"></div>
 
 
-
+<div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
  <section class='section cocktail-section' th:object="${coat}">
-       <div sec:authorize="hasRole('ROLE_ADMIN')">
+ 
+       
+       
        <h2 class ='section-title' th:text="*{name}"></h2>
+       <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updateCoatName/{id}(id=${coat.id})}" method="post"  >
           <input type="text" name="name" placeholder="update name" >
           <button>change</button>
@@ -30,7 +36,16 @@
           </div>
       
        <div class ='drink'>
-        <img class="single"  th:src="@{&{coat.getImagePath}}" alt='image' />
+       <div>
+        <img class="single"  th:src="*{imageUrl}" alt='image' />
+        
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+       <form th:action="@{/products/updateCoatImage/{id}(id=${coat.id})}" enctype="multipart/form-data" method="post"  >
+          <input type="file" name="fileImage" id="fileImage"  required="required"/>
+                  <button>change</button>
+          </form>
+          </div>
+        </div>
         
          <div class="container">
            <div class="header"><h3>Details</h3></div>
