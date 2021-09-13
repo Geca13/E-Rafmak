@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.repository.CoatRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
-import com.example.erafmak.user.errors.ImageNotFoundException;
 
 @Service
 public class CoatService {
@@ -55,7 +54,7 @@ public class CoatService {
 			Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
 			
 		} catch (IOException e) {
-			throw new IOException("Something went wrong during image upload");
+			throw new IOException("Something went wrong during image upload, please try again");
 		}
 	}
 	
@@ -81,10 +80,9 @@ public class CoatService {
 		String uploadDir = absolutePath + "/src/main/resources/static/img/coats/";
 		
             File file = new File(uploadDir + storedImage);
-            if(!file.exists()) {
-            	throw new ImageNotFoundException("The coat image can't be located , or it doesn't exist");
-            }
-            file.delete();
+            if(file.exists()) {
+            	file.delete();
+            }    
 	}
 	
 	public List<Coat> coats() {
@@ -135,7 +133,7 @@ public class CoatService {
 			
 			uploadImage(coat, multiPartFile);
 		} catch (IOException e) {
-			throw new IOException("Something went wrong during image upload");
+			throw new IOException("Something went wrong during image upload, please try again");
 		}
 		return coatRepository.save(coat);
 		

@@ -52,16 +52,9 @@ public class CoatController {
 	
 	@PostMapping("/deleteCoat/{id}")
 	public String deleteCoat(Model model , @PathVariable(value = "id")Long id) {
-		Coat coat = service.findCoatById(id);
-		try {
-			service.deleteCoat(id);
-		} catch (ImageNotFoundException e) {
-			model.addAttribute("coat", coat);
-			model.addAttribute("manufacturer", coat.getManufacturer()) ;
-			model.addAttribute("error", e.getMessage());
-			return "singleCoat";
-		}
 		
+			service.deleteCoat(id);
+	
 		return "redirect:/products/coats";
 	}
 	
@@ -110,8 +103,16 @@ public class CoatController {
 	}
 	
 	@PostMapping("/updateCoatImage/{id}")
-	public String updateQuantityToCoat(@PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		service.updateCoatImage(id , multiPartFile);
+	public String updateQuantityToCoat(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updateCoatImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("coat", service.findCoatById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singleCoat";
+		}
+		
 		return REDIRECT + id;
 	}
 
