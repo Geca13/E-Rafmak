@@ -73,9 +73,9 @@ public class PrimerController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToPrimer/{id}")
-	public String updateQuantityToPrimer(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updatePrimerQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToPrimer/{id}")
+	public String updateAvailabilityToPrimer(@PathVariable(value = "id")Long id) {
+		service.updatePrimerAvailability(id);
 		return REDIRECT + id;
 	}
 	

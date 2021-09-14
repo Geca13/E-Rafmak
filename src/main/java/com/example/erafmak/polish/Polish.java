@@ -31,7 +31,7 @@ public class Polish {
 	
 	private Double price;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	@ManyToMany
 	List<Pads> pads;

@@ -70,9 +70,9 @@ public class ToolController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToTool/{id}")
-	public String updateQuantityToTool(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateToolQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToTool/{id}")
+	public String updateQuantityToTool(@PathVariable(value = "id")Long id ) {
+		service.updateToolAvailability(id);
 		return REDIRECT + id;
 	}
 	

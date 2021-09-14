@@ -29,7 +29,7 @@ public class SprayGunsService {
     public SprayGun newSprayGun(SprayGun gun, MultipartFile multiPartFile) throws IOException {
     	
         uploadSprayGunImage(gun, multiPartFile);
-		
+		gun.setIsAvailable(true);
 		
 		return sprayGunRepository.save(gun);
 		
@@ -114,9 +114,9 @@ public class SprayGunsService {
 		
 	}
 
-	public SprayGun updateSprayGunQuantity(Long id, Integer quantity) {
+	public SprayGun updateSprayGunAvailability(Long id) {
 		SprayGun gun = findSprayGunById(id);
-		gun.setQty(gun.getQty() + quantity);
+		gun.setIsAvailable(!gun.getIsAvailable());
 		return sprayGunRepository.save(gun);
 		
 	}

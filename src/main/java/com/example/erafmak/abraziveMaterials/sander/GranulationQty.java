@@ -21,7 +21,7 @@ public class GranulationQty {
 	@Id
 	private Long id;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	private Double price;
 	

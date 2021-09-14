@@ -73,9 +73,9 @@ public class PolishController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToPolish/{id}")
-	public String updateQuantityToPolish(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updatePolishQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToPolish/{id}")
+	public String updateSetAvailabilityToPolish(@PathVariable(value = "id")Long id) {
+		service.updatePolishAvailability(id);
 		return REDIRECT + id;
 	}
 	

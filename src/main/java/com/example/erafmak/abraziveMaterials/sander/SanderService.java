@@ -53,7 +53,7 @@ public class SanderService {
 			GranulationQty granQty = new GranulationQty();
 			granQty.setGranulation(gran.getGranulation());
 			granQty.setPrice(gran.getPrice());
-			granQty.setQty(gran.getQty());
+			granQty.setIsAvailable(true);
 			gkRepository.save(granQty);
 			sander.getGranulationQty().add(granQty);
 		}
@@ -97,10 +97,10 @@ public class SanderService {
 		
 	}
 
-	public GranulationQty updateSanderQuantity(Long gid, Integer quantity) {
-		GranulationQty qty = gkRepository.findById(gid).get();
-		qty.setQty(qty.getQty() + quantity);
-		return gkRepository.save(qty);
+	public GranulationQty updateSanderAvailability(Long gid) {
+		GranulationQty gran = gkRepository.findById(gid).get();
+		gran.setIsAvailable(!gran.getIsAvailable());
+		return gkRepository.save(gran);
 		
 	}
 

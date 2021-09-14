@@ -75,9 +75,9 @@ public class SprayGunsController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToSprayGun/{id}")
-	public String updateQuantityToSprayGun(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateSprayGunQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToSprayGun/{id}")
+	public String updateQuantityToSprayGun(@PathVariable(value = "id")Long id ) {
+		service.updateSprayGunAvailability(id);
 		return REDIRECT + id;
 	}
 	

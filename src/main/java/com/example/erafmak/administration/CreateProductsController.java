@@ -133,7 +133,7 @@ public class CreateProductsController {
 	@PostMapping("/newCoat")
 	public String createCoat(@ModelAttribute(value = "coat")Coat coat , @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
 		coatService.newCoat(coat,multiPartFile);
-	return REDIRECT + "coat/ " + coat.getId();
+	return REDIRECT + "coat/" + coat.getId();
 	}
 	
 	@GetMapping("/newHardener")

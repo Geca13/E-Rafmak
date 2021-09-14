@@ -76,9 +76,9 @@ public class HardenerController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToHardener/{id}")
-	public String updateQuantityToHardener(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateHardenerQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToHardener/{id}")
+	public String updateAvailabilityToHardener(@PathVariable(value = "id")Long id ) {
+		service.updateHardenerAvailability(id);
 		return REDIRECT + id;
 	}
 	

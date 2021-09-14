@@ -76,9 +76,9 @@ public class CoatController {
 	}
 	
 	
-	@PostMapping("/addQuantityToCoat/{id}")
-	public String updateQuantityToCoat(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateCoatQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToCoat/{id}")
+	public String updateAvailabilityToCoat(@PathVariable(value = "id")Long id ) {
+		service.updateCoatAvailability(id);
 		return REDIRECT + id;
 	}
 	

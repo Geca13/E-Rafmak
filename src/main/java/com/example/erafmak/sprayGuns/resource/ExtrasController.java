@@ -70,9 +70,9 @@ public class ExtrasController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToExtras/{id}")
-	public String updateQuantityToExtras(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateExtrasQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToExtras/{id}")
+	public String updateQuantityToExtras(@PathVariable(value = "id")Long id ) {
+		service.updateExtrasAvailibility(id);
 		return REDIRECT + id;
 	}
 	

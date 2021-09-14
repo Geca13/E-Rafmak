@@ -34,6 +34,8 @@ public class Safety {
 	
 	private Double price;
 	
+	private Boolean isAvailable;
+	
 	@ManyToMany
 	private List<SizeQuantity> sizeQty;
 	

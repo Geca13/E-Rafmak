@@ -20,7 +20,7 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="container">
 
-<form th:action="@{/create/newPutty}" th:object="${putty}" method="post">
+<form th:action="@{/create/newPutty}" th:object="${putty}" enctype="multipart/form-data" method="post">
 <h1>New Putty Form</h1>
     
     <div class="form-group">

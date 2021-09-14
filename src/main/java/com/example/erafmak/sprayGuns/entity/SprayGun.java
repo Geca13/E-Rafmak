@@ -31,7 +31,7 @@ public class SprayGun {
 	
 	private Double price;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	@ManyToMany
 	private List<Nozzle> nozzles;

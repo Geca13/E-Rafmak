@@ -27,6 +27,7 @@ public class PolishService {
     public Polish newPolish(Polish polish, MultipartFile multiPartFile) throws IOException {
 		
         uploadPolishImage(polish, multiPartFile);
+		polish.setIsAvailable(true);
 		
 		return polishRepository.save(polish);
 		
@@ -111,9 +112,9 @@ public class PolishService {
 		
 	}
 
-	public Polish updatePolishQuantity(Long id, Integer quantity) {
+	public Polish updatePolishAvailability(Long id) {
 		Polish polish = findPolishById(id);
-		polish.setQty(polish.getQty() + quantity);
+		polish.setIsAvailable(!polish.getIsAvailable());
 		return polishRepository.save(polish);
 		
 	}

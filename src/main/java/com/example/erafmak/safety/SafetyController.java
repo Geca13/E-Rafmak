@@ -66,9 +66,9 @@ public class SafetyController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToSafetyPerSize/{id}/{sid}")
-	public String updateQuantityToSafety(@PathVariable(value = "id")Long id ,@PathVariable(value = "sid")Long sid , @Param(value = "quantity")Integer quantity) {
-		service.updateSafetyQuantityPerSize(id , sid , quantity);
+	@PostMapping("/setAvailabilityPerSize/{id}/{sid}")
+	public String updateQuantityToSafety(@PathVariable(value = "id")Long id ,@PathVariable(value = "sid")Long sid ) {
+		service.updateSafetyAvailabilityPerSize(sid);
 		return REDIRECT + id;
 	}
 

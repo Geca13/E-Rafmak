@@ -30,6 +30,7 @@ public class NozzleService {
 		
 		
        uploadNozzleImage(nozzle, multiPartFile);
+       nozzle.setIsAvailable(true);
 		
 		return nozzleRepository.save(nozzle);
 		
@@ -113,9 +114,9 @@ public class NozzleService {
 		
 	}
 
-	public Nozzle updateNozzleQuantity(Long id, Integer quantity) {
+	public Nozzle updateNozzleAvailability(Long id) {
 		Nozzle nozzle = findNozzleById(id);
-		nozzle.setQty(nozzle.getQty() + quantity);
+		nozzle.setIsAvailable(!nozzle.getIsAvailable());
 		return nozzleRepository.save(nozzle);
 		
 	}

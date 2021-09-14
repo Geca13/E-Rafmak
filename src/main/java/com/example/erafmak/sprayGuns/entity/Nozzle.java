@@ -34,7 +34,7 @@ public class Nozzle {
 	
 	private Double price;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	private String imageUrl;
 	

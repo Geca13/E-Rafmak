@@ -95,7 +95,7 @@
           <div>
           <p>
           Available items:
-            <span th:text="*{qty}" class='drink-data'></span> 
+            <span th:text="*{isAvailable}" class='drink-data'></span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/addQuantityToPutty/{id}(id=${putty.id})}" method="post" >

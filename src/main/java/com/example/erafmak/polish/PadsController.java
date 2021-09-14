@@ -70,9 +70,9 @@ public class PadsController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToPads/{id}")
-	public String updateQuantityToPads(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updatePadsQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToPads/{id}")
+	public String updateAvailabilityToPads(@PathVariable(value = "id")Long id ) {
+		service.updatePadsAvailability(id);
 		return REDIRECT + id;
 	}
 	

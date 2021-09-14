@@ -27,7 +27,7 @@ public class ToolService {
     public Tool newTool(Tool tool, MultipartFile multiPartFile) throws IOException {
     	
         uploadToolImage(tool, multiPartFile);
-		
+		tool.setIsAvailable(true);
 		
 		return toolRepository.save(tool);
 		
@@ -111,9 +111,9 @@ public class ToolService {
 		
 	}
 
-	public Tool updateToolQuantity(Long id, Integer quantity) {
+	public Tool updateToolAvailability(Long id) {
 		Tool tool = findToolById(id);
-		tool.setQty(tool.getQty() + quantity);
+		tool.setIsAvailable(!tool.getIsAvailable());
 		return toolRepository.save(tool);
 		
 	}

@@ -40,7 +40,7 @@ public class HardenerService {
     public void newHardener(Hardener hardener ,MultipartFile multiPartFile) throws IOException {
 		
         uploadHardenerImage(hardener, multiPartFile);
-    	
+    	hardener.setIsAvailable(true);
 		hardenerRepository.save(hardener);
 		
 	}
@@ -151,9 +151,9 @@ public class HardenerService {
 		
 	}
 
-	public Hardener updateHardenerQuantity(Long id, Integer quantity) {
+	public Hardener updateHardenerAvailability(Long id) {
 		Hardener hardener = findHardenerById(id);
-		hardener.setQty(hardener.getQty() + quantity);
+		hardener.setIsAvailable(!hardener.getIsAvailable());
 		return hardenerRepository.save(hardener);
 		
 	}

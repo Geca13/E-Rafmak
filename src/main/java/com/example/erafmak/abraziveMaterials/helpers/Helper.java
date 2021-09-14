@@ -37,7 +37,7 @@ public class Helper {
 	
 	private Double price;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	@Enumerated(EnumType.STRING)
 	private Dimension dimension;

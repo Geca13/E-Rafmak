@@ -29,6 +29,7 @@ public class PrimerService {
     public Primer newPrimer(Primer primer , MultipartFile multiPartFile) throws IOException {
 		
         uploadPrimerImage(primer, multiPartFile);
+        primer.setIsAvailable(true);
         
 		return primerRepository.save(primer);
 		
@@ -113,9 +114,9 @@ public class PrimerService {
 		
 	}
 
-	public Primer updatePrimerQuantity(Long id, Integer quantity) {
+	public Primer updatePrimerAvailability(Long id) {
 		Primer primer = findPrimerById(id);
-		primer.setQty(primer.getQty() + quantity);
+		primer.setIsAvailable(!primer.getIsAvailable());
 		return primerRepository.save(primer);
 		
 	}

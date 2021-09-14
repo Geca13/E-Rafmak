@@ -71,14 +71,14 @@ public class HelperController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantity/{id}")
-	public String updateHelperQuantity(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateHelperQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToHelper/{id}")
+	public String updateHelperAvailability(@PathVariable(value = "id")Long id ) {
+		service.updateHelperAvailability(id);
 		return REDIRECT + id;
 	}
 	
 	@PostMapping("/updateHelperImage/{id}")
-	public String updateQuantityToCoat(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+	public String updateImageToHelper(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
 		try {
 			service.updateHelperImage(id , multiPartFile);
 		} catch (IOException e) {

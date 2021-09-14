@@ -32,6 +32,22 @@ public class SafetyService {
 	    	
 	    	String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 			
+			uploadSafetyImage(safety, multiPartFile, fileName);
+			safety.setIsAvailable(true);
+			safetyRepository.save(safety);
+			
+			for (Size size : sizes) {
+	    		SizeQuantity quantity = new SizeQuantity();
+	    		quantity.setSize(size);
+	    		sqRepository.save(quantity);
+	    		safety.getSizeQty().add(quantity);			}
+			
+			return safetyRepository.save(safety);
+		}
+
+
+
+		private void uploadSafetyImage(Safety safety, MultipartFile multiPartFile, String fileName) throws IOException {
 			Path currentPath = Paths.get(".");
 			Path absolutePath = currentPath.toAbsolutePath();
 			
@@ -49,18 +65,7 @@ public class SafetyService {
 			} catch (IOException e) {
 				throw new IOException("Something went wrong during image upload");
 			}
-			
-			safetyRepository.save(safety);
-			
-			for (Size size : sizes) {
-	    		SizeQuantity quantity = new SizeQuantity();
-	    		quantity.setSize(size);
-	    		sqRepository.save(quantity);
-	    		safety.getSizeQty().add(quantity);			}
-			
-			return safetyRepository.save(safety);
 		}
-	    
 	    
 		
 		public Safety findSafetyById(Long id) {
@@ -109,10 +114,10 @@ public class SafetyService {
 			
 		}
 
-		public SizeQuantity updateSafetyQuantityPerSize(Long id, Long sid, Integer quantity) {
-			SizeQuantity qty = sqRepository.findById(sid).get();
-			qty.setQty(qty.getQty() + quantity);
-			return sqRepository.save(qty);
+		public SizeQuantity updateSafetyAvailabilityPerSize(Long sid) {
+			SizeQuantity available = sqRepository.findById(sid).get();
+			available.setIsAvailable(!available.getIsAvailable());
+			return sqRepository.save(available);
 			
 		}
 

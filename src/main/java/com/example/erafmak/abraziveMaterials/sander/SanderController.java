@@ -92,9 +92,9 @@ public class SanderController {
 		return "redirect:/sander/" + id;
 	}
 	
-	@PostMapping("/addQuantityToSanderPerGranulation/{id}/{gid}")
-	public String updateQuantityPerGranulation(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid , @Param(value = "quantity")Integer quantity) {
-		service.updateSanderQuantity(gid , quantity);
+	@PostMapping("/setAvailabilityToSander/{id}/{gid}")
+	public String updateAvailabilityPerGranulation(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid ) {
+		service.updateSanderAvailability(gid);
 		return "redirect:/sander/" + id;
 	}
 

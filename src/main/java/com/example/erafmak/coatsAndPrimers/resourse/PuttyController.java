@@ -71,9 +71,9 @@ public class PuttyController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToPutty/{id}")
-	public String updateQuantityToPutty(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updatePuttyQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToPutty/{id}")
+	public String updateQuantityToPutty(@PathVariable(value = "id")Long id) {
+		service.updatePuttyAvailability(id);
 		return REDIRECT + id;
 	}
 

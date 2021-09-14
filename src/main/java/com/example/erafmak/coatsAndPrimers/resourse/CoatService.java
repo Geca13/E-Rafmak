@@ -32,7 +32,7 @@ public class CoatService {
         Long id = coats().size() +1l;
 		coat.setId(id);
 		uploadImage(coat, multiPartFile);
-		
+		coat.setIsAvailable(true);
 		return coatRepository.save(coat);
 		
 	}
@@ -117,9 +117,9 @@ public class CoatService {
 		
 	}
 
-	public Coat updateCoatQuantity(Long id, Integer quantity) {
+	public Coat updateCoatAvailability(Long id) {
 		Coat coat = findCoatById(id);
-		coat.setQty(coat.getQty() + quantity);
+		coat.setIsAvailable(!coat.getIsAvailable());
 		return coatRepository.save(coat);
 		
 	}

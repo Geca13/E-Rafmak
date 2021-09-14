@@ -36,7 +36,7 @@ public class Thinner {
 	@Enumerated(EnumType.STRING)
 	private Weigth weigth;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	private String imageUrl;
 	

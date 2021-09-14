@@ -50,6 +50,8 @@ public class Sander {
 	@JoinColumn(referencedColumnName = "id")
 	private Manufacturer manufacturer;
 	
+	private Boolean isAvailable;
+	
 	private String imageUrl;
 	
 	

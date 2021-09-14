@@ -33,7 +33,7 @@ public class Tool {
 	
 	private Double price;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	@Enumerated(EnumType.STRING)
 	private Power power;

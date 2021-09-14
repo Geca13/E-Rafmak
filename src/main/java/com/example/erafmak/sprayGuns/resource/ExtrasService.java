@@ -29,6 +29,7 @@ public class ExtrasService {
     public Extras newExtras(Extras extras , MultipartFile multiPartFile) throws IOException {
 		
         uploadExtrasImage(extras, multiPartFile);
+        extras.setIsAvailable(true);
 		
 		return extrasRepository.save(extras);
 		
@@ -112,9 +113,9 @@ public class ExtrasService {
 		
 	}
 
-	public Extras updateExtrasQuantity(Long id, Integer quantity) {
+	public Extras updateExtrasAvailibility(Long id) {
 		Extras extras = findExtrasById(id);
-		extras.setQty(extras.getQty() + quantity);
+		extras.setIsAvailable(!extras.getIsAvailable());
 		return extrasRepository.save(extras);
 		
 	}

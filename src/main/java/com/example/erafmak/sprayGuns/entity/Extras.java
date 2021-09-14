@@ -31,7 +31,7 @@ public class Extras {
 	
 	private Double price;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")

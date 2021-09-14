@@ -40,7 +40,7 @@ public class Primer {
 	@Enumerated(EnumType.STRING)
 	private Weigth weigth;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	private String imageUrl;
 	

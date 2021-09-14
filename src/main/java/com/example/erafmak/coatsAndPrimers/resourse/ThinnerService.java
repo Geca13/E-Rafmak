@@ -29,7 +29,7 @@ public class ThinnerService {
 	    public Thinner newThinner(Thinner thinner, MultipartFile multiPartFile) throws IOException {
 			
 	    	uploadThinnerImage(thinner, multiPartFile);
-	        
+	        thinner.setIsAvailable(true);
 			return thinnerRepository.save(thinner);
 			
 		}
@@ -112,9 +112,9 @@ public class ThinnerService {
 			
 		}
 
-		public Thinner updateThinnerQuantity(Long id, Integer quantity) {
+		public Thinner updateThinnerAvailability(Long id) {
 			Thinner thinner = findThinnerById(id);
-			thinner.setQty(thinner.getQty() + quantity);
+			thinner.setIsAvailable(!thinner.getIsAvailable());
 			return thinnerRepository.save(thinner);
 			
 		}

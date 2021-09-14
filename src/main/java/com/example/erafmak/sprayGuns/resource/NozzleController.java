@@ -70,9 +70,9 @@ public class NozzleController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToNozzle/{id}")
-	public String updateQuantityToNozzle(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateNozzleQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToNozzle/{id}")
+	public String updateQuantityToNozzle(@PathVariable(value = "id")Long id ) {
+		service.updateNozzleAvailability(id);
 		return REDIRECT + id;
 	}
 	

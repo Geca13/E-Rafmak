@@ -21,7 +21,7 @@ public class SizeQuantity {
 	@Id
 	private Long id;
 	
-	private Integer qty;
+	private Boolean isAvailable;
 	
 	@Enumerated(EnumType.STRING)
 	private Size size;

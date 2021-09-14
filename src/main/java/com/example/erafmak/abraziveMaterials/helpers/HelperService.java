@@ -8,16 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.erafmak.coatsAndPrimers.entity.Coat;
-import com.example.erafmak.manufacturers.Manufacturer;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -33,7 +27,7 @@ public class HelperService {
 		
 		
         uploadHelperImage(helper, multiPartFile);
-		
+		helper.setIsAvailable(true);
 		return helperRepository.save(helper);
 		
 	}
@@ -109,9 +103,9 @@ public class HelperService {
 		
 	}
 
-	public Helper updateHelperQuantity(Long id, Integer quantity) {
+	public Helper updateHelperAvailability(Long id) {
 		Helper helper = findHelperById(id);
-		helper.setQty(helper.getQty() + quantity);
+		helper.setIsAvailable(!helper.getIsAvailable());
 		return helperRepository.save(helper);
 		
 	}

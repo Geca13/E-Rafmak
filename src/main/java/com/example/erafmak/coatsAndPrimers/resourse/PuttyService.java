@@ -29,7 +29,7 @@ public class PuttyService {
 	    public  Putty newPutty(Putty putty , MultipartFile multiPartFile) throws IOException {
 	    	
 	    	uploadPuttyImage(putty, multiPartFile);
-			
+			putty.setIsAvailable(true);
 			return puttyRepository.save(putty);
 			
 		}
@@ -112,9 +112,9 @@ public class PuttyService {
 			
 		}
 
-		public Putty updatePuttyQuantity(Long id, Integer quantity) {
+		public Putty updatePuttyAvailability(Long id) {
 			Putty putty = findPuttyById(id);
-			putty.setQty(putty.getQty() + quantity);
+			putty.setIsAvailable(!putty.getIsAvailable());
 			return puttyRepository.save(putty);
 			
 		}

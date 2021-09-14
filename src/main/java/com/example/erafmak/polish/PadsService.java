@@ -30,6 +30,7 @@ public class PadsService {
 	    public Pads newPads(Pads pads, MultipartFile multiPartFile) throws IOException  {
 			
 	    	uploadPadsImage(pads, multiPartFile);
+	    	pads.setIsAvailable(true);
 	        
 			return padsRepository.save(pads);
 			
@@ -124,9 +125,9 @@ public class PadsService {
 			
 		}
 
-		public Pads updatePadsQuantity(Long id, Integer quantity) {
+		public Pads updatePadsAvailability(Long id) {
 			Pads pads = findPadsById(id);
-			pads.setQty(pads.getQty() + quantity);
+			pads.setIsAvailable(!pads.getIsAvailable());
 			return padsRepository.save(pads);
 			
 		}

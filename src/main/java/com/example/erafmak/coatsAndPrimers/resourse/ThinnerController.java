@@ -71,9 +71,9 @@ public class ThinnerController {
 		return REDIRECT + id;
 	}
 	
-	@PostMapping("/addQuantityToThinner/{id}")
-	public String updateQuantityToThinner(@PathVariable(value = "id")Long id , @Param(value = "quantity")Integer quantity) {
-		service.updateThinnerQuantity(id , quantity);
+	@PostMapping("/setAvailabilityToThinner/{id}")
+	public String updateAvailabilityToThinner(@PathVariable(value = "id")Long id ) {
+		service.updateThinnerAvailability(id);
 		return REDIRECT + id;
 	}
 
