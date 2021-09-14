@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,20 +27,6 @@ public class HelperController {
 	
 	private final String REDIRECT = "redirect:/products/helper/";
 	
-	
-	@GetMapping("/newHelper")
-	public String helperModel(Model model) {
-		model.addAttribute("helper", new Helper());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		return "addHelper";
-	}
-	
-	@PostMapping("/newHelper")
-	public String createHelper(@ModelAttribute(value = "helper")Helper helper , @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		service.newHelper(helper, multiPartFile);
-	return REDIRECT+ helper.getId();
-		
-	}
 	
 	@PostMapping("/deleteHelper/{id}")
 	public String deleteHelper(@PathVariable(value = "id")Long id) {
@@ -92,6 +77,19 @@ public class HelperController {
 		return REDIRECT + id;
 	}
 	
-	
+	@PostMapping("/updateHelperImage/{id}")
+	public String updateQuantityToCoat(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updateHelperImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("coat", service.findHelperById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singleHelper";
+		}
+		
+		return REDIRECT + id;
+	}
+
 
 }

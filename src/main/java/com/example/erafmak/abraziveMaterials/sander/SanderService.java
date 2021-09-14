@@ -27,7 +27,7 @@ public class SanderService {
 	@Autowired
 	GranulationQtyRepository gkRepository;
 	
-	public Sander newSander(Sander sander, MultipartFile multiPartFile) throws IOException{
+	public Sander newSander(Sander sander, MultipartFile multiPartFile, List<GranulationQty> list) throws IOException{
 		
         String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
@@ -47,6 +47,15 @@ public class SanderService {
 			
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
+		}
+        
+        for (GranulationQty gran : list) {
+			GranulationQty granQty = new GranulationQty();
+			granQty.setGranulation(gran.getGranulation());
+			granQty.setPrice(gran.getPrice());
+			granQty.setQty(gran.getQty());
+			gkRepository.save(granQty);
+			sander.getGranulationQty().add(granQty);
 		}
 		
 		return sanderRepository.save(sander);

@@ -7,15 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
-import com.example.erafmak.sprayGuns.entity.Extras;
 
 @Controller
 @RequestMapping("/products")
@@ -29,20 +26,6 @@ public class ExtrasController {
 	
 	private final String REDIRECT = "redirect:/products/extras/";
 	
-	
-	@GetMapping("/newExtras")
-	public String extrasModel(Model model) {
-		model.addAttribute("extras", new Extras());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		return "addExtrass";
-	}
-	
-	@PostMapping("/newExtras")
-	public String createExtras(@ModelAttribute(value = "extras")Extras extras, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		service.newExtras(extras , multiPartFile);
-	return REDIRECT + extras.getId();
-		
-	}
 	
 	@PostMapping("/deleteExtras/{id}")
 	public String deleteExtras(@PathVariable(value = "id")Long id) {
@@ -92,5 +75,20 @@ public class ExtrasController {
 		service.updateExtrasQuantity(id , quantity);
 		return REDIRECT + id;
 	}
+	
+	@PostMapping("/updateExtrasImage/{id}")
+	public String updateImageToExtras(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updateExtrasImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("extras", service.findExtrasById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singleExtras";
+		}
+		
+		return REDIRECT + id;
+	}
+
 
 }

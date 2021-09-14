@@ -1,5 +1,6 @@
 package com.example.erafmak.sprayGuns.resource;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
 import com.example.erafmak.sprayGuns.entity.SprayGun;
 import com.example.erafmak.sprayGuns.repository.SprayGunRepository;
@@ -28,7 +28,15 @@ public class SprayGunsService {
 	
     public SprayGun newSprayGun(SprayGun gun, MultipartFile multiPartFile) throws IOException {
     	
-String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+        uploadSprayGunImage(gun, multiPartFile);
+		
+		
+		return sprayGunRepository.save(gun);
+		
+	}
+
+	private void uploadSprayGunImage(SprayGun gun, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
@@ -47,10 +55,6 @@ String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-		
-		
-		return sprayGunRepository.save(gun);
-		
 	}
 	
 	public SprayGun findSprayGunById(Long id) {
@@ -59,9 +63,23 @@ String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 	
 	public void deleteSprayGun(Long id) {
 		SprayGun gun = sprayGunRepository.findById(id).get();
+		deleteImage(gun);
 		gun.setManufacturer(null);
 		gun.setNozzles(null);
 		sprayGunRepository.delete(gun);
+	}
+	
+	private void deleteImage(SprayGun gun) {
+		String storedImage = gun.getImageUrl().substring(gun.getImageUrl().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/guns/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(file.exists()) {
+            	file.delete();
+            }    
 	}
 	
 	public List<SprayGun> guns() {
@@ -103,5 +121,19 @@ String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 	}
 	
+    public SprayGun updateSprayGunImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+    	SprayGun gun = findSprayGunById(id);
+		deleteImage(gun);
+		
+		try {
+			
+			uploadSprayGunImage(gun, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload, please try again");
+		}
+		return sprayGunRepository.save(gun);
+		
+	}
 
 }

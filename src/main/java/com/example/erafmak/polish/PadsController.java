@@ -7,15 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.erafmak.coatsAndPrimers.entity.Putty;
-import com.example.erafmak.coatsAndPrimers.entity.Thinner;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -30,20 +26,6 @@ public class PadsController {
 	
 	private final String REDIRECT = "redirect:/products/pads/";
 	
-	
-	@GetMapping("/newPads")
-	public String padModel(Model model) {
-		model.addAttribute("pads", new Pads());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		return "addPads";
-	}
-	
-	@PostMapping("/newPads")
-	public String createPads(@ModelAttribute(value = "pads")Pads pads, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		service.newPads(pads , multiPartFile);
-	return REDIRECT + pads.getId();
-		
-	}
 	
 	@PostMapping("/deletePads/{id}")
 	public String deletePads(@PathVariable(value = "id")Long id) {
@@ -93,5 +75,20 @@ public class PadsController {
 		service.updatePadsQuantity(id , quantity);
 		return REDIRECT + id;
 	}
+	
+	@PostMapping("/updatePadsImage/{id}")
+	public String updateImageToPads(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updatePadsImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("pads", service.findPadsById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singlePads";
+		}
+		
+		return REDIRECT + id;
+	}
+
 
 }

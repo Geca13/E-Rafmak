@@ -7,14 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.erafmak.coatsAndPrimers.entity.Thinner;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -29,20 +27,6 @@ public class ThinnerController {
 	
 	private final String REDIRECT = "redirect:/products/thinner/";
 	
-	
-	@GetMapping("/newThinner")
-	public String thinnerModel(Model model) {
-		model.addAttribute("thinner", new Thinner());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		return "addThinner";
-	}
-	
-	@PostMapping("/newThinner")
-	public String createThinner(@ModelAttribute(value = "thinner")Thinner thinner, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException{
-		service.newThinner(thinner , multiPartFile);
-	return REDIRECT + thinner.getId();
-		
-	}
 	
 	@PostMapping("/deleteThinner/{id}")
 	public String deleteThinner(@PathVariable(value = "id")Long id) {
@@ -93,6 +77,19 @@ public class ThinnerController {
 		return REDIRECT + id;
 	}
 
+	@PostMapping("/updateThinnerImage/{id}")
+	public String updateImageToThinner(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updateThinnerImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("thinner", service.findThinnerById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singleThinner";
+		}
+		
+		return REDIRECT + id;
+	}
 
 
 }

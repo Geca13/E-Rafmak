@@ -7,15 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
-import com.example.erafmak.sprayGuns.entity.SprayGun;
+
 
 @Controller
 @RequestMapping("/products")
@@ -32,20 +30,6 @@ public class SprayGunsController {
 	
 	private final String REDIRECT = "redirect:/products/sprayGun/";
 	
-	@GetMapping("/newSprayGun")
-	public String sprayGunModel(Model model) {
-		model.addAttribute("sprayGun", new SprayGun());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		model.addAttribute("nozzles", nozzleService.nozzles());
-		return "addSprayGun";
-	}
-	
-	@PostMapping("/newSprayGun")
-	public String createSprayGun(@ModelAttribute(value = "gun")SprayGun gun, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		service.newSprayGun(gun , multiPartFile);
-	return REDIRECT + gun.getId();
-		
-	}
 	
 	@PostMapping("/deleteSprayGun/{id}")
 	public String deleteSprayGun(@PathVariable(value = "id")Long id) {
@@ -96,5 +80,20 @@ public class SprayGunsController {
 		service.updateSprayGunQuantity(id , quantity);
 		return REDIRECT + id;
 	}
+	
+	@PostMapping("/updateSprayGunImage/{id}")
+	public String updateImageToSprayGun(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updateSprayGunImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("gun", service.findSprayGunById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singleGun";
+		}
+		
+		return REDIRECT + id;
+	}
+
 
 }

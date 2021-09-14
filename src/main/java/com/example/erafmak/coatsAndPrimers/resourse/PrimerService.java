@@ -1,5 +1,6 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.coatsAndPrimers.entity.Primer;
 import com.example.erafmak.coatsAndPrimers.repository.PrimerRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
@@ -28,7 +28,14 @@ public class PrimerService {
 	
     public Primer newPrimer(Primer primer , MultipartFile multiPartFile) throws IOException {
 		
-        String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+        uploadPrimerImage(primer, multiPartFile);
+        
+		return primerRepository.save(primer);
+		
+	}
+
+	private void uploadPrimerImage(Primer primer, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
@@ -47,9 +54,6 @@ public class PrimerService {
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-        
-		return primerRepository.save(primer);
-		
 	}
 	
 	public Primer findPrimerById(Long id) {
@@ -58,9 +62,23 @@ public class PrimerService {
 	
 	public void deletePrimer(Long id) {
 		Primer primer = primerRepository.findById(id).get();
+		deleteImage(primer);
 		primer.setManufacturer(null);
 		primer.setHardeners(null);
 		primerRepository.delete(primer);
+	}
+	
+	private void deleteImage(Primer primer) {
+		String storedImage = primer.getImageUrl().substring(primer.getImageUrl().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/primers/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(file.exists()) {
+            	file.delete();
+            }    
 	}
 	
 	public List<Primer> primers() {
@@ -98,6 +116,21 @@ public class PrimerService {
 	public Primer updatePrimerQuantity(Long id, Integer quantity) {
 		Primer primer = findPrimerById(id);
 		primer.setQty(primer.getQty() + quantity);
+		return primerRepository.save(primer);
+		
+	}
+	
+    public Primer updatePrimerImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+		Primer primer = findPrimerById(id);
+		deleteImage(primer);
+		
+		try {
+			
+			uploadPrimerImage(primer, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload, please try again");
+		}
 		return primerRepository.save(primer);
 		
 	}

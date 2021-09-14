@@ -1,5 +1,6 @@
 package com.example.erafmak.sprayGuns.resource;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
 import com.example.erafmak.sprayGuns.entity.Extras;
 import com.example.erafmak.sprayGuns.repository.ExtrasRepository;
@@ -28,7 +28,14 @@ public class ExtrasService {
 	
     public Extras newExtras(Extras extras , MultipartFile multiPartFile) throws IOException {
 		
-        String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+        uploadExtrasImage(extras, multiPartFile);
+		
+		return extrasRepository.save(extras);
+		
+	}
+
+	private void uploadExtrasImage(Extras extras, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
@@ -47,9 +54,6 @@ public class ExtrasService {
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-		
-		return extrasRepository.save(extras);
-		
 	}
 	
 	public Extras findExtrasById(Long id) {
@@ -58,8 +62,22 @@ public class ExtrasService {
 	
 	public void deleteExtras(Long id) {
 		Extras extras = extrasRepository.findById(id).get();
+		deleteImage(extras);
 		extras.setManufacturer(null);
 		extrasRepository.delete(extras);
+	}
+	
+	private void deleteImage(Extras extras) {
+		String storedImage = extras.getImageUrl().substring(extras.getImageUrl().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/extras/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(file.exists()) {
+            	file.delete();
+            }    
 	}
 	
 	public List<Extras> extrass() {
@@ -101,4 +119,18 @@ public class ExtrasService {
 		
 	}
 
+    public Extras updateExtrasImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+    	Extras extras = findExtrasById(id);
+		deleteImage(extras);
+		
+		try {
+			
+			uploadExtrasImage(extras, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload, please try again");
+		}
+		return extrasRepository.save(extras);
+		
+	}
 }

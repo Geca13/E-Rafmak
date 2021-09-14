@@ -7,15 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.erafmak.coatsAndPrimers.entity.Coat;
-import com.example.erafmak.coatsAndPrimers.resourse.HardenerService;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -33,20 +29,6 @@ public class PolishController {
 	
 	private final String REDIRECT = "redirect:/products/polish/";
 	
-	@GetMapping("/newPolish")
-	public String polishModel(Model model) {
-		model.addAttribute("polish", new Polish());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		model.addAttribute("pads", padsService.pads());
-		return "addPolish";
-	}
-	
-	@PostMapping("/newPolish")
-	public String createPolish(@ModelAttribute(value = "polish")Polish polish, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException{
-		service.newPolish(polish , multiPartFile);
-	return REDIRECT + polish.getId();
-		
-	}
 	
 	@PostMapping("/deletePolish/{id}")
 	public String deleteCPolish(@PathVariable(value = "id")Long id) {
@@ -96,6 +78,21 @@ public class PolishController {
 		service.updatePolishQuantity(id , quantity);
 		return REDIRECT + id;
 	}
+	
+	@PostMapping("/updatePolishImage/{id}")
+	public String updateImageToPolish(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updatePolishImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("polish", service.findPolishById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singlePolish";
+		}
+		
+		return REDIRECT + id;
+	}
+
 
 
 }

@@ -18,11 +18,11 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
-
 <div th:if="${error != null}" class="error-msg">
        <i class="fa fa-times-circle"></i>
         [[${error}]]
        </div>
+
  <section class='section cocktail-section' th:object="${coat}">
  
        

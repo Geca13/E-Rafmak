@@ -1,5 +1,6 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -38,7 +39,14 @@ public class HardenerService {
 	
     public void newHardener(Hardener hardener ,MultipartFile multiPartFile) throws IOException {
 		
-        String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+        uploadHardenerImage(hardener, multiPartFile);
+    	
+		hardenerRepository.save(hardener);
+		
+	}
+
+	private void uploadHardenerImage(Hardener hardener, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
@@ -57,9 +65,6 @@ public class HardenerService {
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-    	
-		hardenerRepository.save(hardener);
-		
 	}
 	
 	public Hardener findHardenerById(Long id) {
@@ -68,6 +73,7 @@ public class HardenerService {
 	
 	public void deleteHardener(Long id) {
 		Hardener hardener = hardenerRepository.findById(id).get();
+		deleteImage(hardener);
 		hardener.setManufacturer(null);
 		
 		removeFromPrimers(id, hardener);
@@ -76,6 +82,20 @@ public class HardenerService {
 		
 		
 		hardenerRepository.delete(hardener);
+	}
+	
+	
+	private void deleteImage(Hardener hardener) {
+		String storedImage = hardener.getImageUrl().substring(hardener.getImageUrl().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/hardeners/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(file.exists()) {
+            	file.delete();
+            }    
 	}
 
 	private void removeFromCoats(Long id, Hardener hardener) {
@@ -137,5 +157,21 @@ public class HardenerService {
 		return hardenerRepository.save(hardener);
 		
 	}
+	
+    public Hardener updateHardenerImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+    	Hardener hardener = findHardenerById(id);
+		deleteImage(hardener);
+		
+		try {
+			
+			uploadHardenerImage(hardener, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload, please try again");
+		}
+		return hardenerRepository.save(hardener);
+		
+	}
+
 
 }

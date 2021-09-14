@@ -17,10 +17,14 @@
 
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
-
+<div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
 
 
  <section class='section cocktail-section' th:object="${primer}">
+ 
  
        <h2 class ='sectionn-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -32,7 +36,16 @@
        
           
      <div class ='drink'>
-        <img class="single" th:src="*{imageUrl}" alt='image' />
+        <div>
+        <img class="single"  th:src="*{imageUrl}" alt='image' />
+        
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+       <form th:action="@{/products/updatePrimerImage/{id}(id=${primer.id})}" enctype="multipart/form-data" method="post"  >
+          <input type="file" name="fileImage" id="fileImage"  required="required"/>
+                  <button>change</button>
+          </form>
+          </div>
+        </div>
         
          <div class="container">
            <div class="header"><h3>Details</h3></div>

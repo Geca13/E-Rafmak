@@ -1,5 +1,6 @@
 package com.example.erafmak.polish;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -26,7 +26,14 @@ public class PolishService {
 	
     public Polish newPolish(Polish polish, MultipartFile multiPartFile) throws IOException {
 		
-String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+        uploadPolishImage(polish, multiPartFile);
+		
+		return polishRepository.save(polish);
+		
+	}
+
+	private void uploadPolishImage(Polish polish, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
@@ -45,9 +52,6 @@ String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-		
-		return polishRepository.save(polish);
-		
 	}
 	
 	public Polish findPolishById(Long id) {
@@ -56,9 +60,23 @@ String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 	
 	public void deletePolish(Long id) {
 		Polish polish = polishRepository.findById(id).get();
+		deleteImage(polish);
 		polish.setManufacturer(null);
 		polish.setPads(null);
 		polishRepository.delete(polish);
+	}
+	
+	private void deleteImage(Polish polish) {
+		String storedImage = polish.getImageUrl().substring(polish.getImageUrl().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/coats/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(file.exists()) {
+            	file.delete();
+            }    
 	}
 	
 	public List<Polish> polishes() {
@@ -96,6 +114,21 @@ String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 	public Polish updatePolishQuantity(Long id, Integer quantity) {
 		Polish polish = findPolishById(id);
 		polish.setQty(polish.getQty() + quantity);
+		return polishRepository.save(polish);
+		
+	}
+	
+    public Polish updatePolishImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+    	Polish polish = findPolishById(id);
+		deleteImage(polish);
+		
+		try {
+			
+			uploadPolishImage(polish, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload, please try again");
+		}
 		return polishRepository.save(polish);
 		
 	}

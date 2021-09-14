@@ -73,7 +73,7 @@ public class CoatService {
 	}
 
 	private void deleteImage(Coat coat) {
-		String storedImage = coat.getImagePath().substring(coat.getImagePath().lastIndexOf("/"));
+		String storedImage = coat.getImageUrl().substring(coat.getImageUrl().lastIndexOf("/"));
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
 		

@@ -1,5 +1,6 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.coatsAndPrimers.entity.Thinner;
 import com.example.erafmak.coatsAndPrimers.repository.ThinnerRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
@@ -28,7 +28,14 @@ public class ThinnerService {
 	
 	    public Thinner newThinner(Thinner thinner, MultipartFile multiPartFile) throws IOException {
 			
-	    	String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+	    	uploadThinnerImage(thinner, multiPartFile);
+	        
+			return thinnerRepository.save(thinner);
+			
+		}
+
+		private void uploadThinnerImage(Thinner thinner, MultipartFile multiPartFile) throws IOException {
+			String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 			
 			Path currentPath = Paths.get(".");
 			Path absolutePath = currentPath.toAbsolutePath();
@@ -47,9 +54,6 @@ public class ThinnerService {
 			} catch (IOException e) {
 				throw new IOException("Something went wrong during image upload");
 			}
-	        
-			return thinnerRepository.save(thinner);
-			
 		}
 		
 		public Thinner findThinnerById(Long id) {
@@ -58,8 +62,22 @@ public class ThinnerService {
 		
 		public void deleteThinner(Long id) {
 			Thinner thinner = thinnerRepository.findById(id).get();
+			deleteImage( thinner);
 			thinner.setManufacturer(null);
 			thinnerRepository.delete(thinner);
+		}
+		
+		private void deleteImage(Thinner thinner) {
+			String storedImage = thinner.getImageUrl().substring(thinner.getImageUrl().lastIndexOf("/"));
+			Path currentPath = Paths.get(".");
+			Path absolutePath = currentPath.toAbsolutePath();
+			
+			String uploadDir = absolutePath + "/src/main/resources/static/img/thinners/";
+			
+	            File file = new File(uploadDir + storedImage);
+	            if(file.exists()) {
+	            	file.delete();
+	            }    
 		}
 		
 		public List<Thinner> thinners() {
@@ -97,6 +115,21 @@ public class ThinnerService {
 		public Thinner updateThinnerQuantity(Long id, Integer quantity) {
 			Thinner thinner = findThinnerById(id);
 			thinner.setQty(thinner.getQty() + quantity);
+			return thinnerRepository.save(thinner);
+			
+		}
+		
+		public Thinner updateThinnerImage(Long id, MultipartFile multiPartFile) throws IOException {
+			
+			Thinner thinner = findThinnerById(id);
+			deleteImage(thinner);
+			
+			try {
+				
+				uploadThinnerImage(thinner, multiPartFile);
+			} catch (IOException e) {
+				throw new IOException("Something went wrong during image upload, please try again");
+			}
 			return thinnerRepository.save(thinner);
 			
 		}

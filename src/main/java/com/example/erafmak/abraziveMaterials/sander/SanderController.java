@@ -1,18 +1,16 @@
 package com.example.erafmak.abraziveMaterials.sander;
 
-import java.io.IOException;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -26,20 +24,6 @@ public class SanderController {
 	@Autowired
 	ManufacturerService manService;
 	
-	
-	@GetMapping("/newSander")
-	public String sanderModel(Model model) {
-		model.addAttribute("sander", new Sander());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		return "addSander";
-	}
-	
-	@PostMapping("/newSander")
-	public String createSander(@ModelAttribute(value = "sander")Sander sander, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		service.newSander(sander,multiPartFile);
-	return "redirect:/sander/" + sander.getId();
-		
-	}
 	
 	@PostMapping("/deleteSander/{id}")
 	public String deleteSander(@PathVariable(value = "id")Long id) {

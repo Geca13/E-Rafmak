@@ -7,14 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.erafmak.coatsAndPrimers.entity.Primer;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -32,20 +29,6 @@ public class PrimerController {
 	
 	private final String REDIRECT = "redirect:/products/primer/";
 	
-	@GetMapping("/newPrimer")
-	public String primerModel(Model model) {
-		model.addAttribute("primer", new Primer());
-		model.addAttribute("manufacturers", manService.manufacturers());
-		model.addAttribute("hardeners", harService.hardeners());
-		return "addPrimer";
-	}
-	
-	@PostMapping("/newPrimer")
-	public String createPrimer(@ModelAttribute(value = "primer")Primer primer, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException{
-		service.newPrimer(primer, multiPartFile);
-	return REDIRECT + primer.getId();
-		
-	}
 	
 	@PostMapping("/deletePrimer/{id}")
 	public String deletePrimer(@PathVariable(value = "id")Long id) {
@@ -95,5 +78,20 @@ public class PrimerController {
 		service.updatePrimerQuantity(id , quantity);
 		return REDIRECT + id;
 	}
+	
+	@PostMapping("/updatePrimerImage/{id}")
+	public String updateImageToCoat(Model model , @PathVariable(value = "id")Long id, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		try {
+			service.updatePrimerImage(id , multiPartFile);
+		} catch (IOException e) {
+			model.addAttribute("primer", service.findPrimerById(id)) ;
+			model.addAttribute("manufacturers", manService.manufacturers()) ;
+			model.addAttribute("error", e.getMessage());
+			return "singlePrimer";
+		}
+		
+		return REDIRECT + id;
+	}
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.erafmak.polish;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -29,7 +29,14 @@ public class PadsService {
 	
 	    public Pads newPads(Pads pads, MultipartFile multiPartFile) throws IOException  {
 			
-	    	String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+	    	uploadPadsImage(pads, multiPartFile);
+	        
+			return padsRepository.save(pads);
+			
+		}
+
+		private void uploadPadsImage(Pads pads, MultipartFile multiPartFile) throws IOException {
+			String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 			
 			Path currentPath = Paths.get(".");
 			Path absolutePath = currentPath.toAbsolutePath();
@@ -48,9 +55,6 @@ public class PadsService {
 			} catch (IOException e) {
 				throw new IOException("Something went wrong during image upload");
 			}
-	        
-			return padsRepository.save(pads);
-			
 		}
 		
 		public Pads findPadsById(Long id) {
@@ -59,9 +63,23 @@ public class PadsService {
 		
 		public void deletePads(Long id) {
 			Pads pads = padsRepository.findById(id).get();
+			deleteImage(pads);
 			pads.setManufacturer(null);
 			removePads(id, pads);
 			padsRepository.delete(pads);
+		}
+		
+		private void deleteImage(Pads pads) {
+			String storedImage = pads.getImageUrl().substring(pads.getImageUrl().lastIndexOf("/"));
+			Path currentPath = Paths.get(".");
+			Path absolutePath = currentPath.toAbsolutePath();
+			
+			String uploadDir = absolutePath + "/src/main/resources/static/img/pads/";
+			
+	            File file = new File(uploadDir + storedImage);
+	            if(file.exists()) {
+	            	file.delete();
+	            }    
 		}
 
 		private void removePads(Long id, Pads pads) {
@@ -109,6 +127,21 @@ public class PadsService {
 		public Pads updatePadsQuantity(Long id, Integer quantity) {
 			Pads pads = findPadsById(id);
 			pads.setQty(pads.getQty() + quantity);
+			return padsRepository.save(pads);
+			
+		}
+		
+		public Pads updatePadsImage(Long id, MultipartFile multiPartFile) throws IOException {
+			
+			Pads pads = findPadsById(id);
+			deleteImage(pads);
+			
+			try {
+				
+				uploadPadsImage(pads, multiPartFile);
+			} catch (IOException e) {
+				throw new IOException("Something went wrong during image upload, please try again");
+			}
 			return padsRepository.save(pads);
 			
 		}
