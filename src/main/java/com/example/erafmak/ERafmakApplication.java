@@ -171,12 +171,12 @@ public class ERafmakApplication {
 			originRepository.save(new Origin(4L, "Belgium"));
 			originRepository.save(new Origin(5L, "Germany"));
 			
-			manufacturerRepository.save(new Manufacturer(1L, "MIRKA",originRepository.findById(1L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(2L, "DeBeer",originRepository.findById(2L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(3L, "Spralac",originRepository.findById(2L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(4L, "Finixa",originRepository.findById(4L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(5L, "Sata",originRepository.findById(5L).get() ,""));
-			manufacturerRepository.save(new Manufacturer(6L, "Spiralflex",originRepository.findById(3L).get() ,""));
+			manufacturerRepository.save(new Manufacturer(1L, "MIRKA",originRepository.findById(1L).get() ,"mirka@mirka.com"));
+			manufacturerRepository.save(new Manufacturer(2L, "DeBeer",originRepository.findById(2L).get() ,"deBeer@deBeer.com"));
+			manufacturerRepository.save(new Manufacturer(3L, "Spralac",originRepository.findById(2L).get() ,"spralac@spralac.com"));
+			manufacturerRepository.save(new Manufacturer(4L, "Finixa",originRepository.findById(4L).get() ,"finixa@finixa.com"));
+			manufacturerRepository.save(new Manufacturer(5L, "Sata",originRepository.findById(5L).get() ,"sata@sata.com"));
+			manufacturerRepository.save(new Manufacturer(6L, "Spiralflex",originRepository.findById(3L).get() ,"spiralflex@spiralflex.com"));
 			
 			granulationQtyRepository.save(new GranulationQty(1L, true , 2300.00, Granulation.P80));
 			granulationQtyRepository.save(new GranulationQty(2L, true , 2000.00, Granulation.P100));

@@ -7,12 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/administration")
 public class ManufacturerController {
 	
 	@Autowired
 	ManufacturerService service;
+	
 	
 	@GetMapping("/addManufacturer")
 	public String createManufacturer(Model model) {
@@ -24,7 +27,7 @@ public class ManufacturerController {
 	@PostMapping("/addManufacturer")
 	public String createNewManufacturer(Manufacturer manufacturer) {
 		service.createNewManufacturer(manufacturer);
-		return "redirect:/";
+		return "redirect:/administration/manufacturers";
 	}
 	
 	@PostMapping("/deleteManufacturer/{id}")

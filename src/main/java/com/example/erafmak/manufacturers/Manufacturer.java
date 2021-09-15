@@ -29,5 +29,5 @@ public class Manufacturer {
 	@JoinColumn(referencedColumnName = "id")
 	private Origin origin;
 	
-	private String imageUrl;
+	private String email;
 }
