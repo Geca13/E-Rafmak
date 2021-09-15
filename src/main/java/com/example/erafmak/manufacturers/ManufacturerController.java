@@ -30,30 +30,25 @@ public class ManufacturerController {
 		return "redirect:/administration/manufacturers";
 	}
 	
-	@PostMapping("/deleteManufacturer/{id}")
-	public String deleteManufacturer(@PathVariable(value = "id")Long id) {
-		service.deleteManufacturer(id);
-		return "redirect:/manufacturers";
-	}
-	
 	@GetMapping("/manufacturers")
 	public String getAllManufacturers(Model model) {
 		model.addAttribute("manufacturers", service.manufacturers());
 		return "manufacturers";
 	}
 	
-	@GetMapping("/manufacturer/{id}")
+	@GetMapping("/updateManufacturer/{id}")
 	public String getManufacturersDetails(Model model , @PathVariable(value = "id")Long id) {
 		model.addAttribute("manufacturer", service.findById(id)) ;
-		return "singleManufacturer";
+		model.addAttribute("origins", service.getCountriesList());
+		return "updateManufacturer";
 	}
 	
 	
 	
-	@PostMapping("/updateManufacturerName/{id}")
-	public String updateCoatName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
-		service.updateManufacturerName(id , name);
-		return "redirect:/manufacturer/" + id;
+	@PostMapping("/updateManufacturer/{id}")
+	public String updateCoatName(@PathVariable(value = "id")Long id , Manufacturer manufacturer ) {
+		service.updateManufacturer(id, manufacturer );
+		return "redirect:/administration/manufacturers";
 	}
 
 }

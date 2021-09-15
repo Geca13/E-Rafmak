@@ -47,36 +47,31 @@ public class ManufacturerService {
 		return manufacturerRepository.save(manufacturer);
 	}
 
-	private void setOriginToManufacturer(Manufacturer manufacturer) {
+	private Origin setOriginToManufacturer(Manufacturer manufacturer) {
+		Origin origin = new Origin();
 		if(originRepository.existsByName(manufacturer.getOrigin().getName())) {
 			manufacturer.setOrigin(originRepository.findByName(manufacturer.getOrigin().getName()));
 		} else {
-			Origin origin = new Origin(origins().size()+1L, manufacturer.getOrigin().getName());
+			origin.setId(origins().size()+1L);
+			origin.setName(manufacturer.getOrigin().getName());
 			originRepository.save(origin);
 			manufacturer.setOrigin(origin);
 		}
+		return origin;
 	}
 	
-	public Manufacturer updateManufacturerName(Long id, String name) {
-		Manufacturer manufacturer = findById(id);
-		manufacturer.setName(name);
-		return manufacturerRepository.save(manufacturer);
-	}
-	
-	public Manufacturer updateManufacturerOrigin(Long id, String origin) {
-		Origin findOrigin = originRepository.findByName(origin);
-		Manufacturer manufacturer = findById(id);
-		manufacturer.setOrigin(findOrigin);
-		return manufacturerRepository.save(manufacturer);
-	}
-	
-	public void deleteManufacturer(Long id) {
-		Manufacturer manufacturer = findById(id);
-		manufacturer.setOrigin(null);
-		manufacturerRepository.delete(manufacturer);
-	}
 	
 	public List<Origin> origins() {
 		return originRepository.findAll();
+	}
+
+	public Manufacturer updateManufacturer(Long id, Manufacturer manufacturer) {
+		Manufacturer forUpdate = findById(id);
+		forUpdate.setEmail(manufacturer.getEmail());
+		forUpdate.setName(manufacturer.getName());
+		Origin origin = setOriginToManufacturer(manufacturer);
+		forUpdate.setOrigin(origin);
+		return manufacturerRepository.save(forUpdate);
+		
 	}
 }
