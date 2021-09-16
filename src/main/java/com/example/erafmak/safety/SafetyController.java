@@ -1,6 +1,6 @@
 package com.example.erafmak.safety;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -71,6 +69,12 @@ public class SafetyController {
 		return REDIRECT + id;
 	}
 	
+	@PostMapping("/removeSizeFromSafety/{id}/{sid}")
+	public String removeSizeFromSafety(@PathVariable(value = "id")Long id ,@PathVariable(value = "sid")Long sid ) {
+		service.removeSizeFromSafety(sid);
+		return REDIRECT + id;
+	}
+	
 	@PostMapping("/setAvailabilityPerSize/{id}/{sid}")
 	public String updateQuantityToSafety(@PathVariable(value = "id")Long id ,@PathVariable(value = "sid")Long sid ) {
 		service.updateSafetyAvailabilityPerSize(sid);
@@ -79,10 +83,10 @@ public class SafetyController {
 	
 	@GetMapping("/addSizesToSafety/{id}")
     public String addSizesToSafetyForm(Model model , @PathVariable("id")Long id) {
-		List<Size> allSizes = new ArrayList<>();
+		
 		model.addAttribute("safety", service.findSafetyById(id));
-		model.addAttribute("allSizes", allSizes);
-		model.addAttribute("sizes", service.sizes());
+		model.addAttribute("sizes", service.sizes(id));
+		
 		return "sizes";
 		
 	}

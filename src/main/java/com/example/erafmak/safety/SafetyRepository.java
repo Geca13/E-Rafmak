@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SafetyRepository extends JpaRepository<Safety, Long> {
 
+	Boolean existsByIdAndSizeQty_Size(Long id,Size size);
+	
+	Safety findByIdAndSizeQty_Size(Long id,Size size);
 }

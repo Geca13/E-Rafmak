@@ -6,14 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.erafmak.abraziveMaterials.sander.GranulationQty;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -78,10 +77,20 @@ public class SafetyService {
 			return safetyRepository.findAll();
 		}
 		
-		public List<SizeQuantity> sizes(){
-			return sqRepository.findAll();
+		public List<Size> sizes (Long id){
+			
+			List<Size> allSizes = new ArrayList<>(Arrays.asList(Size.values()));
+			List<Size> sizes = new ArrayList<>();
+			
+				for (Size size : allSizes) {
+					if(!safetyRepository.existsByIdAndSizeQty_Size(id, size)) {
+						sizes.add(size);
+					}
+				}
+				return sizes;
+			
 		}
-
+		
 		public Safety updatePrice(Long id, Double price) {
 			Safety safety = findSafetyById(id);
 			safety.setPrice(price);
@@ -119,6 +128,7 @@ public class SafetyService {
 
 		public void addSizesToSafety(Long id, List<Size> allSizes) {
 			Safety safety = findSafetyById(id);
+			
 			for (Size size : allSizes) {
 				SizeQuantity sizeQty = new SizeQuantity();
 				sizeQty.setId(sqRepository.count()+1L);
@@ -128,6 +138,14 @@ public class SafetyService {
 				safety.getSizeQty().add(sizeQty);
 				safetyRepository.save(safety);
 			}
+			
+		}
+
+
+
+		public void removeSizeFromSafety(Long sid) {
+			
+			sqRepository.delete(sqRepository.findById(sid).get());
 			
 		}
 

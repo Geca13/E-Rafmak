@@ -78,16 +78,19 @@
                 th:text="'size: '+${size.size.displayValue}"  ></p>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/products/setAvailabilityPerSize/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
-                <label class="switch">
-                 <input th:checked="${size.isAvailable eq true}"  type="checkbox">
-                 <span class="slider round"></span>
-                 </label>
-                 <button>update</button>
+                
+                 <button th:if="${size.isAvailable eq true}">Set Not Available</button>
+                 <button th:unless="${size.isAvailable eq true}">Set Available</button>
+                 
                 </form>
+                <form th:action="@{/products/removeSizeFromSafety/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
+                <button >Remove</button>
+                </form>
+                
                 </div>
                 </li>
                 </ul>
-      
+      <a th:href="@{/products/addSizesToSafety/{id}(id=${safety.id})}">add sizes</a>
        </div>
        <div>
                  </div>
@@ -97,7 +100,7 @@
         
         
        </div>
-       <a th:href="@{/products/addSizesToSafety/{id}(id=${safety.id})}">add sizes</a>
+       
     </section>
 
 
