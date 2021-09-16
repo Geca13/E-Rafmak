@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.erafmak.abraziveMaterials.sander.GranulationQty;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -28,19 +29,14 @@ public class SafetyService {
 	SizeQuantityRepository sqRepository;
 	
 	
-	    public Safety newSafety(Safety safety, List<Size> sizes, MultipartFile multiPartFile) throws IOException {
+	    public Safety newSafety(Safety safety,  MultipartFile multiPartFile) throws IOException {
 	    	
 	    	String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 			
 			uploadSafetyImage(safety, multiPartFile, fileName);
+			safety.setId(safetyRepository.count()+1L);
 			safety.setIsAvailable(true);
 			safetyRepository.save(safety);
-			
-			for (Size size : sizes) {
-	    		SizeQuantity quantity = new SizeQuantity();
-	    		quantity.setSize(size);
-	    		sqRepository.save(quantity);
-	    		safety.getSizeQty().add(quantity);			}
 			
 			return safetyRepository.save(safety);
 		}
@@ -118,6 +114,20 @@ public class SafetyService {
 			SizeQuantity available = sqRepository.findById(sid).get();
 			available.setIsAvailable(!available.getIsAvailable());
 			return sqRepository.save(available);
+			
+		}
+
+		public void addSizesToSafety(Long id, List<Size> allSizes) {
+			Safety safety = findSafetyById(id);
+			for (Size size : allSizes) {
+				SizeQuantity sizeQty = new SizeQuantity();
+				sizeQty.setId(sqRepository.count()+1L);
+				sizeQty.setIsAvailable(true);
+				sizeQty.setSize(size);
+				sqRepository.save(sizeQty);
+				safety.getSizeQty().add(sizeQty);
+				safetyRepository.save(safety);
+			}
 			
 		}
 

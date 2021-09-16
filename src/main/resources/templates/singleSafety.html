@@ -71,14 +71,18 @@
           Price
             <span th:text="*{price}" class='drink-data'></span> 
           </p>
+          
                 
                   <ul>
                   <li th:each="size : ${safety.sizeQty}"> <p
                 th:text="'size: '+${size.size.displayValue}"  ></p>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <form th:action="@{/products/addQuantityToSafetyPerSize/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
-                <input name="quantity" placeholder="add more qty" type="text"/>
-                <button >add</button>
+                <form th:action="@{/products/setAvailabilityPerSize/{id}/{sid}(id=${safety.id},sid=${size.id})}" method="post">
+                <label class="switch">
+                 <input th:checked="${size.isAvailable eq true}"  type="checkbox">
+                 <span class="slider round"></span>
+                 </label>
+                 <button>update</button>
                 </form>
                 </div>
                 </li>
@@ -93,6 +97,7 @@
         
         
        </div>
+       <a th:href="@{/products/addSizesToSafety/{id}(id=${safety.id})}">add sizes</a>
     </section>
 
 

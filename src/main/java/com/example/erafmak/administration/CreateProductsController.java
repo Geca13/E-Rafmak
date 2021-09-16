@@ -221,13 +221,12 @@ public class CreateProductsController {
 	public String safetyModel(Model model) {
 		model.addAttribute("safety", new Safety());
 		model.addAttribute("manufacturers", manService.manufacturers());
-		model.addAttribute("sizes", safetyService.sizes());
 		return "addSafety";
 	}
 	
 	@PostMapping("/newSafety")
-	public String createPrimer(@ModelAttribute(value = "safety")Safety safety, @Param(value = "sizes")List<Size>sizes, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
-		safetyService.newSafety(safety , sizes , multiPartFile);
+	public String createPrimer(@ModelAttribute(value = "safety")Safety safety,  @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		safetyService.newSafety(safety , multiPartFile);
 	return REDIRECT + "safety/" + safety.getId();
 	}
 	

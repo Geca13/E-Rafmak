@@ -54,15 +54,6 @@
       <label for="fileName" class="control-label">Image</label><i class="bar"></i>
     </div>
 
-    <h3>Select Sizes And Quantities</h3>
-    
-    <ul>
-  <li th:each="size : ${T(com.example.erafmak.safety.Size).values()}">
-    <input type="checkbox" th:name="sizes" th:value="${size}" />
-    <label  th:text="${size.displayValue}"></label>
-   
-  </li>
-</ul>
   
      <div class="button-container">
     <button type="submit" class="button"><span>Submit</span></button>

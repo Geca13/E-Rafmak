@@ -1,13 +1,19 @@
 package com.example.erafmak.safety;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -21,7 +27,6 @@ public class SafetyController {
 	ManufacturerService manService;
 	
 	private final String REDIRECT = "redirect:/products/safety/";
-	
 	
 	@PostMapping("/deleteSafety/{id}")
 	public String deleteSafety(@PathVariable(value = "id")Long id) {
@@ -71,6 +76,21 @@ public class SafetyController {
 		service.updateSafetyAvailabilityPerSize(sid);
 		return REDIRECT + id;
 	}
-
-
+	
+	@GetMapping("/addSizesToSafety/{id}")
+    public String addSizesToSafetyForm(Model model , @PathVariable("id")Long id) {
+		List<Size> allSizes = new ArrayList<>();
+		model.addAttribute("safety", service.findSafetyById(id));
+		model.addAttribute("allSizes", allSizes);
+		model.addAttribute("sizes", service.sizes());
+		return "sizes";
+		
+	}
+	
+	@PostMapping("/addSizesToSafety/{id}")
+    public String addSizesToSafety(@PathVariable("id")Long id, @RequestParam("allSizes") List<Size> allSizes) {
+		service.addSizesToSafety(id, allSizes);
+		return REDIRECT + id;
+		
+	}
 }
