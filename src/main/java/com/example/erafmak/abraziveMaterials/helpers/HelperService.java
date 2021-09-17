@@ -7,20 +7,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.erafmak.abraziveMaterials.sander.Granulation;
-import com.example.erafmak.abraziveMaterials.sander.GranulationQty;
 import com.example.erafmak.abraziveMaterials.sander.GranulationQtyRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
-import com.example.erafmak.safety.Size;
-import com.example.erafmak.safety.SizeQuantity;
 
 @Service
 public class HelperService {

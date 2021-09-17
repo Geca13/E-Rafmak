@@ -24,71 +24,111 @@
       
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
-         <form th:action="@{/products/updateSanderName/{id}(id=${sander.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update description" >
-           <button>change</button>
+         <form th:action="@{/products/updateName/{id}(id=${sander.id})}" method="post"  >
+          <input type="text" th:name="name" placeholder="update name" >
+           <button>update</button>
          </form>
         </div> 
           <br><br><br>
        <div class ='drink'>
-        <img  class="single" th:src="*{imageUrl}" alt='image' />
+        <div>
+        <img class="single"  th:src="*{imageUrl}" alt='image' />
+        <br>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        
+       <form th:action="@{/products/updateSanderImage/{id}(id=${sander.id})}" enctype="multipart/form-data" method="post"  >
+          <input type="file" name="fileImage" id="fileImage"  required="required"/>
+                  <button>update</button>
+          </form>
+          </div>
+        </div>
  
         <div class="container">
            <div class="header"><h3>Details</h3></div>
             <div class="main">
              <div class="leftSide" style="text-align:left">
                
-                    <p >
-          Manufacturer
-            <span th:text="*{manufacturer.name}" class='drink-data'></span> 
-          </p>
+           <p> Manufacturer <span th:text="*{manufacturer.name}" class='drink-data'></span>  </p>
+           
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateSanderManufacturer/{id}(id=${sander.id})}" method="post" >
             <select  th:name="manufacturer">
-             <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
              </select>
-             <button>change</button>
+             <button>update</button>
             </form>
            </div>
-         <p >
-          Dimension
-            <span th:text="*{dimension.displayValue}" class='drink-data'></span> 
-          </p>
+           
+            <p> Pieces <span th:text="*{piecesInPack}" class='drink-data'></span>  </p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/updateSanderPieces/{id}(id=${sander.id})}"method="post">
+              <input name="pieces" maxlength="5" placeholder="new value" required="required"></input>
+              <button>update</button>
+            </form>
+           
+            <p> Dimension <span th:text="*{dimension.displayValue}" class='drink-data'></span> </p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/updateSanderDimension/{id}(id=${sander.id})}"method="post">
+             
+               <select th:name="dimension" >
+               <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.sander.Dimension).values()}"
+                 th:value="${dimension}"
+                 th:text="${dimension.displayValue}"/>
+               </select>
+             <button>update</button>
+            </form>
           
-          <p >
-          Condition
-            <span th:text="*{condition.displayValue}" class='drink-data'></span> 
-          </p>
+            <p> Condition <span th:text="*{condition.displayValue}" class='drink-data'></span>  </p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/updateSanderCondition/{id}(id=${sander.id})}"method="post">
+             
+               <select th:name="condition" >
+               <option th:each="condition : ${T(com.example.erafmak.abraziveMaterials.sander.Condition).values()}"
+                 th:value="${condition}"
+                 th:text="${condition.displayValue}"/>
+               </select>
+             <button>update</button>
+            </form>
           
-          <p >
-          Type
-            <span th:text="*{type.displayValue}" class='drink-data'></span> 
-          </p>
+            <p> Type <span th:text="*{type.displayValue}" class='drink-data'></span> </p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/updateSanderType/{id}(id=${sander.id})}" method="post">
+             
+               <select th:name="type" >
+               <option th:each="type : ${T(com.example.erafmak.abraziveMaterials.sander.Type).values()}"
+                 th:value="${type}"
+                 th:text="${type.displayValue}"/>
+               </select>
+               <button>update</button>
+            </form>
              
               </div>
               <div class="rightSide">
               <div class="thirdItem">
                 
-                  <ul>
-                  <li th:each="gran : ${sander.granulationQty}"> <p
-                th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '"  ></p>
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
-                
+             <ul>
+              <li th:each="gran : ${sander.granulationQty}"> <p
+                      th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '"  ></p>
+               <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/products/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
-                <input name="price" placeholder="set new price" type="text"/>
-                <button >add</button>
+                 <input name="price" placeholder="set new price" type="text"/>
+                  <button >update</button>
+                  </form>
+                  
+                <form th:action="@{/products/setAvailabilityToSander/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
+                  <button th:if="${gran.isAvailable eq true}">Set Not Available</button>
+                  <button th:unless="${gran.isAvailable eq true}">Set Available</button>
                 </form>
-                <form th:action="@{/products/removeGranulationFromSander/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
-                <button >Remove</button>
-                </form>
-                </div>
                 
-                </li>
-                </ul>
-      <a th:href="@{/products/addGranulationToSander/{id}(id=${sander.id})}">add sizes</a>
+                <form th:action="@{/products/removeGranulationFromSander/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
+                 <button >Remove</button>
+                </form>
+                <br>
+                <hr>
+                
+               </div>
+               </li>
+             </ul>
+      <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/addGranulationToSander/{id}(id=${sander.id})}">add sizes</a>
+      <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteSander/{id}(id=${sander.id})}">Delete</a>
        </div>
        <div>
                  </div>

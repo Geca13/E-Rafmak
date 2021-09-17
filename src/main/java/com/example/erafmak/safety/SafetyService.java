@@ -30,9 +30,7 @@ public class SafetyService {
 	
 	    public Safety newSafety(Safety safety,  MultipartFile multiPartFile) throws IOException {
 	    	
-	    	String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
-			
-			uploadSafetyImage(safety, multiPartFile, fileName);
+	    	uploadSafetyImage(safety, multiPartFile);
 			safety.setId(safetyRepository.count()+1L);
 			safety.setIsAvailable(true);
 			safetyRepository.save(safety);
@@ -41,8 +39,8 @@ public class SafetyService {
 		}
 
 
-
-		private void uploadSafetyImage(Safety safety, MultipartFile multiPartFile, String fileName) throws IOException {
+		private void uploadSafetyImage(Safety safety, MultipartFile multiPartFile) throws IOException {
+			String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 			Path currentPath = Paths.get(".");
 			Path absolutePath = currentPath.toAbsolutePath();
 			
@@ -146,8 +144,6 @@ public class SafetyService {
 			sqRepository.delete(sqRepository.findById(sid).get());
 			
 		}
-		
-		
 		
 
 }

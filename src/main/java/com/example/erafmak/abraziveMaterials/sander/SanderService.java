@@ -1,5 +1,6 @@
 package com.example.erafmak.abraziveMaterials.sander;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -10,12 +11,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.omg.IOP.CodecPackage.InvalidTypeForEncodingHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.abraziveMaterials.helpers.Helper;
+import com.example.erafmak.abraziveMaterials.helpers.HelperRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
-import com.example.erafmak.safety.Safety;
+
 
 @Service
 public class SanderService {
@@ -27,11 +32,21 @@ public class SanderService {
 	SanderRepository sanderRepository;
 	
 	@Autowired
+	HelperRepository helperRepository;
+	
+	@Autowired
 	GranulationQtyRepository gqRepository;
 	
 	public Sander newSander(Sander sander, MultipartFile multiPartFile) throws IOException{
 		
-        String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
+        uploadImageToSander(sander, multiPartFile);
+        
+		return sanderRepository.save(sander);
+		
+	}
+
+	private void uploadImageToSander(Sander sander, MultipartFile multiPartFile) throws IOException {
+		String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
 		Path currentPath = Paths.get(".");
 		Path absolutePath = currentPath.toAbsolutePath();
@@ -50,9 +65,6 @@ public class SanderService {
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload");
 		}
-        
-		return sanderRepository.save(sander);
-		
 	}
 	
 	public Sander findSanderById(Long id) {
@@ -61,10 +73,32 @@ public class SanderService {
 	
 	public void deleteSander(Long id) {
 		Sander sander = sanderRepository.findById(id).get();
+		deleteImage(sander);
+		List<Helper> helpers = helperRepository.findAllBySanders_Id(id);
+		if(!helpers.isEmpty()) {
+		for (Helper helper : helpers) {
+			helper.getSanders().remove(sander);
+			helperRepository.save(helper);
+		 }
+		}
 		sander.setManufacturer(null);
 		sanderRepository.delete(sander);
 	}
 	
+	private void deleteImage(Sander sander) {
+		String storedImage = sander.getImageUrl().substring(sander.getImageUrl().lastIndexOf("/"));
+		Path currentPath = Paths.get(".");
+		Path absolutePath = currentPath.toAbsolutePath();
+		
+		String uploadDir = absolutePath + "/src/main/resources/static/img/sanders/";
+		
+            File file = new File(uploadDir + storedImage);
+            if(file.exists()) {
+            	file.delete();
+            }
+		
+	}
+
 	public List<Sander> sanders() {
 		return sanderRepository.findAll();
 	}
@@ -154,4 +188,45 @@ public class SanderService {
 		sanderRepository.save(sander);
 		gqRepository.delete(gqRepository.findById(gid).get());
 	}
+	
+    public Sander updateSanderImage(Long id, MultipartFile multiPartFile) throws IOException {
+		
+		Sander sander = findSanderById(id);
+		deleteImage(sander);
+		
+		try {
+			uploadImageToSander(sander, multiPartFile);
+		} catch (IOException e) {
+			throw new IOException("Something went wrong during image upload, please try again");
+		}
+		return sanderRepository.save(sander);
+		
+	}
+
+    public void updateManufacturerCondition(Long id, Condition condition) {
+    	Sander sander = findSanderById(id);
+    	sander.setCondition(condition);
+    	sanderRepository.save(sander);
+}
+
+    public void updateManufacturerDimension(Long id, Dimension dimension) {
+    	Sander sander = findSanderById(id);
+	    sander.setDimension(dimension);
+	    sanderRepository.save(sander);
+}
+
+    public void updateManufacturerType(Long id, Type type) {
+    	Sander sander = findSanderById(id);
+	    sander.setType(type);
+	    sanderRepository.save(sander);
+}
+
+	public void updateManufacturerPieces(Long id, Integer pieces) {
+		Sander sander = findSanderById(id);
+	    sander.setPiecesInPack(pieces);
+	    sanderRepository.save(sander);
+		
+	}
+    
+	
 }

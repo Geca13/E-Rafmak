@@ -730,7 +730,7 @@ Cocktail
 .drink p {
   font-weight: bold;
   text-transform: capitalize;
-  line-height: 1.5;
+  line-height: 2.0;
 }
 .drink span {
   margin-right: 0.5rem;
@@ -739,7 +739,7 @@ Cocktail
   background: var(--primaryLightColor);
   padding: 0.25rem 0.5rem;
   border-radius: var(--mainBorderRadius);
-  color: var(--primaryColor);
+  color: orange;
 }
 .drink-info {
   padding-top: 2rem;

@@ -31,7 +31,16 @@
         </div>  
           <br><br><br>
        <div class ='drink'>
-        <img  class="single" th:src="*{imageUrl}" alt='image' />
+        <div>
+        <img class="single"  th:src="*{imageUrl}" alt='image' />
+        
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+       <form th:action="@{/products/updateSafetyImage/{id}(id=${safety.id})}" enctype="multipart/form-data" method="post"  >
+          <input type="file" name="fileImage" id="fileImage"  required="required"/>
+                  <button>change</button>
+          </form>
+          </div>
+        </div>
  
         <div class="container">
            <div class="header"><h3>Details</h3></div>
