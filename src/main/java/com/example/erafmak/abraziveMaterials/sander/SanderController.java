@@ -2,6 +2,8 @@ package com.example.erafmak.abraziveMaterials.sander;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -23,6 +25,8 @@ public class SanderController {
 	
 	@Autowired
 	ManufacturerService manService;
+	
+	private final String REDIRECT = "redirect:/products/sander/";
 	
 	
 	@PostMapping("/deleteSander/{id}")
@@ -96,6 +100,28 @@ public class SanderController {
 	public String updateAvailabilityPerGranulation(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid ) {
 		service.updateSanderAvailability(gid);
 		return "redirect:/sander/" + id;
+	}
+	
+	@GetMapping("/addGranulationToSander/{id}")
+    public String addSizesToSafetyForm(Model model , @PathVariable("id")Long id) {
+		
+		model.addAttribute("sander", service.findSanderById(id));
+		model.addAttribute("granulations", service.granulations(id));
+		
+		return "granulations";
+		
+	}
+	
+	@PostMapping("/addGranulationToSander/{id}")
+    public String addSizesToSafety(@PathVariable("id")Long id, @RequestParam("allGranulations") List<Granulation> allGranulations) {
+		service.addGranulationToSander(id, allGranulations);
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/removeGranulationFromSander/{id}/{gid}")
+	public String removeGranulationFromSander(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid ) {
+		service.removeGranulationFromSander(gid);
+		return REDIRECT + id;
 	}
 
 }

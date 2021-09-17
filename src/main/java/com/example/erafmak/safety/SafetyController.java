@@ -95,6 +95,6 @@ public class SafetyController {
     public String addSizesToSafety(@PathVariable("id")Long id, @RequestParam("allSizes") List<Size> allSizes) {
 		service.addSizesToSafety(id, allSizes);
 		return REDIRECT + id;
-		
 	}
+	
 }

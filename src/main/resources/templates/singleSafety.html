@@ -72,6 +72,11 @@
             <span th:text="*{price}" class='drink-data'></span> 
           </p>
           
+          <p >
+          Available
+            <span th:text="*{isAvailable}" class='drink-data'></span> 
+          </p>
+          
                 
                   <ul>
                   <li th:each="size : ${safety.sizeQty}"> <p

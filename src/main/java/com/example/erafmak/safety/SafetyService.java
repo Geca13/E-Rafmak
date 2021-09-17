@@ -78,17 +78,14 @@ public class SafetyService {
 		}
 		
 		public List<Size> sizes (Long id){
-			
 			List<Size> allSizes = new ArrayList<>(Arrays.asList(Size.values()));
 			List<Size> sizes = new ArrayList<>();
-			
-				for (Size size : allSizes) {
+			for (Size size : allSizes) {
 					if(!safetyRepository.existsByIdAndSizeQty_Size(id, size)) {
 						sizes.add(size);
 					}
 				}
 				return sizes;
-			
 		}
 		
 		public Safety updatePrice(Long id, Double price) {
@@ -141,12 +138,16 @@ public class SafetyService {
 			
 		}
 
-
-
 		public void removeSizeFromSafety(Long sid) {
+			Safety safety = safetyRepository.findBySizeQty_Id(sid);
+			safety.getSizeQty().remove(sqRepository.findById(sid).get());
+			safetyRepository.save(safety);
 			
 			sqRepository.delete(sqRepository.findById(sid).get());
 			
 		}
+		
+		
+		
 
 }

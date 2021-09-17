@@ -74,22 +74,21 @@
                 
                   <ul>
                   <li th:each="gran : ${sander.granulationQty}"> <p
-                th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '}"  ></p>
+                th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '"  ></p>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <form th:action="@{/products/addQuantityToSanderPerGranulation/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
-                <input name="quantity" placeholder="add more qty" type="text"/>
-                <button >add</button>
-                </form>
                 
                 <form th:action="@{/products/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
                 <input name="price" placeholder="set new price" type="text"/>
                 <button >add</button>
                 </form>
+                <form th:action="@{/products/removeGranulationFromSander/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
+                <button >Remove</button>
+                </form>
                 </div>
                 
                 </li>
                 </ul>
-      
+      <a th:href="@{/products/addGranulationToSander/{id}(id=${sander.id})}">add sizes</a>
        </div>
        <div>
                  </div>

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SizeQuantityRepository extends JpaRepository<SizeQuantity, Long> {
 	
-	SizeQuantity findBySize(Size size);
+	SizeQuantity findByIsAvailable(Boolean available);
 
 	Boolean existsBySize(Size size);
 

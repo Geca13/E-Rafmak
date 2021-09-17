@@ -6,14 +6,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.erafmak.manufacturers.ManufacturerService;
+import com.example.erafmak.safety.Safety;
 
 @Service
 public class SanderService {
@@ -25,9 +27,9 @@ public class SanderService {
 	SanderRepository sanderRepository;
 	
 	@Autowired
-	GranulationQtyRepository gkRepository;
+	GranulationQtyRepository gqRepository;
 	
-	public Sander newSander(Sander sander, MultipartFile multiPartFile, List<GranulationQty> list) throws IOException{
+	public Sander newSander(Sander sander, MultipartFile multiPartFile) throws IOException{
 		
         String fileName = StringUtils.cleanPath(multiPartFile.getOriginalFilename());
 		
@@ -49,15 +51,6 @@ public class SanderService {
 			throw new IOException("Something went wrong during image upload");
 		}
         
-        for (GranulationQty gran : list) {
-			GranulationQty granQty = new GranulationQty();
-			granQty.setGranulation(gran.getGranulation());
-			granQty.setPrice(gran.getPrice());
-			granQty.setIsAvailable(true);
-			gkRepository.save(granQty);
-			sander.getGranulationQty().add(granQty);
-		}
-		
 		return sanderRepository.save(sander);
 		
 	}
@@ -77,9 +70,9 @@ public class SanderService {
 	}
 
 	public GranulationQty updatePrice(Long gid, Double price) {
-		GranulationQty sander = gkRepository.findById(gid).get();
+		GranulationQty sander = gqRepository.findById(gid).get();
 		sander.setPrice(price);
-		return gkRepository.save(sander);
+		return gqRepository.save(sander);
 		
 	}
 
@@ -98,9 +91,9 @@ public class SanderService {
 	}
 
 	public GranulationQty updateSanderAvailability(Long gid) {
-		GranulationQty gran = gkRepository.findById(gid).get();
+		GranulationQty gran = gqRepository.findById(gid).get();
 		gran.setIsAvailable(!gran.getIsAvailable());
-		return gkRepository.save(gran);
+		return gqRepository.save(gran);
 		
 	}
 
@@ -128,5 +121,37 @@ public class SanderService {
 		List<Sander> wets = sanderRepository.findByNameContaining("WPF");
 		return wets;
 	}
+	
+	public List<Granulation> granulations (Long id){
+		List<Granulation> allGranulations = new ArrayList<>(Arrays.asList(Granulation.values()));
+		List<Granulation> granulations = new ArrayList<>();
+		for (Granulation granulation : allGranulations) {
+				if(!sanderRepository.existsByIdAndGranulationQty_Granulation(id, granulation)) {
+					granulations.add(granulation);
+				}
+			}
+			return granulations;
+	}
 
+	public void addGranulationToSander(Long id, List<Granulation> allGranulations) {
+		Sander sander = findSanderById(id);
+		for (Granulation granulation : allGranulations) {
+			GranulationQty newGranQty = new GranulationQty();
+			newGranQty.setId(gqRepository.count()+1L);
+			newGranQty.setIsAvailable(true);
+			newGranQty.setPrice(0.00);
+			newGranQty.setGranulation(granulation);
+			gqRepository.save(newGranQty);
+			sander.getGranulationQty().add(newGranQty);
+			sanderRepository.save(sander);
+		}
+		
+	}
+
+	public void removeGranulationFromSander(Long gid) {
+		Sander sander = sanderRepository.findByGranulationQty_Id(gid);
+		sander.getGranulationQty().remove(gqRepository.findById(gid).get());
+		sanderRepository.save(sander);
+		gqRepository.delete(gqRepository.findById(gid).get());
+	}
 }

@@ -117,8 +117,8 @@ public class CreateProductsController {
 	}
 	
 	@PostMapping("/newSander")
-	public String createSander(@ModelAttribute(value = "sander")Sander sander, @RequestParam("fileImage") MultipartFile multiPartFile, @RequestParam("list") List<GranulationQty> list) throws IOException {
-		sanderService.newSander(sander,multiPartFile, list);
+	public String createSander(@ModelAttribute(value = "sander")Sander sander, @RequestParam("fileImage") MultipartFile multiPartFile) throws IOException {
+		sanderService.newSander(sander,multiPartFile);
 	return REDIRECT + "sander/" + sander.getId();
 	}
 	

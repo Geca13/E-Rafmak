@@ -20,72 +20,70 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container">
-<form th:action="@{/create/newSander}" th:object="${sander}" enctype="multipart/form-data" method="post">
-<div>
-  <label>Description</label>
-  <input type="text" th:field="*{name}" />
- 
-  <label>Price</label>
-  
- </div>
- <div>
- <label>Quantity</label>
- 
- 
-  <label>Image Url</label>
- <input type="text" th:field="*{imageUrl}" />
- </div>
- 
- <div>
- <label>Pieces</label>
- <input type="text" th:field="*{piecesInPack}" />
- 
-  <label>Type</label>
-  <select th:field="${sander.type}" >
+  <form th:action="@{/create/newSander}" th:object="${sander}" enctype="multipart/form-data" method="post">
+    <h1>New Safety Form</h1>
     
-      <option th:each="type : ${T(com.example.erafmak.abraziveMaterials.sander.Type).values()}"
-      
-      th:value="${type}"
-            th:text="${type.displayValue}"/>
-       </select> 
- </div>
- 
- <div>
- <label>Condition</label>
-  <select th:field="${sander.condition}" >
-    
-      <option th:each="condition : ${T(com.example.erafmak.abraziveMaterials.sander.Condition).values()}"
-      
-      th:value="${condition}"
-            th:text="${condition.displayValue}"/>
-       </select>
- 
-  
- </div>
- 
- <div>
- 
- <label>Manufacturer</label>
- <select  th:field="*{manufacturer}">
-     <option value="">-Select-</option>
+    <div class="form-group">
+      <select  th:field="*{manufacturer}">
+     
       <option th:each="manufacturer : ${manufacturers}"
         th:value="${manufacturer.id}"
-        th:text="${manufacturer.name}"/>
+        th:text="${manufacturer.name}"
+        />
        </select>
-       
-  <select th:field="${sander.dimension}" >
+      <label  for="select" class="control-label">Manufacturer</label><i class="bar"></i>
+    </div>
     
+   <div class="form-group">
+      <input th:field="*{name}" maxlength="100" type="text" required="required"/>
+      <label for="input"  class="control-label">Product Name</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <textarea th:field="*{piecesInPack}" maxlength="250" required="required"></textarea>
+      <label for="textarea" class="control-label">Pieces In The Pack</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+     <select th:field="${sander.type}" >
+      <option th:each="type : ${T(com.example.erafmak.abraziveMaterials.sander.Type).values()}"
+       th:value="${type}"
+         th:text="${type.displayValue}"/>
+       </select>
+      <label  for="select" class="control-label">Select Type</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+     <select th:field="${sander.condition}" >
+      <option th:each="condition : ${T(com.example.erafmak.abraziveMaterials.sander.Condition).values()}"
+       th:value="${condition}"
+         th:text="${condition.displayValue}"/>
+      </select>
+      <label  for="select" class="control-label">Select Condition</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+     <select th:field="${sander.dimension}" >
       <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.sander.Dimension).values()}"
-      
-      th:value="${dimension}"
-            th:text="${dimension.displayValue}"/>
-       </select>     
+        th:value="${dimension}"
+          th:text="${dimension.displayValue}"/>
+      </select>
+      <label  for="select" class="control-label">Select Dimension</label><i class="bar"></i>
+    </div>
+    
+    <div class="form-group">
+      <input type="file" name="fileImage" id="fileImage"  required="required"/>
+      <label for="fileName" class="control-label">Image</label><i class="bar"></i>
+    </div>
+
+  
+     <div class="button-container">
+    <button type="submit" class="button"><span>Submit</span></button>
+  </div>
+  </form>
  
- <button type="submit">Create</button>
- 
- </div>
-</form>
 </div>
+
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>

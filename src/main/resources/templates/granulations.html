@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafmak</title>
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+ 
+    </style>
+</head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+  <form th:action="@{/products/addGranulationToSander/{id}(id=${sander.id})}"  method="post">
+        
+
+    <h3>Select Granulations</h3>
+    
+    <ul>
+  <li th:each="granulation : ${granulations}">
+  
+    <input  type="checkbox" th:name="allGranulations" th:value="${granulation}" />
+    <label  th:text="${granulation.displayValue}"></label>
+   
+  </li>
+</ul>
+  
+     <div class="button-container">
+    <button type="submit" class="button"><span>Submit</span></button>
+  </div>
+  </form>
+ 
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript" th:src="@{/js/js.js}"></script>
+</body>
+
+</html>

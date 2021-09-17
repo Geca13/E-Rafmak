@@ -10,4 +10,8 @@ public interface SanderRepository extends JpaRepository<Sander, Long> {
 
 	List<Sander> findByNameContaining(String discs);
 
+	boolean existsByIdAndGranulationQty_Granulation(Long id, Granulation granulation);
+
+	Sander findByGranulationQty_Id(Long gid);
+
 }
