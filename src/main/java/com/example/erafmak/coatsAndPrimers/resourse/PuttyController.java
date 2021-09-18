@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -50,6 +52,12 @@ public class PuttyController {
 	@PostMapping("/updatePuttyPrice/{id}")
 	public String updatePuttyPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/updatePuttyWeight/{id}")
+	public String updatePuttyWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
+		service.updatePuttyWeight(id, weigth);
 		return REDIRECT + id;
 	}
 	

@@ -100,6 +100,7 @@ public class CreateProductsController {
 	public String helperModel(Model model) {
 		model.addAttribute("helper", new Helper());
 		model.addAttribute("manufacturers", manService.manufacturers());
+		model.addAttribute("sanders", sanderService.sanders());
 		return "addHelper";
 	}
 	

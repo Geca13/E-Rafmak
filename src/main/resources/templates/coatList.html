@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafmak</title>
-  
+  <link rel="stylesheet" th:href="@{/css/forms.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -19,27 +19,27 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<h1 class="middle">Pads</h1>
+<div class="container">
+  <form th:action="@{/products/connectHardenerToCoats/{id}(id=${hardener.id})}"  method="post">
+        
 
- <section class='roomsList'>
-            <div class='roomslist-center'>
-             <article class='room' th:each="pad : ${pads}" >
-            <div class='img-container'>
-              <img th:src="${pad.imageUrl}" alt='sander image'/>
-              <div class="price-top">
-                  <h6 th:text = "${pad.price}"></h6>
-                  <p>MKD</p>
-
-              </div>
-              <a th:href="@{/products/pads/{id}(id=${pad.id})}" class='btn-primary room-link'>
-                  Details 
-                  </a>
-            </div>
-            <p class='room-info' th:text="${pad.name}"></p>
-        </article>
-
-            </div>
-        </section>
+    <h3>Select Coats</h3>
+    
+    <ul>
+  <li th:each="coat : ${coats}">
+  
+    <input  type="checkbox" th:name="allCoats" th:value="${coat.id}" />
+    <label  th:text="${coat.name}"></label>
+   
+  </li>
+</ul>
+  
+     <div class="button-container">
+    <button type="submit" class="button"><span>Submit</span></button>
+  </div>
+  </form>
+ 
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>

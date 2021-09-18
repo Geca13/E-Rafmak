@@ -11,5 +11,6 @@ import com.example.erafmak.coatsAndPrimers.entity.Coat;
 public interface CoatRepository extends JpaRepository<Coat, Long> {
 	
 	List<Coat> findAllByHardeners_Id(Long id);
-
+	
+	Boolean existsByNameAndHardeners_Id(String name , Long id);
 }

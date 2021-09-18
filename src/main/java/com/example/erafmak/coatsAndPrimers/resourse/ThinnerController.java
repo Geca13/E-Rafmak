@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -56,6 +57,12 @@ public class ThinnerController {
 	@PostMapping("/updateThinnerName/{id}")
 	public String updateThinnerName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateThinnerName(id , name);
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/updateThinnerWeight/{id}")
+	public String updateThinnerWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
+		service.updateThinnerWeight(id, weigth);
 		return REDIRECT + id;
 	}
 	

@@ -456,9 +456,9 @@ nav .navbar .links li .sub-menu li{
 }
 .img-container img {
   width: 100%;
-  
-  display: block;
+ display: block;
   transition: var(--mainTransition);
+  max-height: 400px;
 }
 .price-top {
   position: absolute;
@@ -814,6 +814,11 @@ Cocktail
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+
+.middle {
+	text-align: center;
+	margin-top: 100px;
 }
 
 .footer {

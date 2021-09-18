@@ -7,13 +7,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.entity.Primer;
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.coatsAndPrimers.repository.PrimerRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -26,13 +29,15 @@ public class PrimerService {
 	@Autowired
 	ManufacturerService manService;
 	
+	@Autowired
+	HardenerService hardenerService;
+	
     public Primer newPrimer(Primer primer , MultipartFile multiPartFile) throws IOException {
 		
         uploadPrimerImage(primer, multiPartFile);
         primer.setIsAvailable(true);
         
 		return primerRepository.save(primer);
-		
 	}
 
 	private void uploadPrimerImage(Primer primer, MultipartFile multiPartFile) throws IOException {
@@ -90,35 +95,30 @@ public class PrimerService {
 		Primer primer = findPrimerById(id);
 		primer.setPrice(price);
 		return primerRepository.save(primer);
-		
 	}
 
 	public Primer updatePrimerName(Long id, String name) {
 		Primer primer = findPrimerById(id);
 		primer.setName(name);
 		return primerRepository.save(primer);
-		
 	}
 	
 	public Primer updatePrimerDescription(Long id, String description) {
 		Primer primer = findPrimerById(id);
 		primer.setDescription(description);
 		return primerRepository.save(primer);
-		
 	}
     
 	public Primer updateManufacturer(Long id, String manufacturer) {
 		Primer primer = findPrimerById(id);
 		primer.setManufacturer(manService.findByName(manufacturer));
 		return primerRepository.save(primer);
-		
 	}
 
 	public Primer updatePrimerAvailability(Long id) {
 		Primer primer = findPrimerById(id);
 		primer.setIsAvailable(!primer.getIsAvailable());
 		return primerRepository.save(primer);
-		
 	}
 	
     public Primer updatePrimerImage(Long id, MultipartFile multiPartFile) throws IOException {
@@ -133,7 +133,31 @@ public class PrimerService {
 			throw new IOException("Something went wrong during image upload, please try again");
 		}
 		return primerRepository.save(primer);
+	}
+
+	public List<Primer> reducedPrimers(Long id) {
 		
+		List<Primer> reduced = new ArrayList<>();
+		List<Primer> primers = primers();
+		for (Primer primer : primers) {
+			if(!primerRepository.existsByNameAndHardeners_Id(primer.getName(),id)) {
+				reduced.add(primer);
+			}
+		}
+		return reduced;
+	}
+
+	public void updatePrimerWeight(Long id, Weigth weigth) {
+		
+		Primer primer = findPrimerById(id);
+		primer.setWeigth(weigth);
+		primerRepository.save(primer);
+	}
+
+	public void disconectHardenerFromPrimer(Long id, Long hid) {
+		Primer primer = findPrimerById(id);
+		primer.getHardeners().remove(hardenerService.findHardenerById(hid));
+		primerRepository.save(primer);
 	}
 
 

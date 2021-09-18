@@ -1,6 +1,7 @@
 package com.example.erafmak.coatsAndPrimers.resourse;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.coatsAndPrimers.entity.Coat;
+import com.example.erafmak.coatsAndPrimers.entity.Primer;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -33,7 +37,7 @@ public class HardenerController {
 	private final String REDIRECT = "redirect:/products/hardener/";
 	
 	
-	@PostMapping("/deleteHardener/{id}")
+	@GetMapping("/deleteHardener/{id}")
 	public String deleteHardener(@PathVariable(value = "id")Long id) {
 		service.deleteHardener(id);
 		return "redirect:/hardeners";
@@ -92,11 +96,35 @@ public class HardenerController {
 			model.addAttribute("error", e.getMessage());
 			return "singleHardener";
 		}
-		
 		return REDIRECT + id;
 	}
-
 	
-
+	@GetMapping("/connectHardenerToCoats/{id}")
+    public String connectHardenerToCoats(Model model ,@PathVariable ("id") Long id) {
+		model.addAttribute("hardener", service.findHardenerById(id));
+		model.addAttribute("coats", coatService.reducedCoats(id));
+		return "coatList";
+		
+	}
+	
+    @PostMapping("/connectHardenerToCoats/{id}")
+    public String completeConectingHardenerToCoat(@PathVariable("id")Long id, @RequestParam("allCoats")List<Coat> allCoats) {
+    	service.connectHardenerToCoats(id , allCoats);
+    	return REDIRECT + id;
+    }
+    
+    @GetMapping("/connectHardenerToPrimers/{id}")
+    public String connectHardenerToPrimers(Model model ,@PathVariable ("id") Long id) {
+		model.addAttribute("hardener", service.findHardenerById(id));
+		model.addAttribute("primers", primerService.reducedPrimers(id));
+		return "primerList";
+		
+	}
+	
+    @PostMapping("/connectHardenerToPrimers/{id}")
+    public String completeConectingHardenerToPrimer(@PathVariable("id")Long id, @RequestParam("allPrimers")List<Primer> allPrimers) {
+    	service.connectHardenerToPrimer(id , allPrimers);
+    	return REDIRECT + id;
+    }
 
 }

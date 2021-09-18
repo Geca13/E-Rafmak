@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.coatsAndPrimers.repository.CoatRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -26,6 +28,9 @@ public class CoatService {
 	
 	@Autowired
 	ManufacturerService manService;
+	
+	@Autowired
+	HardenerService hardenerService;
 	
     public Coat newCoat(Coat coat , MultipartFile multiPartFile) throws IOException {
     	
@@ -88,12 +93,23 @@ public class CoatService {
 	public List<Coat> coats() {
 		return coatRepository.findAll();
 	}
-
+	
+	public List<Coat> reducedCoats(Long id) {
+		
+		List<Coat> reduced = new ArrayList<>();
+		List<Coat> coats = coats();
+		for (Coat coat : coats) {
+			if(!coatRepository.existsByNameAndHardeners_Id(coat.getName(),id)) {
+				reduced.add(coat);
+			}
+		}
+		return reduced;
+	}
+	
 	public Coat updatePrice(Long id, Double price) {
 		Coat coat = findCoatById(id);
 		coat.setPrice(price);
 		return coatRepository.save(coat);
-		
 	}
 
 	public Coat updateCoatName(Long id, String name) {
@@ -130,13 +146,23 @@ public class CoatService {
 		deleteImage(coat);
 		
 		try {
-			
 			uploadImage(coat, multiPartFile);
 		} catch (IOException e) {
 			throw new IOException("Something went wrong during image upload, please try again");
 		}
 		return coatRepository.save(coat);
-		
+	}
+
+	public void updateCoatWeight(Long id, Weigth weigth) {
+		Coat coat = findCoatById(id);
+		coat.setWeigth(weigth);
+		coatRepository.save(coat);
+	}
+
+	public void disconectHardenerFromCoat(Long id, Long hid) {
+		Coat coat = findCoatById(id);
+		coat.getHardeners().remove(hardenerService.findHardenerById(hid));
+		coatRepository.save(coat);
 	}
 
 }

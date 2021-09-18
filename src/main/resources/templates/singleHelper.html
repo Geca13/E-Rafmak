@@ -26,8 +26,11 @@
 
  <section class='section cocktail-section' th:object="${helper}">
  
+      <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteHelper/{id}(id=${helper.id})}">Delete this Block</a>
       
-       <h2 class ='sectionn-title' th:text="*{name}"></h2>
+ 
+      
+       <h2 class ='middle' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updateHelperName/{id}(id=${helper.id})}" method="post"  >
           <input type="text" name="name" placeholder="update description" >
@@ -37,7 +40,7 @@
       <div class ='drink'>
        <div>
         <img class="single"  th:src="*{imageUrl}" alt='image' />
-        
+        <br>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updateHelperImage/{id}(id=${helper.id})}" enctype="multipart/form-data" method="post"  >
           <input type="file" name="fileImage" id="fileImage"  required="required"/>
@@ -66,9 +69,19 @@
                 <div class='drink-info'>
         
           <p >
-          Liters :
+          Size:
             <span th:text="*{dimension.displayValue}" class='drink-data'>MKD</span> 
           </p>
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
+           <form th:action="@{/products/updateHelperDimension/{id}(id=${helper.id})}" method="post" >
+                           <select th:name="dimension" >
+               <option th:each="dimension : ${T(com.example.erafmak.abraziveMaterials.sander.Dimension).values()}"
+                 th:value="${dimension}"
+                 th:text="${dimension.displayValue}"/>
+               </select>
+             <button>update</button>
+           </form>
+          </div>
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
@@ -86,7 +99,6 @@
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateManufacturer/{id}(id=${helper.id})}" method="post" >
             <select  th:name="manufacturer">
-             <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
@@ -96,22 +108,19 @@
           </div>
           <div>
           <p>
-          Available items:
-            <span th:text="*{isAvaliable}" class='drink-data'></span> 
+          Available :
+          <i style="font-size:20px;color:green" th:if="${helper.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${helper.isAvailable eq true}"  class="fas fa-close"></i>
+            
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/products/addQuantity/{id}(id=${helper.id})}" method="post" >
-            <input type="text" name="quantity" placeholder="add more quantity" >
-            <button>change</button>
-           </form>
-          </div>
+          
+          <form th:action="@{/products/setAvailabilityToHelper/{id}/(id=${helper.id})}" method="post">
+                  <button th:if="${helper.isAvailable eq true}">Set Not Available</button>
+                  <button th:unless="${helper.isAvailable eq true}">Set Available</button>
+                </form>
+          
           </div>
          
-         <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/deleteHelper/{id}(id=${helper.id})}" method="post" >
-           <button>delete</button>
-          </form>
-         </div>
         </div>
        </div>
        <div>
@@ -142,6 +151,9 @@
                   </a>
             </div>
             <p class='room-info' th:text="${sander.name} + ' ' + ${sander.dimension.displayValue}"></p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/disconectSander/{id}/{sid}(id=${helper.id}, sid=${sander.id})}" method="post">
+            <button>Remove</button>
+            </form>
         </article>
 
             </div>

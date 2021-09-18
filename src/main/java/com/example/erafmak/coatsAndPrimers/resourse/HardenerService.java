@@ -77,9 +77,7 @@ public class HardenerService {
 		hardener.setManufacturer(null);
 		
 		removeFromPrimers(id, hardener);
-		
 		removeFromCoats(id, hardener);
-		
 		
 		hardenerRepository.delete(hardener);
 	}
@@ -171,6 +169,24 @@ public class HardenerService {
 		}
 		return hardenerRepository.save(hardener);
 		
+	}
+
+	public void connectHardenerToCoats(Long id, List<Coat> allCoats) {
+		
+		Hardener hardener = findHardenerById(id);
+		for (Coat coat : allCoats) {
+			coat.getHardeners().add(hardener);
+			coatRepository.save(coat);
+		}
+	}
+
+	public void connectHardenerToPrimer(Long id, List<Primer> allPrimers) {
+		
+		Hardener hardener = findHardenerById(id);
+		for (Primer primer : allPrimers) {
+			primer.getHardeners().add(hardener);
+			primerRepository.save(primer);
+		}
 	}
 
 

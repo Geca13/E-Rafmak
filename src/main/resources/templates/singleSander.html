@@ -21,7 +21,8 @@
 
 
  <section class='section cocktail-section' th:object="${sander}">
-      
+       <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteSander/{id}(id=${sander.id})}">Delete this Sander</a>
+       
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
          <form th:action="@{/products/updateName/{id}(id=${sander.id})}" method="post"  >
@@ -99,14 +100,29 @@
                </select>
                <button>update</button>
             </form>
-             
+            
+             <p>
+          Available :
+          <i style="font-size:20px;color:green" th:if="${sander.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${sander.isAvailable eq true}"  class="fas fa-close"></i>
+          </p>
+             <form th:action="@{/products/setAvailabilityToSander/{id}/(id=${sander.id})}" method="post">
+                  <button th:if="${sander.isAvailable eq true}">Set Not Available</button>
+                  <button th:unless="${sander.isAvailable eq true}">Set Available</button>
+                </form>
+       
               </div>
               <div class="rightSide">
+              
               <div class="thirdItem">
-                
+              <br>
+               <h4>Granulatuons</h4>
              <ul>
-              <li th:each="gran : ${sander.granulationQty}"> <p
-                      th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '"  ></p>
+              <li th:each="gran : ${sander.granulationQty}"> <p>
+              <i style="font-size:20px;color:green" th:if="${gran.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${gran.isAvailable eq true}"  class="fas fa-close"></i>
+               <span  th:text="'p'+${gran.granulation.displayValue} + ' : ' + ${gran.price}+' den '" ></span>
+                     </p>
                <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/products/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
                  <input name="price" placeholder="set new price" type="text"/>
@@ -127,15 +143,16 @@
                </div>
                </li>
              </ul>
-      <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/addGranulationToSander/{id}(id=${sander.id})}">add sizes</a>
-      <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteSander/{id}(id=${sander.id})}">Delete</a>
+             <p sec:authorize="hasRole('ROLE_ADMIN')">add more granulations <span><a  th:href="@{/products/addGranulationToSander/{id}(id=${sander.id})}">here</a></span></p>
+             <p sec:authorize="hasRole('ROLE_ADMIN')">Connect sander to Helpers  <span><a  th:href="@{/products/connectSanderToHelper/{id}(id=${sander.id})}">here</a></span></p>
+      
        </div>
        <div>
                  </div>
                 </div>
                </div>
               </div>
-        
+       
         
        </div>
     </section>

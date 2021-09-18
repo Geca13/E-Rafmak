@@ -25,7 +25,9 @@
 
  <section class='section cocktail-section' th:object="${putty}">
  
-       <h2 class ='sectionn-title' th:text="*{name}"></h2>
+     <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deletePutty/{id}(id=${putty.id})}">Delete this Putty</a>
+ 
+ <h2 class ='sectionn-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
          <form th:action="@{/products/updatePuttyName/{id}(id=${putty.id})}" method="post"  >
           <input type="text" name="name" placeholder="update name" >
@@ -67,6 +69,16 @@
           Liters :
             <span th:text="*{weigth.displayValue}" class='drink-data'>MKD</span> 
           </p>
+           <div sec:authorize="hasRole('ROLE_ADMIN')">
+           <form th:action="@{/products/updatePuttyWeight/{id}(id=${putty.id})}" method="post" >
+                           <select th:name="weigth" >
+               <option th:each="weigth : ${T(com.example.erafmak.coatsAndPrimers.entity.Weigth).values()}"
+                 th:value="${weigth}"
+                 th:text="${weigth.displayValue}"/>
+               </select>
+             <button>update</button>
+           </form>
+          </div>
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
@@ -92,23 +104,17 @@
              <button>change</button>
            </form>
           </div>
-          <div>
+           <div>
           <p>
-          Available items:
-            <span th:text="*{isAvailable}" class='drink-data'></span> 
+          Available :
+          <i style="font-size:20px;color:green" th:if="${putty.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${putty.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/products/addQuantityToPutty/{id}(id=${putty.id})}" method="post" >
-            <input type="text" name="quantity" placeholder="add more quantity" >
-             <button>change</button>
+          <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/setAvailabilityToPutty/{id}/(id=${putty.id})}" method="post">
+              <button th:if="${putty.isAvailable eq true}">Set Not Available</button>
+              <button th:unless="${putty.isAvailable eq true}">Set Available</button>
            </form>
-          </div>
-          </div>
-         <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/deletePutty/{id}(id=${putty.id})}" method="post" >
-           <button>delete</button>
-          </form>
-          </div>
+           </div>
         </div>
        </div>
        <div>

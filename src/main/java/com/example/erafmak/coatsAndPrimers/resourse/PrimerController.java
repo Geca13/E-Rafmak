@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -61,6 +63,12 @@ public class PrimerController {
 		return REDIRECT + id;
 	}
 	
+	@PostMapping("/updatePrimerWeight/{id}")
+	public String updatePrimerWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
+		service.updatePrimerWeight(id, weigth);
+		return REDIRECT + id;
+	}
+	
 	@PostMapping("/updatePrimerDescription/{id}")
 	public String updatePrimerDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updatePrimerDescription(id , description);
@@ -89,9 +97,13 @@ public class PrimerController {
 			model.addAttribute("error", e.getMessage());
 			return "singlePrimer";
 		}
-		
 		return REDIRECT + id;
 	}
 
+	@PostMapping("/disconectHarterFromPrimer/{id}/{hid}")
+	public String disconnectHardenerFromPrimer(@PathVariable("id")Long id,@PathVariable ("hid") Long hid) {
+		service.disconectHardenerFromPrimer(id, hid);
+		return REDIRECT + id;
+	}
 
 }

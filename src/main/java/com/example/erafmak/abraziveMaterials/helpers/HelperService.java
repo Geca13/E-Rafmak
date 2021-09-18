@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.abraziveMaterials.sander.Dimension;
 import com.example.erafmak.abraziveMaterials.sander.GranulationQtyRepository;
+import com.example.erafmak.abraziveMaterials.sander.SanderService;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Service
@@ -26,14 +29,15 @@ public class HelperService {
 	
 	@Autowired
 	GranulationQtyRepository gqRepository;
+	
+	@Autowired
+	SanderService sanderService;
 
 	public Helper newHelper(Helper helper, MultipartFile multiPartFile) throws IOException {
 		
-		
-        uploadHelperImage(helper, multiPartFile);
+		uploadHelperImage(helper, multiPartFile);
 		helper.setIsAvailable(true);
 		return helperRepository.save(helper);
-		
 	}
 
 	private void uploadHelperImage(Helper helper, MultipartFile multiPartFile) throws IOException {
@@ -66,6 +70,8 @@ public class HelperService {
 		Helper helper = helperRepository.findById(id).get();
 		deleteImage(helper);
 		helper.setManufacturer(null);
+		helper.setSanders(null);
+		
 		helperRepository.delete(helper);
 	}
 	
@@ -132,10 +138,20 @@ public class HelperService {
 			throw new IOException("Something went wrong during image upload, please try again");
 		}
 		return helperRepository.save(helper);
+	}
+
+	public void updateHelperDimension(Long id, Dimension dimension) {
+		Helper helper = findHelperById(id);
+		helper.setDimension(dimension);
+		helperRepository.save(helper);
+	}
+
+	public void disconectSanderFromHelperList(Long id, Long sid) {
+		Helper helper = findHelperById(id);
+		helper.getSanders().remove(sanderService.findSanderById(sid));
+		helperRepository.save(helper);
 		
 	}
     
-    
-	
-
+   
 }

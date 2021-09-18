@@ -8,12 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.erafmak.coatsAndPrimers.entity.Putty;
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.coatsAndPrimers.repository.PuttyRepository;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
@@ -31,7 +31,6 @@ public class PuttyService {
 	    	uploadPuttyImage(putty, multiPartFile);
 			putty.setIsAvailable(true);
 			return puttyRepository.save(putty);
-			
 		}
 
 		private void uploadPuttyImage(Putty putty, MultipartFile multiPartFile) throws IOException {
@@ -132,6 +131,13 @@ public class PuttyService {
 			}
 			return puttyRepository.save(putty);
 			
+		}
+
+		public void updatePuttyWeight(Long id, Weigth weigth) {
+			
+			Putty putty = findPuttyById(id);
+			putty.setWeigth(weigth);
+			puttyRepository.save(putty);
 		}
 
 }

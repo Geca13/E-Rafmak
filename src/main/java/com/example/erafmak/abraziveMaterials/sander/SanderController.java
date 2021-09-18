@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.erafmak.abraziveMaterials.helpers.Helper;
+import com.example.erafmak.abraziveMaterials.helpers.HelperService;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -26,10 +28,19 @@ public class SanderController {
 	SanderService service;
 	
 	@Autowired
+	HelperService helperService;
+	
+	@Autowired
 	ManufacturerService manService;
 	
 	private final String REDIRECT = "redirect:/products/sander/";
 	
+	
+	@PostMapping("/setAvailabilityToSander/{id}")
+	public String setChangeAvailability(@PathVariable(value = "id")Long id) {
+		service.changeAvailability(id);
+		return REDIRECT + id;
+	}
 	
 	@GetMapping("/deleteSander/{id}")
 	public String deleteSander(@PathVariable(value = "id")Long id) {
@@ -160,7 +171,19 @@ public class SanderController {
 			model.addAttribute("error", e.getMessage());
 			return "singleHelper";
 		}
-		
+		return REDIRECT + id;
+	}
+	
+	@GetMapping("/connectSanderToHelper/{id}")
+	public String getAllHelpersForm(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("sander", service.findSanderById(id));
+		model.addAttribute("helpers", helperService.helpers());
+		return "helpersList";
+	}
+	
+	@PostMapping("/connectSanderToHelper/{id}")
+	public String getAllHelpersForConnection(@PathVariable("id") Long id, @RequestParam("allHelpers") List<Helper> allHelpers) {
+		service.connectSanderToHelpers(id, allHelpers);
 		return REDIRECT + id;
 	}
 

@@ -25,7 +25,7 @@
 
  <section class='section cocktail-section' th:object="${coat}">
  
-       
+       <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteCoat/{id}(id=${coat.id})}">Delete this Coat</a>
        
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -70,6 +70,17 @@
           Liters :
             <span th:text="*{weigth.displayValue}" class='drink-data'>MKD</span> 
           </p>
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
+           <form th:action="@{/products/updateCoatWeight/{id}(id=${coat.id})}" method="post" >
+                           <select th:name="weigth" >
+               <option th:each="weigth : ${T(com.example.erafmak.coatsAndPrimers.entity.Weigth).values()}"
+                 th:value="${weigth}"
+                 th:text="${weigth.displayValue}"/>
+               </select>
+             <button>update</button>
+           </form>
+          </div>
+          
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
@@ -97,22 +108,15 @@
           </div>
           <div>
           <p>
-          Available items:
-            <span th:text="*{isAvailable}" class='drink-data'></span> 
+          Available :
+          <i style="font-size:20px;color:green" th:if="${coat.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${coat.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/addQuantityToCoat/{id}(id=${coat.id})}" method="post" >
-          <input type="text" name="quantity" placeholder="add more quantity" >
-          <button>change</button>
-          </form>
-          </div>
-          </div>
+          <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/setAvailabilityToCoat/{id}/(id=${coat.id})}" method="post">
+              <button th:if="${coat.isAvailable eq true}">Set Not Available</button>
+              <button th:unless="${coat.isAvailable eq true}">Set Available</button>
+           </form>
           
-         <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/deleteCoat/{id}(id=${coat.id})}" method="post" >
-          
-          <button>delete</button>
-          </form>
           </div>
         </div>
        </div>
@@ -126,7 +130,7 @@
              
        <div>
        
-         <h2>Matching Hardeners</h2>
+         <h2 class="middle">Matching Hardeners</h2>
        </div>
        <br><br>
        
@@ -144,6 +148,9 @@
                   </a>
             </div>
             <p class='room-info' th:text="${hardener.name} + ' ' + ${hardener.weigth.displayValue}"></p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/disconectHarterFromCoat/{id}/{hid}(id=${coat.id}, hid=${hardener.id})}" method="post">
+            <button>Remove</button>
+            </form>
         </article>
 
             </div>

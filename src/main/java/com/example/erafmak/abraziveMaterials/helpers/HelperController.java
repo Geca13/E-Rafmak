@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.erafmak.abraziveMaterials.sander.Dimension;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 
@@ -27,7 +29,7 @@ public class HelperController {
 	private final String REDIRECT = "redirect:/products/helper/";
 	
 	
-	@PostMapping("/deleteHelper/{id}")
+	@GetMapping("/deleteHelper/{id}")
 	public String deleteHelper(@PathVariable(value = "id")Long id) {
 		service.deleteHelper(id);
 		return "redirect:/products/helpers";
@@ -49,6 +51,12 @@ public class HelperController {
 	@PostMapping("/updatePrice/{id}")
 	public String updatePrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/updateHelperDimension/{id}")
+	public String updateHelperDimension(@PathVariable("id") Long id, @Param(value="dimension") Dimension dimension) {
+		service.updateHelperDimension(id, dimension);
 		return REDIRECT + id;
 	}
 	
@@ -86,7 +94,12 @@ public class HelperController {
 			model.addAttribute("error", e.getMessage());
 			return "singleHelper";
 		}
-		
+		return REDIRECT + id;
+	}
+	
+	@PostMapping("/disconectSander/{id}/{sid}")
+	public String disconectSanderFromHelperList(@PathVariable("id") Long id, @PathVariable("sid") Long sid ) {
+	    	service.disconectSanderFromHelperList(id, sid);
 		return REDIRECT + id;
 	}
 	
