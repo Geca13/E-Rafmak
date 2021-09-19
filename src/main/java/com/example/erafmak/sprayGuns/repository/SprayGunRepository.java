@@ -8,4 +8,6 @@ import com.example.erafmak.sprayGuns.entity.SprayGun;
 @Repository
 public interface SprayGunRepository extends JpaRepository<SprayGun, Long> {
 
+	boolean existsByNameAndNozzles_Id(String name, Long id);
+
 }

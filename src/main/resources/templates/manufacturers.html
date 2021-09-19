@@ -29,7 +29,8 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Country</th>
-      <th scope="col">Action</th>
+      <th scope="col"></th>
+      
     </tr>
   </thead>
   <tbody>
@@ -38,14 +39,16 @@
       <td th:text="${brand.name}"></td>
       <td th:text="${brand.email}"></td>
       <td th:text="${brand.origin.name}"></td>
-      <td><a th:href="@{/administration/updateManufacturer/{id}(id=${brand.id})}" class="btn btn-primary btn-sm">Details</a></td>
+      <td><a th:href="@{/administration/updateManufacturer/{id}(id=${brand.id})}" class="btn btn-primary btn-sm">Details</a>
+      </td>
    </tr>
   </tbody>
 </table>
 <br>
-<a class="btn btn-primary btn-sm">  th:href="@{/administration/addManufacturer}">Create New Manufacturer</a>
+<a style="margin-left: 20px" class="btn btn-primary btn-sm"  th:href="@{/administration/addManufacturer}">Create New Manufacturer</a>
  <br>
-
+ 
+ <br>
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 </body>

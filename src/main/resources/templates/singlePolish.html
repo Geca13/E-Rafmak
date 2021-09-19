@@ -18,25 +18,60 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
+<br>
 <div th:if="${error != null}" class="error-msg">
+<br> <br> <br>
        <i class="fa fa-times-circle"></i>
-        [[${error}]]
+       [[${error}]]
        </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      <div th:if="${param.disconnect}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully disconnected the pad from the polish !!!
+      </div>
+      
+
 
  <section class='section cocktail-section' th:object="${polish}">
+ 
+     <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deletePolish/{id}(id=${polish.id})}">Delete this Polish</a>
  
  
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
         <form th:action="@{/products/updatePolishName/{id}(id=${polish.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update name" >
+          <input maxlength="100" type="text" name="name" placeholder="update name" >
           <button>change</button>
         </form>
        </div>
        <div class ='drink'>
          <div>
         <img class="single"  th:src="*{imageUrl}" alt='image' />
-        
+        <br>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updatePolishImage/{id}(id=${polish.id})}" enctype="multipart/form-data" method="post"  >
           <input type="file" name="fileImage" id="fileImage"  required="required"/>
@@ -54,7 +89,7 @@
                   <h6 th:text="*{description}"></h6>
              <div sec:authorize="hasRole('ROLE_ADMIN')">     
              <form th:action="@{/products/updatePolishDescription/{id}(id=${polish.id})}" method="post"  >
-              <input type="text" name="description" placeholder="update description" >
+              <textarea maxlength="250" name="description" placeholder="update description" ></textarea>
                <button>change</button>
              </form>
              </div>
@@ -71,7 +106,7 @@
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
             <form th:action="@{/products/updatePolishPrice/{id}(id=${polish.id})}" method="post" >
-             <input type="text" name="price" placeholder="update price here" >
+             <input maxlength="10" type="text" name="price" placeholder="update price here" >
              <button>change</button>
             </form>
           </div>
@@ -82,7 +117,6 @@
           <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/products/updatePolishManufacturer/{id}(id=${polish.id})}" method="post" >
            <select  th:name="manufacturer">
-            <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
@@ -92,21 +126,17 @@
           </div>
           <div>
           <p>
-          Available items:
-            <span th:text="*{isAvailable}" class='drink-data'></span> 
+          Available :
+          <i style="font-size:20px;color:green" th:if="${polish.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${polish.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/addQuantityToPolish/{id}(id=${polish.id})}" method="post" >
-          <input type="text" name="quantity" placeholder="add more quantity" >
-          <button>change</button>
-          </form>
+          <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/setAvailabilityToPolish/{id}/(id=${polish.id})}" method="post">
+              <button th:if="${polish.isAvailable eq true}">Set Not Available</button>
+              <button th:unless="${polish.isAvailable eq true}">Set Available</button>
+           </form>
+          
           </div>
-          </div>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/deletePolish/{id}(id=${polish.id})}" method="post" >
-           <button>delete</button>
-          </form>
-          </div>
+          
         </div>
        </div>
        <div>
@@ -116,8 +146,9 @@
               </div>
              </div>
              <br><br>
-    
+    <h3 class="middle">Matching Pads</h3>
         <div class='roomslist-center'>
+        
              <article class='room' th:each="pad : ${polish.pads}" >
             <div class='img-container'>
               <img th:src="${pad.imageUrl}" alt='sander image'/>
@@ -131,6 +162,9 @@
                   </a>
             </div>
             <p class='room-info' th:text="${pad.name}"></p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/disconectPadsFromPolish/{id}/{pid}(id=${polish.id}, pid=${pad.id})}" method="post">
+            <button>Remove</button>
+            </form>
         </article>
 
             </div>

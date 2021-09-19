@@ -19,7 +19,13 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="container">
+
+
+
 <form th:action="@{/administration/updateManufacturer/{id}(id=${manufacturer.id})}" th:object="${manufacturer}" method="post">
+
+
+
   <h2>Update Manufacturer</h2>
     
     <div class="form-group">
@@ -44,9 +50,11 @@
     </div>
  
      <div class="button-container">
-    <button type="submit" class="button"><span>Submit</span></button>
+    <button type="submit" class="button"><span>Update</span></button>
   </div>
 </form>
+<a class="back" th:href="@{/administration/manufacturers}"> back</a>
+<br>
 </div>
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>

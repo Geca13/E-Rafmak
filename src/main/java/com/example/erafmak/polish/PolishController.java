@@ -30,10 +30,10 @@ public class PolishController {
 	private final String REDIRECT = "redirect:/products/polish/";
 	
 	
-	@PostMapping("/deletePolish/{id}")
+	@GetMapping("/deletePolish/{id}")
 	public String deleteCPolish(@PathVariable(value = "id")Long id) {
 		service.deletePolish(id);
-		return "redirect:/polishes";
+		return "redirect:/products/polishes?delete";
 	}
 	
 	@GetMapping("/polishes")
@@ -52,31 +52,31 @@ public class PolishController {
 	@PostMapping("/updatePolishPrice/{id}")
 	public String updatePolishPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updatePolishName/{id}")
 	public String updatePolishName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updatePolishName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updatePolishDescription/{id}")
 	public String updatePolishDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updatePolishDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updatePolishManufacturer/{id}")
 	public String updatePolishManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToPolish/{id}")
 	public String updateSetAvailabilityToPolish(@PathVariable(value = "id")Long id) {
 		service.updatePolishAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updatePolishImage/{id}")
@@ -89,8 +89,13 @@ public class PolishController {
 			model.addAttribute("error", e.getMessage());
 			return "singlePolish";
 		}
-		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
+	}
+	
+	@PostMapping("/disconectPadsFromPolish/{id}/{pid}")
+	public String disconnectPads(@PathVariable("id")Long id,@PathVariable ("pid") Long pid) {
+		service.disconectPadsFromPolish(id, pid);
+		return REDIRECT + id+"?disconnect";
 	}
 
 

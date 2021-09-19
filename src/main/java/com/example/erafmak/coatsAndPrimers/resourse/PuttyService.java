@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
+import java.util.List; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -28,6 +28,8 @@ public class PuttyService {
 	
 	    public  Putty newPutty(Putty putty , MultipartFile multiPartFile) throws IOException {
 	    	
+	    	Long id = putties().size() +1l;
+			putty.setId(id);
 	    	uploadPuttyImage(putty, multiPartFile);
 			putty.setIsAvailable(true);
 			return puttyRepository.save(putty);

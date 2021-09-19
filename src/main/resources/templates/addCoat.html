@@ -22,7 +22,10 @@
 <div class="container">
   <form th:action="@{/create/newCoat}" th:object="${coat}" enctype="multipart/form-data" method="post">
     <h2>New Coat Form</h2>
-    
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
     <div class="form-group">
       <select  th:field="*{manufacturer}">
       <option th:each="manufacturer : ${manufacturers}"

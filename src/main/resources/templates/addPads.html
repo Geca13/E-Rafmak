@@ -24,6 +24,11 @@
 <form th:action="@{/create/newPads}" th:object="${pads}" enctype="multipart/form-data" method="post">
  <h1>New Pad Form</h1>
     
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
+       
     <div class="form-group">
       <select  th:field="*{manufacturer}">
      <option value="">-Select-</option>

@@ -18,19 +18,57 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
+<br>
 <div th:if="${error != null}" class="error-msg">
+ 
        <i class="fa fa-times-circle"></i>
-        [[${error}]]
+       [[${error}]]
        </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      <div th:if="${param.connectCoat}" class="success-msg">
+       <i class="fa fa-check"></i>
+         You've successfully connected the hardener to a Coat  !!!
+      </div>
+      <div th:if="${param.connect}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully connected the pad to a Polish  !!!
+      </div>
+      
 
 
  <section class='section cocktail-section' th:object="${pads}">
+ 
+         <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deletePads/{id}(id=${pads.id})}">Delete this Pad</a>
  
  
        <h2 class ='sectionn-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updatePadsName/{id}(id=${pads.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update name" >
+          <input maxlength="100" type="text" name="name" placeholder="update name" >
           <button>change</button>
           </form>
       </div>
@@ -55,7 +93,7 @@
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
                   <form th:action="@{/products/updatePadsDescription/{id}(id=${pads.id})}" method="post"  >
-          <input type="text" name="description" placeholder="update description" >
+          <textarea maxlength="250" name="description" placeholder="update description" ></textarea>
           <button>change</button>
           </form>
           </div>
@@ -71,7 +109,7 @@
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/products/updatePadsPrice/{id}(id=${pads.id})}" method="post" >
-          <input type="text" name="price" placeholder="update price here" >
+          <input maxlength="10" type="text" name="price" placeholder="update price here" >
           <button>change</button>
           </form>
           </div>
@@ -82,7 +120,6 @@
           <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/products/updatePadsManufacturer/{id}(id=${pads.id})}" method="post" >
           <select  th:name="manufacturer">
-            <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
@@ -91,25 +128,21 @@
           </form>
           </div>
           <div>
-          <p>
-          Available items:
-            <span th:text="*{isAvailable}" class='drink-data'></span> 
+           <p>
+          Available :
+          <i style="font-size:20px;color:green" th:if="${pads.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${pads.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/addQuantityToPads/{id}(id=${pads.id})}" method="post" >
-          <input type="text" name="quantity" placeholder="add more quantity" >
-          <button>change</button>
-          </form>
+          <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/setAvailabilityToPads/{id}/(id=${pads.id})}" method="post">
+              <button th:if="${pads.isAvailable eq true}">Set Not Available</button>
+              <button th:unless="${pads.isAvailable eq true}">Set Available</button>
+           </form>
           </div>
+          <br>
+          <div>
+            <p sec:authorize="hasRole('ROLE_ADMIN')">Connect Pad to Polish  <span><a  th:href="@{/products/connectPadsToPolish/{id}(id=${pads.id})}">here</a></span></p>
+          
           </div>
-          
-         <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/deletePads/{id}(id=${pads.id})}" method="post" >
-          
-          <button>delete</button>
-          </form>
-          </div>
-          
         </div>
        </div>
        <div>

@@ -32,10 +32,10 @@ public class PrimerController {
 	private final String REDIRECT = "redirect:/products/primer/";
 	
 	
-	@PostMapping("/deletePrimer/{id}")
+	@GetMapping("/deletePrimer/{id}")
 	public String deletePrimer(@PathVariable(value = "id")Long id) {
 		service.deletePrimer(id);
-		return "redirect:/primers";
+		return "redirect:/products/primers?delete";
 	}
 	
 	@GetMapping("/primers")
@@ -54,37 +54,37 @@ public class PrimerController {
 	@PostMapping("/updatePrimerPrice/{id}")
 	public String updatePrimerPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updatePrimerName/{id}")
 	public String updatePrimerName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updatePrimerName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updatePrimerWeight/{id}")
 	public String updatePrimerWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
 		service.updatePrimerWeight(id, weigth);
-		return REDIRECT + id;
+		return REDIRECT + id+"?weight";
 	}
 	
 	@PostMapping("/updatePrimerDescription/{id}")
 	public String updatePrimerDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updatePrimerDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updatePrimerManufacturer/{id}")
 	public String updatePrimerManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToPrimer/{id}")
 	public String updateAvailabilityToPrimer(@PathVariable(value = "id")Long id) {
 		service.updatePrimerAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updatePrimerImage/{id}")
@@ -97,13 +97,13 @@ public class PrimerController {
 			model.addAttribute("error", e.getMessage());
 			return "singlePrimer";
 		}
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 
 	@PostMapping("/disconectHarterFromPrimer/{id}/{hid}")
 	public String disconnectHardenerFromPrimer(@PathVariable("id")Long id,@PathVariable ("hid") Long hid) {
 		service.disconectHardenerFromPrimer(id, hid);
-		return REDIRECT + id;
+		return REDIRECT + id+"?disconnect";
 	}
 
 }

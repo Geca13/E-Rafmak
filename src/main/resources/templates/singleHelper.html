@@ -17,23 +17,54 @@
 
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
-
+<br>
 <div th:if="${error != null}" class="error-msg">
+<br> <br> <br>
        <i class="fa fa-times-circle"></i>
-        [[${error}]]
+       [[${error}]]
        </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      <div th:if="${param.dimension}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the dimension of the product  !!!
+      </div>
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      <div th:if="${param.disconnect}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully disconnected the sander from the product list  !!!
+      </div>
 
 
  <section class='section cocktail-section' th:object="${helper}">
  
       <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteHelper/{id}(id=${helper.id})}">Delete this Block</a>
       
- 
-      
        <h2 class ='middle' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updateHelperName/{id}(id=${helper.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update description" >
+          <input maxlength="100" type="text" name="name" placeholder="update name" >
           <button>change</button>
           </form>
         </div>
@@ -58,7 +89,7 @@
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
                    <form th:action="@{/products/updateDescription/{id}(id=${helper.id})}" method="post"  >
-                    <input type="text" name="description" placeholder="update description" >
+                    <textarea maxlength="250" name="description" placeholder="update description" ></textarea>
                     <button>change</button>
                    </form>
                    </div>
@@ -88,7 +119,7 @@
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updatePrice/{id}(id=${helper.id})}" method="post" >
-            <input type="text" name="price" placeholder="update price here" >
+            <input maxlength="10" type="text" name="price" placeholder="update price here" >
             <button>change</button>
            </form>
           </div>

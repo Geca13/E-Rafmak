@@ -36,16 +36,11 @@ public class SanderController {
 	private final String REDIRECT = "redirect:/products/sander/";
 	
 	
-	@PostMapping("/setAvailabilityToSander/{id}")
-	public String setChangeAvailability(@PathVariable(value = "id")Long id) {
-		service.changeAvailability(id);
-		return REDIRECT + id;
-	}
 	
 	@GetMapping("/deleteSander/{id}")
 	public String deleteSander(@PathVariable(value = "id")Long id) {
 		service.deleteSander(id);
-		return "redirect:/products/sanders";
+		return "redirect:/products/sanders?delete";
 	}
 	
 	@GetMapping("/sanders")
@@ -88,55 +83,56 @@ public class SanderController {
 	public String getSanderDetails(Model model , @PathVariable(value = "id")Long id) {
 		model.addAttribute("sander", service.findSanderById(id)) ;
 		model.addAttribute("manufacturers", manService.manufacturers()) ;
+		service.checkIfSanderIsAvailable(id);
 		return "singleSander";
 	}
 	
 	@PostMapping("/updateSanderPrice/{id}/{gid}")
 	public String updatePrice(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid , @Param(value = "price") Double price) {
 		service.updatePrice(gid , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateName/{id}")
 	public String updateName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateSanderName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateSanderManufacturer/{id}")
 	public String updateSanderManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/updateSanderCondition/{id}")
 	public String updateSanderCondition(@PathVariable(value = "id")Long id , @Param(value = "condition")Condition condition) {
 		service.updateManufacturerCondition(id , condition);
-		return REDIRECT + id;
+		return REDIRECT + id+"?condition";
 	}
 	
 	@PostMapping("/updateSanderDimension/{id}")
 	public String updateSanderDimension(@PathVariable(value = "id")Long id , @Param(value = "dimension")Dimension dimension) {
 		service.updateManufacturerDimension(id , dimension);
-		return REDIRECT + id;
+		return REDIRECT + id+"?dimension";
 	}
 	
 	@PostMapping("/updateSanderType/{id}")
 	public String updateSanderType(@PathVariable(value = "id")Long id , @Param(value = "type")Type type) {
 		service.updateManufacturerType(id , type);
-		return REDIRECT + id;
+		return REDIRECT + id+"?type";
 	}
 	
 	@PostMapping("/updateSanderPieces/{id}")
 	public String updateSanderPieces(@PathVariable(value = "id")Long id , @Param(value = "pieces")Integer pieces) {
 		service.updateManufacturerPieces(id , pieces);
-		return REDIRECT + id;
+		return REDIRECT + id+"?pieces";
 	}
 	
 	@PostMapping("/setAvailabilityToSander/{id}/{gid}")
 	public String updateAvailabilityPerGranulation(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid ) {
 		service.updateSanderAvailability(gid);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@GetMapping("/addGranulationToSander/{id}")
@@ -152,13 +148,13 @@ public class SanderController {
 	@PostMapping("/addGranulationToSander/{id}")
     public String addSizesToSafety(@PathVariable("id")Long id, @RequestParam("allGranulations") List<Granulation> allGranulations) {
 		service.addGranulationToSander(id, allGranulations);
-		return REDIRECT + id;
+		return REDIRECT + id+"?granulationAdded";
 	}
 	
 	@PostMapping("/removeGranulationFromSander/{id}/{gid}")
 	public String removeGranulationFromSander(@PathVariable(value = "id")Long id ,@PathVariable(value = "gid")Long gid ) {
 		service.removeGranulationFromSander(gid);
-		return REDIRECT + id;
+		return REDIRECT + id+"?granulationRemoved";
 	}
 	
 	@PostMapping("/updateSanderImage/{id}")
@@ -171,7 +167,7 @@ public class SanderController {
 			model.addAttribute("error", e.getMessage());
 			return "singleHelper";
 		}
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 	
 	@GetMapping("/connectSanderToHelper/{id}")
@@ -184,7 +180,7 @@ public class SanderController {
 	@PostMapping("/connectSanderToHelper/{id}")
 	public String getAllHelpersForConnection(@PathVariable("id") Long id, @RequestParam("allHelpers") List<Helper> allHelpers) {
 		service.connectSanderToHelpers(id, allHelpers);
-		return REDIRECT + id;
+		return REDIRECT + id+"?connect";
 	}
 
 }

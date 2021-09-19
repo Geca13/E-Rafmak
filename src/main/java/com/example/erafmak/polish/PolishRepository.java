@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PolishRepository extends JpaRepository<Polish, Long> {
 
 	List<Polish> findAllByPads_Id(Long id);
+
+	Boolean existsByNameAndPads_Id(String name, Long id);
 }

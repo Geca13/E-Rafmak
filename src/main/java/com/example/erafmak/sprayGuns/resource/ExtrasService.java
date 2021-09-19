@@ -28,6 +28,7 @@ public class ExtrasService {
 	
     public Extras newExtras(Extras extras , MultipartFile multiPartFile) throws IOException {
 		
+    	
         uploadExtrasImage(extras, multiPartFile);
         extras.setIsAvailable(true);
 		

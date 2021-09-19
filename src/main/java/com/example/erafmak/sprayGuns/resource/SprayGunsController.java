@@ -31,10 +31,10 @@ public class SprayGunsController {
 	private final String REDIRECT = "redirect:/products/sprayGun/";
 	
 	
-	@PostMapping("/deleteSprayGun/{id}")
+	@GetMapping("/deleteSprayGun/{id}")
 	public String deleteSprayGun(@PathVariable(value = "id")Long id) {
 		service.deleteSprayGun(id);
-		return "redirect:/guns";
+		return "redirect:/products/guns?delete";
 	}
 	
 	@GetMapping("/guns")
@@ -53,32 +53,32 @@ public class SprayGunsController {
 	@PostMapping("/updateSprayGunPrice/{id}")
 	public String updateSprayGunPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateSprayGunName/{id}")
 	public String updateSprayGunName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateSprayGunName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateSprayGunDescription/{id}")
 	public String updateSprayGunDescription(@PathVariable(value = "id")Long id , @Param(value = "name") String description) {
-		service.updateSprayGunName(id , description);
-		return REDIRECT + id;
+		service.updateSprayGunDescription(id , description);
+		return REDIRECT + id+"?description";
 	}
 	
 	
 	@PostMapping("/updateSprayGunManufacturer/{id}")
 	public String updateSprayGunManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToSprayGun/{id}")
 	public String updateQuantityToSprayGun(@PathVariable(value = "id")Long id ) {
 		service.updateSprayGunAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updateSprayGunImage/{id}")
@@ -92,8 +92,13 @@ public class SprayGunsController {
 			return "singleGun";
 		}
 		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 
+	@PostMapping("/disconectNozzleFromSprayGun/{id}/{nid}")
+	public String disconnectNozzle(@PathVariable("id")Long id,@PathVariable ("nid") Long nid) {
+		service.disconectNozzleFromGun(id, nid);
+		return REDIRECT + id+"?disconnect";
+	}
 
 }

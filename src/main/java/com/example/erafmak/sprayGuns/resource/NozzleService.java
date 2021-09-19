@@ -15,7 +15,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.erafmak.manufacturers.ManufacturerService;
 import com.example.erafmak.sprayGuns.entity.Nozzle;
+import com.example.erafmak.sprayGuns.entity.NozzleSize;
+import com.example.erafmak.sprayGuns.entity.SprayGun;
 import com.example.erafmak.sprayGuns.repository.NozzleRepository;
+import com.example.erafmak.sprayGuns.repository.SprayGunRepository;
 
 @Service
 public class NozzleService {
@@ -25,6 +28,9 @@ public class NozzleService {
 	
 	@Autowired
 	ManufacturerService manService;
+	
+	@Autowired
+	SprayGunRepository gunRepository;
 	
 	public Nozzle newNozzle(Nozzle nozzle, MultipartFile multiPartFile) throws IOException {
 		
@@ -135,4 +141,23 @@ public class NozzleService {
 		return nozzleRepository.save(nozzle);
 		
 	}
+
+	public void connectNozzleToSprayGun(Long id, List<SprayGun> allSprayGuns) {
+		
+		Nozzle nozzle = findNozzleById(id);
+		for (SprayGun sprayGun : allSprayGuns) {
+			sprayGun.getNozzles().add(nozzle);
+			gunRepository.save(sprayGun);
+		}
+		
+	}
+
+	public void updateSize(Long id, NozzleSize size) {
+		
+		Nozzle nozzle = findNozzleById(id);
+		nozzle.setNozzleSize(size);
+		nozzleRepository.save(nozzle);
+	}
+
+	
 }

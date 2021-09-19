@@ -23,6 +23,11 @@
   <form th:action="@{/create/newSander}" th:object="${sander}" enctype="multipart/form-data" method="post">
     <h1>New Safety Form</h1>
     
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
+       
     <div class="form-group">
       <select  th:field="*{manufacturer}">
      

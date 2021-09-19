@@ -18,10 +18,42 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
+<br>
 <div th:if="${error != null}" class="error-msg">
+<br> <br> <br>
        <i class="fa fa-times-circle"></i>
-        [[${error}]]
+       [[${error}]]
        </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      
+      <div th:if="${param.weight}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the weight of the product !!!
+      </div>
 
  <section class='section cocktail-section' th:object="${thinner}">
         <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteThinner/{id}(id=${thinner.id})}">Delete this Thinner</a>
@@ -30,7 +62,7 @@
        <h2 class ='sectionn-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
         <form th:action="@{/products/updateThinnerName/{id}(id=${thinner.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update name" >
+          <input maxlength="100" type="text" name="name" placeholder="update name" >
           <button>change</button>
         </form>
         </div>
@@ -55,7 +87,7 @@
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
                    <form th:action="@{/products/updateThinnerDescription/{id}(id=${thinner.id})}" method="post"  >
-                    <input type="text" name="description" placeholder="update description" >
+                    <textarea maxlength="250" name="description" placeholder="update description" ></textarea>
                      <button>change</button>
                    </form>
                   </div> 
@@ -85,7 +117,7 @@
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateThinnerPrice/{id}(id=${thinner.id})}" method="post" >
-            <input type="text" name="price" placeholder="update price here" >
+            <input maxlength="10" type="text" name="price" placeholder="update price here" >
              <button>change</button>
            </form>
           </div>
@@ -96,7 +128,6 @@
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateThinnerManufacturer/{id}(id=${thinner.id})}" method="post" >
             <select  th:name="manufacturer">
-             <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>

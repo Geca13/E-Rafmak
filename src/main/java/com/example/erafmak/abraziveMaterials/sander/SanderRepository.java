@@ -14,4 +14,6 @@ public interface SanderRepository extends JpaRepository<Sander, Long> {
 
 	Sander findByGranulationQty_Id(Long gid);
 
+	Boolean existsByIdAndGranulationQty_IsAvailable(Long id, Boolean exists);
+
 }

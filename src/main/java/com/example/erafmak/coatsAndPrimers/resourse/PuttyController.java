@@ -30,10 +30,10 @@ public class PuttyController {
 	
 	
 	
-	@PostMapping("/deletePutty/{id}")
+	@GetMapping("/deletePutty/{id}")
 	public String deletePutty(@PathVariable(value = "id")Long id) {
 		service.deletePutty(id);
-		return "redirect:/putties";
+		return "redirect:/putties?delete";
 	}
 	
 	@GetMapping("/putties")
@@ -52,37 +52,37 @@ public class PuttyController {
 	@PostMapping("/updatePuttyPrice/{id}")
 	public String updatePuttyPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updatePuttyWeight/{id}")
 	public String updatePuttyWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
 		service.updatePuttyWeight(id, weigth);
-		return REDIRECT + id;
+		return REDIRECT + id+"?weight";
 	}
 	
 	@PostMapping("/updatePuttyName/{id}")
 	public String updatePuttyName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updatePuttyName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updatePuttyDescription/{id}")
 	public String updatePuttyDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updatePuttyDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updatePuttyManufacturer/{id}")
 	public String updatePuttyManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToPutty/{id}")
 	public String updateQuantityToPutty(@PathVariable(value = "id")Long id) {
 		service.updatePuttyAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 
 	@PostMapping("/updatePuttyImage/{id}")
@@ -96,7 +96,7 @@ public class PuttyController {
 			return "singlePutty";
 		}
 		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 
 }

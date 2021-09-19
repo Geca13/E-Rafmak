@@ -27,10 +27,10 @@ public class ExtrasController {
 	private final String REDIRECT = "redirect:/products/extras/";
 	
 	
-	@PostMapping("/deleteExtras/{id}")
+	@GetMapping("/deleteExtras/{id}")
 	public String deleteExtras(@PathVariable(value = "id")Long id) {
 		service.deleteExtras(id);
-		return "redirect:/extrass";
+		return "redirect:/products/extrass?delete";
 	}
 	
 	@GetMapping("/extrass")
@@ -49,31 +49,31 @@ public class ExtrasController {
 	@PostMapping("/updateExtrasPrice/{id}")
 	public String updateExtrasPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateExtrasName/{id}")
 	public String updateExtrasName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateExtrasName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateExtrasDescription/{id}")
 	public String updateExtrasDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateExtrasDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updateExtrasManufacturer/{id}")
 	public String updateExtrasManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToExtras/{id}")
 	public String updateQuantityToExtras(@PathVariable(value = "id")Long id ) {
 		service.updateExtrasAvailibility(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updateExtrasImage/{id}")
@@ -87,7 +87,7 @@ public class ExtrasController {
 			return "singleExtras";
 		}
 		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 
 

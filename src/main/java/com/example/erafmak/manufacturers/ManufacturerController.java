@@ -43,11 +43,11 @@ public class ManufacturerController {
 	}
 	
 	
-	
 	@PostMapping("/updateManufacturer/{id}")
 	public String updateCoatName(@PathVariable(value = "id")Long id , Manufacturer manufacturer ) {
 		service.updateManufacturer(id, manufacturer );
 		return "redirect:/administration/manufacturers";
 	}
-
+	
+	
 }

@@ -32,7 +32,7 @@ public class HelperController {
 	@GetMapping("/deleteHelper/{id}")
 	public String deleteHelper(@PathVariable(value = "id")Long id) {
 		service.deleteHelper(id);
-		return "redirect:/products/helpers";
+		return "redirect:/products/helpers?delete";
 	}
 	
 	@GetMapping("/helpers")
@@ -51,37 +51,37 @@ public class HelperController {
 	@PostMapping("/updatePrice/{id}")
 	public String updatePrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id +"?price";
 	}
 	
 	@PostMapping("/updateHelperDimension/{id}")
 	public String updateHelperDimension(@PathVariable("id") Long id, @Param(value="dimension") Dimension dimension) {
 		service.updateHelperDimension(id, dimension);
-		return REDIRECT + id;
+		return REDIRECT + id+"?dimension";
 	}
 	
 	@PostMapping("/updateHelperName/{id}")
 	public String updateHelperName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateDescription/{id}")
 	public String updateDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updateManufacturer/{id}")
 	public String updateManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToHelper/{id}")
 	public String updateHelperAvailability(@PathVariable(value = "id")Long id ) {
 		service.updateHelperAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updateHelperImage/{id}")
@@ -94,13 +94,13 @@ public class HelperController {
 			model.addAttribute("error", e.getMessage());
 			return "singleHelper";
 		}
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 	
 	@PostMapping("/disconectSander/{id}/{sid}")
 	public String disconectSanderFromHelperList(@PathVariable("id") Long id, @PathVariable("sid") Long sid ) {
 	    	service.disconectSanderFromHelperList(id, sid);
-		return REDIRECT + id;
+		return REDIRECT + id +"?disconnect";
 	}
 	
 	

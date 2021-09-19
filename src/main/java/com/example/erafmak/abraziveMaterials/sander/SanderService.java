@@ -208,15 +208,6 @@ public class SanderService {
 	    sanderRepository.save(sander);
 	}
 
-	public void changeAvailability(Long id) {
-		Sander sander = findSanderById(id);
-		for (GranulationQty granulation : sander.getGranulationQty()) {
-			granulation.setIsAvailable(false);
-			gqRepository.save(granulation);
-		}
-		sander.setIsAvailable(!sander.getIsAvailable());
-		sanderRepository.save(sander);
-	}
 
 	public void connectSanderToHelpers(Long id, List<Helper> allHelpers) {
 		Sander sander = findSanderById(id);
@@ -225,7 +216,18 @@ public class SanderService {
 			helper.getSanders().add(sander);
 			helperRepository.save(helper);
 		}
-		
+	}
+	
+	public void checkIfSanderIsAvailable(Long id) {
+		Sander sander = findSanderById(id);
+	if (!sanderRepository.existsByIdAndGranulationQty_IsAvailable(id, true)) {
+		sander.setIsAvailable(false);
+		sanderRepository.save(sander);
+	    }
+	else {
+		sander.setIsAvailable(true);
+		sanderRepository.save(sander);
+	  }
 	}
     
 	

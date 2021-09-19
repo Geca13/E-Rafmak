@@ -7,8 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -24,8 +24,12 @@ public class PolishService {
 	@Autowired
 	ManufacturerService manService;
 	
+	@Autowired
+	PadsService padsService;
+	
     public Polish newPolish(Polish polish, MultipartFile multiPartFile) throws IOException {
-		
+		Long id = polishes().size() + 1L;
+		polish.setId(id);
         uploadPolishImage(polish, multiPartFile);
 		polish.setIsAvailable(true);
 		
@@ -132,6 +136,26 @@ public class PolishService {
 		}
 		return polishRepository.save(polish);
 		
+	}
+
+	public void disconectPadsFromPolish(Long id, Long pid) {
+		
+		Polish polish = findPolishById(id);
+		polish.getPads().remove(padsService.findPadsById(pid));
+		polishRepository.save(polish);
+		
+	}
+
+	public List<Polish> reducedPolishes(Long id) {
+	
+		List<Polish> reduced = new ArrayList<>();
+		List<Polish> polishes = polishes();
+		for (Polish polish : polishes) {
+			if(!polishRepository.existsByNameAndPads_Id(polish.getName(),id)) {
+				reduced.add(polish);
+			}
+		}
+		return reduced;
 	}
 
 }

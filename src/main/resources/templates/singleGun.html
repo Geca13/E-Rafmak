@@ -18,18 +18,52 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
+<br>
 <div th:if="${error != null}" class="error-msg">
+<br> <br> <br>
        <i class="fa fa-times-circle"></i>
-        [[${error}]]
+       [[${error}]]
        </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      <div th:if="${param.disconnect}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully disconnected the nozzle from the product  !!!
+      </div>
+     
 
  <section class='section cocktail-section' th:object="${sprayGun}">
+ 
+       <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteSprayGun/{id}(id=${sprayGun.id})}">Delete this Coat</a>
  
        <div>
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updateSprayGunName/{id}(id=${sprayGun.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update name" >
+          <input maxlength="100" type="text" name="name" placeholder="update name" >
           <button>change</button>
           </form>
           </div>
@@ -55,7 +89,7 @@
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
                    <form th:action="@{/products/updateSprayGunDescription/{id}(id=${sprayGun.id})}" method="post"  >
-                     <input type="text" name="description" placeholder="update description" >
+                     <textarea maxlength="250" name="description" placeholder="update description" ></textarea>
                       <button>change</button>
                     </form>
                    </div>
@@ -65,14 +99,13 @@
               <div class="thirdItem">
                 <div class='drink-info'>
         
-          
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateSprayGunPrice/{id}(id=${sprayGun.id})}" method="post" >
-            <input type="text" name="price" placeholder="update price here" >
+            <input maxlength="10" type="text" name="price" placeholder="update price here" >
             <button>change</button>
            </form>
           </div>
@@ -83,7 +116,6 @@
          <div sec:authorize="hasRole('ROLE_ADMIN')">
           <form th:action="@{/products/updateSprayGunManufacturer/{id}(id=${sprayGun.id})}" method="post" >
           <select  th:name="manufacturer">
-            <option value="">-Select-</option>
             <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
@@ -92,23 +124,18 @@
           </form>
           </div>
           <div>
-          <p>
-          Available items:
-            <span th:text="*{isAvailable}" class='drink-data'></span> 
+           <p>
+          Available :
+          <i style="font-size:20px;color:green" th:if="${sprayGun.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${sprayGun.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/products/addQuantityToSprayGun/{id}(id=${sprayGun.id})}" method="post" >
-            <input type="text" name="quantity" placeholder="add more quantity" >
-            <button>change</button>
+          <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/setAvailabilityToSprayGun/{id}/(id=${sprayGun.id})}" method="post">
+              <button th:if="${sprayGun.isAvailable eq true}">Set Not Available</button>
+              <button th:unless="${sprayGun.isAvailable eq true}">Set Available</button>
            </form>
-          </div>
-          </div>
-         <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/products/deleteSprayGun/{id}(id=${sprayGun.id})}" method="post" >
           
-          <button>delete</button>
-          </form>
           </div>
+         
         </div>
        </div>
        <div>
@@ -139,6 +166,9 @@
                   </a>
             </div>
             <p class='room-info' th:text="${nozzle.description} + ' ' + ${nozzle.nozzleSize.displayValue}"></p>
+            <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/disconectNozzleFromSprayGun/{id}/{nid}(id=${sprayGun.id}, nid=${nozzle.id})}" method="post">
+            <button>Remove</button>
+            </form>
         </article>
 
             </div>

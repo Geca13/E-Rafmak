@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -144,7 +143,15 @@ public class PadsService {
 				throw new IOException("Something went wrong during image upload, please try again");
 			}
 			return padsRepository.save(pads);
+		}
+
+		public void connectPadsToPolish(Long id, List<Polish> allPolishes) {
 			
+			Pads pads = findPadsById(id);
+			for (Polish polish : allPolishes) {
+				polish.getPads().add(pads);
+				polishRepository.save(polish);
+			}
 		}
 
 }

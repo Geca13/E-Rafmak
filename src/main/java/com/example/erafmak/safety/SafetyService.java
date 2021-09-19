@@ -1,5 +1,6 @@
 package com.example.erafmak.safety;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -33,8 +34,6 @@ public class SafetyService {
 	    	uploadSafetyImage(safety, multiPartFile);
 			safety.setId(safetyRepository.count()+1L);
 			safety.setIsAvailable(true);
-			safetyRepository.save(safety);
-			
 			return safetyRepository.save(safety);
 		}
 
@@ -142,8 +141,43 @@ public class SafetyService {
 			safetyRepository.save(safety);
 			
 			sqRepository.delete(sqRepository.findById(sid).get());
-			
 		}
 		
+		public void checkIfSafetyIsAvailable(Long id) {
+			Safety safety = findSafetyById(id);
+		if (!safetyRepository.existsByIdAndSizeQty_IsAvailable(id, true)) {
+			safety.setIsAvailable(false);
+			safetyRepository.save(safety);
+		    }
+		else {
+			safety.setIsAvailable(true);
+			safetyRepository.save(safety);
+		  }
+		}
 
+		private void deleteImage(Safety safety) {
+			String storedImage = safety.getImageUrl().substring(safety.getImageUrl().lastIndexOf("/"));
+			Path currentPath = Paths.get(".");
+			Path absolutePath = currentPath.toAbsolutePath();
+			
+			String uploadDir = absolutePath + "/src/main/resources/static/img/safeties/";
+			
+	            File file = new File(uploadDir + storedImage);
+	            if(file.exists()) {
+	            	file.delete();
+	            }    
+		}
+
+		public Safety updateSafetyImage(Long id, MultipartFile multiPartFile) throws IOException {
+			
+			Safety safety = findSafetyById(id);
+			deleteImage(safety);
+			
+			try {
+				uploadSafetyImage(safety, multiPartFile);
+			} catch (IOException e) {
+				throw new IOException("Something went wrong during image upload, please try again");
+			}
+			return safetyRepository.save(safety);
+		}
 }

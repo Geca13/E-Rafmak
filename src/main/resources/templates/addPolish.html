@@ -23,6 +23,11 @@
   <form th:action="@{/create/newPolish}" th:object="${polish}" enctype="multipart/form-data" method="post">
     <h1>New Polish Form</h1>
     
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
+    
     <div class="form-group">
       <select  th:field="*{manufacturer}">
      <option value="">-Select-</option>

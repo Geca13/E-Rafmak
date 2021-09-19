@@ -22,10 +22,15 @@
 
 <form th:action="@{/create/newPutty}" th:object="${putty}" enctype="multipart/form-data" method="post">
 <h1>New Putty Form</h1>
-    
+
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
+       
     <div class="form-group">
       <select  th:field="*{manufacturer}">
-     <option value="">-Select-</option>
+    
       <option th:each="manufacturer : ${manufacturers}"
         th:value="${manufacturer.id}"
         th:text="${manufacturer.name}"
@@ -54,10 +59,7 @@
       <label for="fileName" class="control-label">Image</label><i class="bar"></i>
     </div>
     
-    <div class="form-group">
-      <input th:field="*{imageUrl}" maxlength="250" required="required"/>
-      <label for="input" class="control-label">Image Url</label><i class="bar"></i>
-    </div>
+    
     
        <div class="form-group">
      <select th:field="${putty.weigth}" >

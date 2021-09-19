@@ -17,7 +17,68 @@
 
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
-
+<br>
+<div th:if="${error != null}" class="error-msg">
+<br> <br> <br>
+       <i class="fa fa-times-circle"></i>
+       [[${error}]]
+       </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      <div th:if="${param.dimension}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the dimension of the product  !!!
+      </div>
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      <div th:if="${param.connect}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully connected the sander with matching block  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.granulationAdded}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully added new granulation of the product  !!!
+      </div>
+      <div th:if="${param.granulationRemoved}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully removed granulation of the product  !!!
+      </div>
+      <div th:if="${param.pieces}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the pieces in the pack of the product  !!!
+      </div>
+      <div th:if="${param.type}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the type of the product  !!!
+      </div>
+      <div th:if="${param.condition}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the working condition on the product list  !!!
+      </div>
 
 
  <section class='section cocktail-section' th:object="${sander}">
@@ -26,7 +87,7 @@
        <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
          <form th:action="@{/products/updateName/{id}(id=${sander.id})}" method="post"  >
-          <input type="text" th:name="name" placeholder="update name" >
+          <input maxlength="100" type="text" th:name="name" placeholder="update name" >
            <button>update</button>
          </form>
         </div> 
@@ -64,7 +125,7 @@
            
             <p> Pieces <span th:text="*{piecesInPack}" class='drink-data'></span>  </p>
             <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/updateSanderPieces/{id}(id=${sander.id})}"method="post">
-              <input name="pieces" maxlength="5" placeholder="new value" required="required"></input>
+              <input  name="pieces" maxlength="5" placeholder="new value" required="required"></input>
               <button>update</button>
             </form>
            
@@ -106,10 +167,7 @@
           <i style="font-size:20px;color:green" th:if="${sander.isAvailable eq true}"  class="fas fa-check"></i>
               <i style="font-size:20px;color:red" th:unless="${sander.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-             <form th:action="@{/products/setAvailabilityToSander/{id}/(id=${sander.id})}" method="post">
-                  <button th:if="${sander.isAvailable eq true}">Set Not Available</button>
-                  <button th:unless="${sander.isAvailable eq true}">Set Available</button>
-                </form>
+             
        
               </div>
               <div class="rightSide">
@@ -125,7 +183,7 @@
                      </p>
                <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/products/updateSanderPrice/{id}/{gid}(id=${sander.id},gid=${gran.id})}" method="post">
-                 <input name="price" placeholder="set new price" type="text"/>
+                 <input maxlength="10" name="price" placeholder="set new price" type="text"/>
                   <button >update</button>
                   </form>
                   

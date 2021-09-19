@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,19 @@ public class SprayGunsService {
 	SprayGunRepository sprayGunRepository;
 	
 	@Autowired
+	NozzleService nozzleService;
+	
+	@Autowired
 	ManufacturerService manService;
 	
     public SprayGun newSprayGun(SprayGun gun, MultipartFile multiPartFile) throws IOException {
     	
+    	Long id = guns().size()+1L;
+    	gun.setId(id);
         uploadSprayGunImage(gun, multiPartFile);
 		gun.setIsAvailable(true);
 		
 		return sprayGunRepository.save(gun);
-		
 	}
 
 	private void uploadSprayGunImage(SprayGun gun, MultipartFile multiPartFile) throws IOException {
@@ -87,38 +92,38 @@ public class SprayGunsService {
 	}
 
 	public SprayGun updatePrice(Long id, Double price) {
+	
 		SprayGun gun = findSprayGunById(id);
 		gun.setPrice(price);
 		return sprayGunRepository.save(gun);
-		
 	}
 
 	public SprayGun updateSprayGunName(Long id, String name) {
+	
 		SprayGun gun = findSprayGunById(id);
 		gun.setName(name);
 		return sprayGunRepository.save(gun);
-		
 	}
 	
 	public SprayGun updateSprayGunDescription(Long id, String description) {
+	
 		SprayGun gun = findSprayGunById(id);
-		gun.setName(description);
+		gun.setDescription(description);
 		return sprayGunRepository.save(gun);
-		
 	}
 	
 	public SprayGun updateManufacturer(Long id, String manufacturer) {
+		
 		SprayGun gun = findSprayGunById(id);
 		gun.setManufacturer(manService.findByName(manufacturer));
 		return sprayGunRepository.save(gun);
-		
 	}
 
 	public SprayGun updateSprayGunAvailability(Long id) {
+	
 		SprayGun gun = findSprayGunById(id);
 		gun.setIsAvailable(!gun.getIsAvailable());
 		return sprayGunRepository.save(gun);
-		
 	}
 	
     public SprayGun updateSprayGunImage(Long id, MultipartFile multiPartFile) throws IOException {
@@ -133,7 +138,24 @@ public class SprayGunsService {
 			throw new IOException("Something went wrong during image upload, please try again");
 		}
 		return sprayGunRepository.save(gun);
-		
 	}
 
+	public void disconectNozzleFromGun(Long id, Long nid) {
+	
+		SprayGun gun = findSprayGunById(id);
+		gun.getNozzles().remove(nozzleService.findNozzleById(nid));
+		sprayGunRepository.save(gun);
+	}
+
+	public List<SprayGun> reducedGuns(Long id) {
+	
+		List<SprayGun> reduced = new ArrayList<>();
+		List<SprayGun> sprayGuns = guns();
+		for (SprayGun gun : sprayGuns) {
+			if(!sprayGunRepository.existsByNameAndNozzles_Id(gun.getName(),id)) {
+				reduced.add(gun);
+			}
+		}
+		return reduced;
+	}
 }

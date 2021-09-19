@@ -49,6 +49,7 @@ public class ManufacturerService {
 
 	private Origin setOriginToManufacturer(Manufacturer manufacturer) {
 		Origin origin = new Origin();
+		
 		if(originRepository.existsByName(manufacturer.getOrigin().getName())) {
 			manufacturer.setOrigin(originRepository.findByName(manufacturer.getOrigin().getName()));
 		} else {
@@ -69,9 +70,12 @@ public class ManufacturerService {
 		Manufacturer forUpdate = findById(id);
 		forUpdate.setEmail(manufacturer.getEmail());
 		forUpdate.setName(manufacturer.getName());
-		Origin origin = setOriginToManufacturer(manufacturer);
-		forUpdate.setOrigin(origin);
-		return manufacturerRepository.save(forUpdate);
 		
+		if(originRepository.existsByName(manufacturer.getOrigin().getName())) {
+			forUpdate.setOrigin(originRepository.findByName(manufacturer.getOrigin().getName()));
+		}
+		return manufacturerRepository.save(forUpdate);
 	}
+
 }
+

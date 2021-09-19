@@ -18,24 +18,58 @@
 <body>
   <div th:replace="fragments/navbar :: navbar"></div>
 
+<br>
 <div th:if="${error != null}" class="error-msg">
+<br> <br> <br>
        <i class="fa fa-times-circle"></i>
-        [[${error}]]
+       [[${error}]]
        </div>
+       <div th:if="${param.price}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the price of the product !!!
+      </div>
+      
+      <div th:if="${param.name}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the name of the product  !!!
+      </div>
+      <div th:if="${param.description}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the description of the product  !!!
+      </div>
+      <div th:if="${param.manufacturer}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the manufacturer of the product  !!!
+      </div>
+      <div th:if="${param.available}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the availability of the product  !!!
+      </div>
+      <div th:if="${param.image}" class="success-msg">
+       <i class="fa fa-check"></i>
+       You've successfully updated the image of the product  !!!
+      </div>
+      
+      <div th:if="${param.power}" class="success-msg">
+       <i class="fa fa-check"></i>
+        You've successfully updated the power type of the product !!!
+      </div>
 
  <div class='section cocktail-section' th:object="${tool}">
  
-       <h2 class ='section-title' th:text="*{name}"></h2>
+        <a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/deleteTool/{id}(id=${tool.id})}">Delete this Tool</a>
+ 
+  <h2 class ='section-title' th:text="*{name}"></h2>
        <div sec:authorize="hasRole('ROLE_ADMIN')">
          <form th:action="@{/products/updateToolName/{id}(id=${tool.id})}" method="post"  >
-          <input type="text" name="name" placeholder="update name" >
+          <input type="text" maxlength="100" name="name" placeholder="update name" >
            <button>change</button>
          </form>
        </div>
        <div class ='drink'>
          <div>
         <img class="single"  th:src="*{imageUrl}" alt='image' />
-        
+        <br>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
        <form th:action="@{/products/updateToolImage/{id}(id=${tool.id})}" enctype="multipart/form-data" method="post"  >
           <input type="file" name="fileImage" id="fileImage"  required="required"/>
@@ -53,7 +87,7 @@
                   <h6 th:text="*{description}"></h6>
                   <div sec:authorize="hasRole('ROLE_ADMIN')">
                    <form th:action="@{/products/updateToolDescription/{id}(id=${tool.id})}" method="post"  >
-                    <input type="text" name="description" placeholder="update description" >
+                    <textarea maxlength="250" name="description" placeholder="update description" ></textarea>
                      <button>change</button>
                    </form>
                    </div>
@@ -64,16 +98,28 @@
                 <div class='drink-info'>
         
           <p >
-          Liters :
+          Power :
             <span th:text="*{power.displayValue}" class='drink-data'>MKD</span> 
           </p>
+          
+           <div sec:authorize="hasRole('ROLE_ADMIN')">
+           <form th:action="@{/products/updateToolPower/{id}(id=${tool.id})}" method="post" >
+                           <select th:name="power" >
+               <option th:each="power : ${T(com.example.erafmak.tools.Power).values()}"
+                 th:value="${power}"
+                 th:text="${power.displayValue}"/>
+               </select>
+             <button>update</button>
+           </form>
+          </div>
+          
           <p >
           Price :
             <span th:text="*{price} + ' ' + mkd" class='drink-data'>MKD</span> 
           </p>
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateToolPrice/{id}(id=${tool.id})}" method="post" >
-            <input type="text" name="price" placeholder="update price here" >
+            <input maxlength="10" type="text" name="price" placeholder="update price here" >
              <button>change</button>
            </form>
           </div>
@@ -84,7 +130,6 @@
           <div sec:authorize="hasRole('ROLE_ADMIN')">
            <form th:action="@{/products/updateToolManufacturer/{id}(id=${tool.id})}" method="post" >
             <select  th:name="manufacturer">
-             <option value="">-Select-</option>
              <option th:each="manufacturer : ${manufacturers}"
               th:value="${manufacturer.name}"
               th:text="${manufacturer.name}"/>
@@ -92,24 +137,18 @@
              <button>change</button>
            </form>
           </div>
-          <div>
+           <div>
           <p>
-          Available items:
-            <span th:text="*{isAvailable}" class='drink-data'></span> 
+          Available :
+          <i style="font-size:20px;color:green" th:if="${tool.isAvailable eq true}"  class="fas fa-check"></i>
+              <i style="font-size:20px;color:red" th:unless="${tool.isAvailable eq true}"  class="fas fa-close"></i>
           </p>
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-           <form th:action="@{/addQuantityToTool/{id}(id=${tool.id})}" method="post" >
-            <input type="text" name="quantity" placeholder="add more quantity" >
-             <button>change</button>
+          <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/products/setAvailabilityToTool/{id}/(id=${tool.id})}" method="post">
+              <button th:if="${tool.isAvailable eq true}">Set Not Available</button>
+              <button th:unless="${tool.isAvailable eq true}">Set Available</button>
            </form>
           </div>
-          </div>
-         <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <form th:action="@{/deleteTool/{id}(id=${tool.id})}" method="post" >
-           <button>delete</button>
-          </form>
-          </div>
-        </div>
+         </div>
        </div>
        <div>
                  </div>

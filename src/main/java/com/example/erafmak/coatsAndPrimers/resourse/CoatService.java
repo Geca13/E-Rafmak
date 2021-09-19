@@ -39,7 +39,6 @@ public class CoatService {
 		uploadImage(coat, multiPartFile);
 		coat.setIsAvailable(true);
 		return coatRepository.save(coat);
-		
 	}
 
 	private void uploadImage(Coat coat, MultipartFile multiPartFile) throws IOException {
@@ -113,31 +112,31 @@ public class CoatService {
 	}
 
 	public Coat updateCoatName(Long id, String name) {
+	
 		Coat coat = findCoatById(id);
 		coat.setName(name);
 		return coatRepository.save(coat);
-		
 	}
 	
 	public Coat updateCoatDescription(Long id, String description) {
+	
 		Coat coat = findCoatById(id);
 		coat.setDescription(description);
 		return coatRepository.save(coat);
-		
 	}
     
 	public Coat updateManufacturer(Long id, String manufacturer) {
+	
 		Coat coat = findCoatById(id);
 		coat.setManufacturer(manService.findByName(manufacturer));
 		return coatRepository.save(coat);
-		
 	}
 
 	public Coat updateCoatAvailability(Long id) {
+	
 		Coat coat = findCoatById(id);
 		coat.setIsAvailable(!coat.getIsAvailable());
 		return coatRepository.save(coat);
-		
 	}
 
 	public Coat updateCoatImage(Long id, MultipartFile multiPartFile) throws IOException {
@@ -154,12 +153,14 @@ public class CoatService {
 	}
 
 	public void updateCoatWeight(Long id, Weigth weigth) {
+	
 		Coat coat = findCoatById(id);
 		coat.setWeigth(weigth);
 		coatRepository.save(coat);
 	}
 
 	public void disconectHardenerFromCoat(Long id, Long hid) {
+	
 		Coat coat = findCoatById(id);
 		coat.getHardeners().remove(hardenerService.findHardenerById(hid));
 		coatRepository.save(coat);

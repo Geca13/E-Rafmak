@@ -27,10 +27,10 @@ public class ToolController {
 	private final String REDIRECT = "redirect:/products/tool/";
 	
 	
-	@PostMapping("/deleteTool/{id}")
+	@GetMapping("/deleteTool/{id}")
 	public String deleteTool(@PathVariable(value = "id")Long id) {
 		service.deleteTool(id);
-		return "redirect:/tools";
+		return "redirect:/products/tools?delete";
 	}
 	
 	@GetMapping("/tools")
@@ -49,31 +49,37 @@ public class ToolController {
 	@PostMapping("/updateToolPrice/{id}")
 	public String updateToolPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateToolName/{id}")
 	public String updateToolName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateToolName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateToolDescription/{id}")
 	public String updateToolDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateToolDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updateToolManufacturer/{id}")
 	public String updateToolManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
+	}
+	
+	@PostMapping("/updateToolPower/{id}")
+	public String updateToolPower(@PathVariable(value = "id")Long id , @Param(value = "power")Power power) {
+		service.updateToolPower(id , power);
+		return REDIRECT + id+"?power";
 	}
 	
 	@PostMapping("/setAvailabilityToTool/{id}")
 	public String updateQuantityToTool(@PathVariable(value = "id")Long id ) {
 		service.updateToolAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updateToolImage/{id}")
@@ -87,7 +93,7 @@ public class ToolController {
 			return "singleTool";
 		}
 		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 
 

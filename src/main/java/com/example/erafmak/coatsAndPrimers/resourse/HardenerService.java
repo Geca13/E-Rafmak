@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.entity.Hardener;
 import com.example.erafmak.coatsAndPrimers.entity.Primer;
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.coatsAndPrimers.repository.CoatRepository;
 import com.example.erafmak.coatsAndPrimers.repository.HardenerRepository;
 import com.example.erafmak.coatsAndPrimers.repository.PrimerRepository;
@@ -187,6 +188,12 @@ public class HardenerService {
 			primer.getHardeners().add(hardener);
 			primerRepository.save(primer);
 		}
+	}
+
+	public void updateHardenerWeight(Long id, Weigth weigth) {
+		Hardener hardener = findHardenerById(id);
+		hardener.setWeigth(weigth);
+		hardenerRepository.save(hardener);
 	}
 
 

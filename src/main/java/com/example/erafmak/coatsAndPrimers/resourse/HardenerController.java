@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.erafmak.coatsAndPrimers.entity.Coat;
 import com.example.erafmak.coatsAndPrimers.entity.Primer;
+import com.example.erafmak.coatsAndPrimers.entity.Weigth;
 import com.example.erafmak.manufacturers.ManufacturerService;
 
 @Controller
@@ -40,7 +41,7 @@ public class HardenerController {
 	@GetMapping("/deleteHardener/{id}")
 	public String deleteHardener(@PathVariable(value = "id")Long id) {
 		service.deleteHardener(id);
-		return "redirect:/hardeners";
+		return "redirect:/products/hardeners?delete";
 	}
 	
 	@GetMapping("/hardeners")
@@ -59,31 +60,37 @@ public class HardenerController {
 	@PostMapping("/updateHardenerPrice/{id}")
 	public String updateHardenerPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateHardenerName/{id}")
 	public String updateHardenerName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateHardenerName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
+	}
+	
+	@PostMapping("/updateHardenerWeight/{id}")
+	public String updateHardenerWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
+		service.updateHardenerWeight(id, weigth);
+		return REDIRECT + id+"?weight";
 	}
 	
 	@PostMapping("/updateHardenerDescription/{id}")
 	public String updateHardenerDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateHardenerDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updateHardenerManufacturer/{id}")
 	public String updateHardenerManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToHardener/{id}")
 	public String updateAvailabilityToHardener(@PathVariable(value = "id")Long id ) {
 		service.updateHardenerAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updateHardenerImage/{id}")
@@ -96,7 +103,7 @@ public class HardenerController {
 			model.addAttribute("error", e.getMessage());
 			return "singleHardener";
 		}
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 	
 	@GetMapping("/connectHardenerToCoats/{id}")
@@ -104,13 +111,12 @@ public class HardenerController {
 		model.addAttribute("hardener", service.findHardenerById(id));
 		model.addAttribute("coats", coatService.reducedCoats(id));
 		return "coatList";
-		
 	}
 	
     @PostMapping("/connectHardenerToCoats/{id}")
     public String completeConectingHardenerToCoat(@PathVariable("id")Long id, @RequestParam("allCoats")List<Coat> allCoats) {
     	service.connectHardenerToCoats(id , allCoats);
-    	return REDIRECT + id;
+    	return REDIRECT + id+"?connectCoat";
     }
     
     @GetMapping("/connectHardenerToPrimers/{id}")
@@ -118,13 +124,12 @@ public class HardenerController {
 		model.addAttribute("hardener", service.findHardenerById(id));
 		model.addAttribute("primers", primerService.reducedPrimers(id));
 		return "primerList";
-		
 	}
 	
     @PostMapping("/connectHardenerToPrimers/{id}")
     public String completeConectingHardenerToPrimer(@PathVariable("id")Long id, @RequestParam("allPrimers")List<Primer> allPrimers) {
     	service.connectHardenerToPrimer(id , allPrimers);
-    	return REDIRECT + id;
+    	return REDIRECT + id+"?connectPrimer";
     }
 
 }

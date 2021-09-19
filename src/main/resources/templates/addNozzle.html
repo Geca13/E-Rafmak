@@ -23,20 +23,19 @@
 <form th:action="@{/create/newNozzle}" th:object="${nozzle}" enctype="multipart/form-data" method="post">
   <h1>New Nozzle Form</h1>
     
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
+       
     <div class="form-group">
       <select  th:field="*{manufacturer}">
-     <option value="">-Select-</option>
       <option th:each="manufacturer : ${manufacturers}"
         th:value="${manufacturer.id}"
         th:text="${manufacturer.name}"
         />
        </select>
       <label  for="select" class="control-label">Manufacturer</label><i class="bar"></i>
-    </div>
-    
-   <div class="form-group">
-      <input th:field="*{name}" maxlength="100" type="text" required="required"/>
-      <label for="input"  class="control-label">Product Name</label><i class="bar"></i>
     </div>
     
     <div class="form-group">
@@ -51,7 +50,7 @@
     
     <div class="form-group">
       <input type="file" name="fileImage" id="fileImage"  required="required"/>
-      <label for="fileName" class="control-label">Image</label><i class="bar"></i>
+      
     </div>
    
        <div class="form-group">

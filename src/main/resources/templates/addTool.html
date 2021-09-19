@@ -23,6 +23,11 @@
 <form th:action="@{/create/newTool}" th:object="${tool}" enctype="multipart/form-data" method="post">
   <h1>New Tool Form</h1>
     
+    <div th:if="${error != null}" class="error-msg">
+       <i class="fa fa-times-circle"></i>
+        [[${error}]]
+       </div>
+       
     <div class="form-group">
       <select  th:field="*{manufacturer}">
      <option value="">-Select-</option>
@@ -62,7 +67,7 @@
       th:value="${power}"
             th:text="${power.displayValue}"/>
        </select>
-      <label  for="select" class="control-label">Select Weight</label><i class="bar"></i>
+      <label  for="select" class="control-label">Select Power Type</label><i class="bar"></i>
     </div>
     
      <div class="button-container">

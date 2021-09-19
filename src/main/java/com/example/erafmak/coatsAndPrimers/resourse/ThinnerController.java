@@ -29,10 +29,10 @@ public class ThinnerController {
 	private final String REDIRECT = "redirect:/products/thinner/";
 	
 	
-	@PostMapping("/deleteThinner/{id}")
+	@GetMapping("/deleteThinner/{id}")
 	public String deleteThinner(@PathVariable(value = "id")Long id) {
 		service.deleteThinner(id);
-		return "redirect:/thinners";
+		return "redirect:/products/thinners?delete";
 	}
 	
 	@GetMapping("/thinners")
@@ -51,37 +51,37 @@ public class ThinnerController {
 	@PostMapping("/updateThinnerPrice/{id}")
 	public String updateThinnerPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateThinnerName/{id}")
 	public String updateThinnerName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateThinnerName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateThinnerWeight/{id}")
 	public String updateThinnerWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
 		service.updateThinnerWeight(id, weigth);
-		return REDIRECT + id;
+		return REDIRECT + id+"?weight";
 	}
 	
 	@PostMapping("/updateThinnerDescription/{id}")
 	public String updateThinnerDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateThinnerDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updateThinnerManufacturer/{id}")
 	public String updateThinnerManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	@PostMapping("/setAvailabilityToThinner/{id}")
 	public String updateAvailabilityToThinner(@PathVariable(value = "id")Long id ) {
 		service.updateThinnerAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 
 	@PostMapping("/updateThinnerImage/{id}")
@@ -95,7 +95,7 @@ public class ThinnerController {
 			return "singleThinner";
 		}
 		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 
 

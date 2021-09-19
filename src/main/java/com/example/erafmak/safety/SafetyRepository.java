@@ -11,4 +11,6 @@ public interface SafetyRepository extends JpaRepository<Safety, Long> {
 	Safety findByIdAndSizeQty_Size(Long id,Size size);
 	
 	Safety findBySizeQty_Id(Long id);
+
+	Boolean existsByIdAndSizeQty_IsAvailable(Long id, Boolean exists);
 }

@@ -36,7 +36,7 @@ public class CoatController {
 		
 			service.deleteCoat(id);
 	
-		return "redirect:/products/coats";
+		return "redirect:/products/coats?delete";
 	}
 	
 	@GetMapping("/coats")
@@ -55,38 +55,38 @@ public class CoatController {
 	@PostMapping("/updateCoatPrice/{id}")
 	public String updateCoatPrice(@PathVariable(value = "id")Long id , @Param(value = "price") Double price) {
 		service.updatePrice(id , price);
-		return REDIRECT + id;
+		return REDIRECT + id+"?price";
 	}
 	
 	@PostMapping("/updateCoatName/{id}")
 	public String updateCoatName(@PathVariable(value = "id")Long id , @Param(value = "name") String name) {
 		service.updateCoatName(id , name);
-		return REDIRECT + id;
+		return REDIRECT + id+"?name";
 	}
 	
 	@PostMapping("/updateCoatDescription/{id}")
 	public String updateCoatDescription(@PathVariable(value = "id")Long id , @Param(value = "description") String description) {
 		service.updateCoatDescription(id , description);
-		return REDIRECT + id;
+		return REDIRECT + id+"?description";
 	}
 	
 	@PostMapping("/updateCoatWeight/{id}")
 	public String updateCoatWeight(@PathVariable("id")Long id, @Param(value = "weigth")Weigth weigth) {
 		service.updateCoatWeight(id, weigth);
-		return REDIRECT + id;
+		return REDIRECT + id+"?weight";
 	}
 	
 	@PostMapping("/updateCoatManufacturer/{id}")
 	public String updateCoatManufactorer(@PathVariable(value = "id")Long id , @Param(value = "manufacturer")String manufacturer) {
 		service.updateManufacturer(id , manufacturer);
-		return REDIRECT + id;
+		return REDIRECT + id+"?manufacturer";
 	}
 	
 	
 	@PostMapping("/setAvailabilityToCoat/{id}")
 	public String updateAvailabilityToCoat(@PathVariable(value = "id")Long id ) {
 		service.updateCoatAvailability(id);
-		return REDIRECT + id;
+		return REDIRECT + id+"?available";
 	}
 	
 	@PostMapping("/updateCoatImage/{id}")
@@ -99,14 +99,13 @@ public class CoatController {
 			model.addAttribute("error", e.getMessage());
 			return "singleCoat";
 		}
-		
-		return REDIRECT + id;
+		return REDIRECT + id+"?image";
 	}
 	
 	@PostMapping("/disconectHarterFromCoat/{id}/{hid}")
 	public String disconnectHardener(@PathVariable("id")Long id,@PathVariable ("hid") Long hid) {
 		service.disconectHardenerFromCoat(id, hid);
-		return REDIRECT + id;
+		return REDIRECT + id+"?disconnect";
 	}
 
 }
