@@ -41,7 +41,6 @@ public class ManufacturerService {
 	
 	public Manufacturer createNewManufacturer(Manufacturer manufacturer) {
 		
-		manufacturer.setId(manufacturers().size() + 1L);
 		setOriginToManufacturer(manufacturer);
 		
 		return manufacturerRepository.save(manufacturer);
@@ -53,7 +52,7 @@ public class ManufacturerService {
 		if(originRepository.existsByName(manufacturer.getOrigin().getName())) {
 			manufacturer.setOrigin(originRepository.findByName(manufacturer.getOrigin().getName()));
 		} else {
-			origin.setId(origins().size()+1L);
+			
 			origin.setName(manufacturer.getOrigin().getName());
 			originRepository.save(origin);
 			manufacturer.setOrigin(origin);

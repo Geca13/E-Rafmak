@@ -32,8 +32,6 @@ public class SprayGunsService {
 	
     public SprayGun newSprayGun(SprayGun gun, MultipartFile multiPartFile) throws IOException {
     	
-    	Long id = guns().size()+1L;
-    	gun.setId(id);
         uploadSprayGunImage(gun, multiPartFile);
 		gun.setIsAvailable(true);
 		

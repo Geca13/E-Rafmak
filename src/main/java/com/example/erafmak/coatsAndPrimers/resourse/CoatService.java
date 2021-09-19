@@ -34,8 +34,6 @@ public class CoatService {
 	
     public Coat newCoat(Coat coat , MultipartFile multiPartFile) throws IOException {
     	
-        Long id = coats().size() +1l;
-		coat.setId(id);
 		uploadImage(coat, multiPartFile);
 		coat.setIsAvailable(true);
 		return coatRepository.save(coat);

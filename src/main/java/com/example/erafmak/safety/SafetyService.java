@@ -32,7 +32,7 @@ public class SafetyService {
 	    public Safety newSafety(Safety safety,  MultipartFile multiPartFile) throws IOException {
 	    	
 	    	uploadSafetyImage(safety, multiPartFile);
-			safety.setId(safetyRepository.count()+1L);
+			
 			safety.setIsAvailable(true);
 			return safetyRepository.save(safety);
 		}
@@ -125,7 +125,7 @@ public class SafetyService {
 			
 			for (Size size : allSizes) {
 				SizeQuantity sizeQty = new SizeQuantity();
-				sizeQty.setId(sqRepository.count()+1L);
+				
 				sizeQty.setIsAvailable(true);
 				sizeQty.setSize(size);
 				sqRepository.save(sizeQty);

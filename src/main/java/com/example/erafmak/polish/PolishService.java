@@ -28,13 +28,11 @@ public class PolishService {
 	PadsService padsService;
 	
     public Polish newPolish(Polish polish, MultipartFile multiPartFile) throws IOException {
-		Long id = polishes().size() + 1L;
-		polish.setId(id);
+		
         uploadPolishImage(polish, multiPartFile);
 		polish.setIsAvailable(true);
 		
 		return polishRepository.save(polish);
-		
 	}
 
 	private void uploadPolishImage(Polish polish, MultipartFile multiPartFile) throws IOException {
@@ -49,7 +47,6 @@ public class PolishService {
 		Path uploadPath = Paths.get(uploadDir);
 		
         try (InputStream inputStream = multiPartFile.getInputStream()) {
-			
 			
 			Path filePath = uploadPath.resolve(fileName);
 			Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
@@ -92,7 +89,6 @@ public class PolishService {
 		Polish polish = findPolishById(id);
 		polish.setPrice(price);
 		return polishRepository.save(polish);
-		
 	}
 
 	public Polish updatePolishName(Long id, String name) {
