@@ -305,8 +305,7 @@ nav .navbar .links li:hover .js-sub-menu{
 .pill-nav {
 	display: none;
 }
-@media (max-width:80
-0px) {
+@media (max-width:810px) {
 	
 .pill-nav {
 	display: inline;
