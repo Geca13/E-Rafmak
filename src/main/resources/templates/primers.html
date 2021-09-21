@@ -19,10 +19,17 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 <br>
-<div th:if="${param.delete}" class="success-msg">
+  <div th:if="${param.delete}" class="success-msg">
        <i class="fa fa-check"></i>
         You've successfully deleted product from the products list  !!!
       </div>
+ <div class="pill-nav">
+  <a th:href="@{/products/coats}">Coats</a>
+  <a class="active" th:href="@{/products/primers}">Primers</a>
+  <a th:href="@{/products/hardeners}">Hardeners</a>
+  <a th:href="@{/products/thinners}">Thinners</a>
+  <a th:href="@{/products/putties}">Putties</a>
+</div>
 <h1 class="middle">Primers</h1>
 
  <section class='roomsList'>

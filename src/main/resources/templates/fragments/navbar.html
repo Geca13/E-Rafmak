@@ -2,16 +2,14 @@
 <nav >
       <div class="navbar">
       <i class='bx bx-menu'></i>
-      <div class="logo"><a href="#">Rafmak</a></div>
+      <div class="logo"><a th:href="@{/}">Rafmak</a></div>
       <div class="nav-links">
         <div class="sidebar-logo">
           <span class="logo-name">Rafmak</span>
           <i class='bx bx-x' ></i>
         </div>
         <ul class="links">
-        
-        
-          <li>
+         <li>
           <a th:href="@{/products/sanders}">Abrazives</a>
               <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu">
@@ -102,7 +100,7 @@
           
            <li>
             <a th:href="@{/products/tools}">Tools&Equip</a>
-            <i class='bx bxs-chevron-down htmlcss-arrow1 arrow  '></i>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu">
               <li class="more">
                 <span><a th:href="@{/products/tools}">Tools</a>
@@ -175,13 +173,7 @@
           <li sec:authorize="hasRole('ROLE_ADMIN')" >
           <span><a th:href="@{/admin}">Administration</a> </span>
          </li>
-         <!--  
-          <li sec:authorize="isAuthenticated()">
-          <div>
-             <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i></a>
-          </div>
-         </li>
-         -->
+         
         </ul>
       </div>
       
@@ -203,7 +195,7 @@
         <ul>
           <li>
           <div>
-          <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <a  th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i></a>
           </div>
           
           </li>

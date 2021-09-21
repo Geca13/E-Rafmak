@@ -301,7 +301,34 @@ nav .navbar .links li:hover .js-sub-menu{
 .navbar .bx-menu{
   display: none;
 }
-@media (max-width:920px) {
+
+.pill-nav {
+	display: none;
+}
+@media (max-width:80
+0px) {
+	
+.pill-nav {
+	display: inline;
+}
+.pill-nav a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 10px;
+  background-color: #ed8434;
+}
+
+
+
+/* Add a color to the active/current link */
+.pill-nav a.active {
+  background-color: #f5ba1a;
+  color: white;
+}
   nav .navbar{
     max-width: 100%;
     padding: 0 25px;

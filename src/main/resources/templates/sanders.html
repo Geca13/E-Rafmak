@@ -23,7 +23,19 @@
        <i class="fa fa-check"></i>
         You've successfully deleted product from the products list  !!!
       </div>
+ <div th:unless="${sanders eq null}">
+ <div class="pill-nav">
+  <a class="active" th:href="@{/products/sanders}">All</a>
+  <a th:href="@{/products/sanders/discs}">Discs</a>
+  <a th:href="@{/products/sanders/blocks}">Blocks</a>
+  <a th:href="@{/products/sanders/rolls}">Rolls</a>
+  <a th:href="@{/products/sanders/softs}">Softs</a>
+  <a th:href="@{/products/sanders/wets}">Wets</a>
+</div>
+
 <h1 class="middle">Sanders</h1>
+
+
 
  <section class='roomsList'>
             <div class='roomslist-center'>
@@ -44,6 +56,177 @@
 
             </div>
         </section>
+        </div>
+ <div th:unless="${discs eq null}">
+ <div class="pill-nav">
+  <a th:href="@{/products/sanders}">All</a>
+  <a class="active" th:href="@{/products/sanders/discs}">Discs</a>
+  <a th:href="@{/products/sanders/blocks}">Blocks</a>
+  <a th:href="@{/products/sanders/rolls}">Rolls</a>
+  <a th:href="@{/products/sanders/softs}">Softs</a>
+  <a th:href="@{/products/sanders/wets}">Wets</a>
+</div>
+
+<h1 class="middle">Discs</h1>
+
+
+
+ <section class='roomsList'>
+            <div class='roomslist-center'>
+             <article class='room' th:each="sander : ${discs}" >
+            <div class='img-container'>
+              <img th:src="${sander.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${sander.piecesInPack}"></h6>
+                  <p>pieces</p>
+
+              </div>
+              <a th:href="@{/products/sander/{id}(id=${sander.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${sander.name}" ></p>
+        </article>
+
+            </div>
+        </section>
+        </div> 
+  <div th:unless="${blocks eq null}">
+ <div class="pill-nav">
+  <a th:href="@{/products/sanders}">All</a>
+  <a th:href="@{/products/sanders/discs}">Discs</a>
+  <a class="active" th:href="@{/products/sanders/blocks}">Blocks</a>
+  <a th:href="@{/products/sanders/rolls}">Rolls</a>
+  <a th:href="@{/products/sanders/softs}">Softs</a>
+  <a th:href="@{/products/sanders/wets}">Wets</a>
+</div>
+
+<h1 class="middle">Blocks</h1>
+
+
+
+ <section class='roomsList'>
+            <div class='roomslist-center'>
+             <article class='room' th:each="sander : ${blocks}" >
+            <div class='img-container'>
+              <img th:src="${sander.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${sander.piecesInPack}"></h6>
+                  <p>pieces</p>
+
+              </div>
+              <a th:href="@{/products/sander/{id}(id=${sander.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${sander.name}" ></p>
+        </article>
+
+            </div>
+        </section>
+        </div>
+        <div th:unless="${rolls eq null}">
+ <div class="pill-nav">
+  <a th:href="@{/products/sanders}">All</a>
+  <a th:href="@{/products/sanders/discs}">Discs</a>
+  <a th:href="@{/products/sanders/blocks}">Blocks</a>
+  <a class="active" th:href="@{/products/sanders/rolls}">Rolls</a>
+  <a th:href="@{/products/sanders/softs}">Softs</a>
+  <a th:href="@{/products/sanders/wets}">Wets</a>
+</div>
+
+<h1 class="middle">Rolls</h1>
+
+
+
+ <section class='roomsList'>
+            <div class='roomslist-center'>
+             <article class='room' th:each="sander : ${rolls}" >
+            <div class='img-container'>
+              <img th:src="${sander.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${sander.piecesInPack}"></h6>
+                  <p>pieces</p>
+
+              </div>
+              <a th:href="@{/products/sander/{id}(id=${sander.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${sander.name}" ></p>
+        </article>
+
+            </div>
+        </section>
+        </div>  
+        <div th:unless="${wets eq null}">
+ <div class="pill-nav">
+  <a th:href="@{/products/sanders}">All</a>
+  <a th:href="@{/products/sanders/discs}">Discs</a>
+  <a th:href="@{/products/sanders/blocks}">Blocks</a>
+  <a th:href="@{/products/sanders/rolls}">Rolls</a>
+  <a th:href="@{/products/sanders/softs}">Softs</a>
+  <a class="active" th:href="@{/products/sanders/wets}">Wets</a>
+</div>
+
+<h1 class="middle">Wets</h1>
+
+
+
+ <section class='roomsList'>
+            <div class='roomslist-center'>
+             <article class='room' th:each="sander : ${wets}" >
+            <div class='img-container'>
+              <img th:src="${sander.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${sander.piecesInPack}"></h6>
+                  <p>pieces</p>
+
+              </div>
+              <a th:href="@{/products/sander/{id}(id=${sander.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${sander.name}" ></p>
+        </article>
+
+            </div>
+        </section>
+        </div>
+        <div th:unless="${softs eq null}">
+ <div class="pill-nav">
+  <a th:href="@{/products/sanders}">All</a>
+  <a th:href="@{/products/sanders/discs}">Discs</a>
+  <a th:href="@{/products/sanders/blocks}">Blocks</a>
+  <a th:href="@{/products/sanders/rolls}">Rolls</a>
+  <a class="active" th:href="@{/products/sanders/softs}">Softs</a>
+  <a th:href="@{/products/sanders/wets}">Wets</a>
+</div>
+
+<h1 class="middle">Softs</h1>
+
+
+
+ <section class='roomsList'>
+            <div class='roomslist-center'>
+             <article class='room' th:each="sander : ${softs}" >
+            <div class='img-container'>
+              <img th:src="${sander.imageUrl}" alt='sander image'/>
+              <div class="price-top">
+                  <h6 th:text = "${sander.piecesInPack}"></h6>
+                  <p>pieces</p>
+
+              </div>
+              <a th:href="@{/products/sander/{id}(id=${sander.id})}" class='btn-primary room-link'>
+                  Details 
+                  </a>
+            </div>
+            <p class='room-info' th:text="${sander.name}" ></p>
+        </article>
+
+            </div>
+        </section>
+        </div>    
 <div th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 

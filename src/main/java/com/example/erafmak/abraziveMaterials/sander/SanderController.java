@@ -51,31 +51,31 @@ public class SanderController {
 	
 	@GetMapping("/sanders/discs")
 	public String getAllDiscs(Model model) {
-		model.addAttribute("sanders", service.discs());
+		model.addAttribute("discs", service.discs());
 		return "sanders";
 	}
 	
 	@GetMapping("/sanders/rolls")
 	public String getAllRools(Model model) {
-		model.addAttribute("sanders", service.rolls());
+		model.addAttribute("rolls", service.rolls());
 		return "sanders";
 	}
 	
 	@GetMapping("/sanders/blocks")
 	public String getAllBlocks(Model model) {
-		model.addAttribute("sanders", service.blocks());
+		model.addAttribute("blocks", service.blocks());
 		return "sanders";
 	}
 	
 	@GetMapping("/sanders/softs")
 	public String getAllSofts(Model model) {
-		model.addAttribute("sanders", service.softs());
+		model.addAttribute("softs", service.softs());
 		return "sanders";
 	}
 	
 	@GetMapping("/sanders/wets")
 	public String getAllWets(Model model) {
-		model.addAttribute("sanders", service.wets());
+		model.addAttribute("wets", service.wets());
 		return "sanders";
 	}
 	

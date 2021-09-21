@@ -2,8 +2,6 @@ package com.example.erafmak.user.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

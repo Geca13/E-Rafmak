@@ -2,22 +2,16 @@ package com.example.erafmak.user.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import com.example.erafmak.user.entity.Role;
 import com.example.erafmak.user.entity.User;
-
-import lombok.AllArgsConstructor;
 
 
 public class UsersDetails implements UserDetails {
 	
 	private User user;
-
-	
 
 	public UsersDetails(User user) {
 		super();
