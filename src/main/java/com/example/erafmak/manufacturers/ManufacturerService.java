@@ -60,6 +60,7 @@ public class ManufacturerService {
 			origin.setName(manufacturer.getOrigin().getName());
 			originRepository.save(origin);
 			manufacturer.setOrigin(origin);
+			manufacturerRepository.save(manufacturer);
 		}
 		return origin;
 	}
@@ -77,6 +78,7 @@ public class ManufacturerService {
 		if(originRepository.existsByName(manufacturer.getOrigin().getName())) {
 			forUpdate.setOrigin(originRepository.findByName(manufacturer.getOrigin().getName()));
 		}
+		forUpdate.setOrigin(setOriginToManufacturer(manufacturer));
 		return manufacturerRepository.save(forUpdate);
 	}
 
