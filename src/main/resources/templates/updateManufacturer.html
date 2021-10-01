@@ -32,8 +32,8 @@
       <select  th:field="*{origin.name}">
      
       <option th:each="origin : ${origins}"
-        th:value="${origin.name}"
-        th:text="${origin.name}"
+        th:value="${origin}"
+        th:text="${origin}"
         />
        </select>
       <label  for="select" class="control-label">Country</label><i class="bar"></i>
