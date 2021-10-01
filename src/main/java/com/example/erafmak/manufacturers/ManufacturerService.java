@@ -13,18 +13,22 @@ public class ManufacturerService {
 	@Autowired
 	ManufacturerRepository manufacturerRepository;
 	
-	private static String url = "https://restcountries.eu/rest/v2/all";
-
-	@Autowired
-	private RestTemplate restTemplate;
+	
 	
 	@Autowired
 	OriginRepository originRepository;
 	
-	public List<Origin> getCountriesList(){
-		Origin[] countries = restTemplate.getForObject(url, Origin[].class);
+	public List<String> getCountriesList(){
+		List<String> countries = new ArrayList<>();
+		String[] isoCountries = Locale.getISOCountries();
 		
-		return Arrays.asList(countries);
+		for (String country : isoCountries) {
+            Locale locale = new Locale("en", country);
+           String name = locale.getDisplayCountry();
+           countries.add(name);
+		}
+		
+		return countries;
 	}
 	
 	public List<Manufacturer> manufacturers(){
